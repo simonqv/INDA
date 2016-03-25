@@ -41,7 +41,7 @@ How many CPUs does you program use? How much faster is your parallell version?
 
 ### Task 3 - Weather station
 
-The file [server.go](code/server.go) contains a program that simulates three independent servers that show the temperature at KTH. The results are published at the following adresses:
+The file [client.go](code/client.go) contains a program that simulates three independent servers that show the temperature at KTH. The results are published at the following adresses:
 
   * `http://localhost:8080`
   * `http://localhost:8081`
