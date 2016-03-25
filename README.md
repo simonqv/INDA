@@ -25,44 +25,44 @@ Study the following course literature:
 Explain what is wrong in the code below, and then fix the code so that all data really passes through the channel and gets printed.
 
 #### Bug 1
+```Go
+package main
 
-    package main
+import "fmt"
 
-    import "fmt"
-
-    // I want this program to print "Hello world!", but it doesn't work.
-    func main() {
-        ch := make(chan string)
-        ch <- "Hello world!"
-        fmt.Println(<-ch)
-    }
-
+// I want this program to print "Hello world!", but it doesn't work.
+func main() {
+    ch := make(chan string)
+    ch <- "Hello world!"
+    fmt.Println(<-ch)
+}
+```
 See: [bug01.go](code/bug01.go) for source code to modify.
 
 #### Bug 2
+```Go
+package main
 
-    package main
+import "fmt"
 
-    import "fmt"
-
-    // This program should go to 11, but sometimes it only prints 1 to 10.
-    func main() {
-        ch := make(chan int)
-        go Print(ch)
-        for i := 1; i <= 11; i++ {
-            ch <- i
-        }
-        close(ch)
+// This program should go to 11, but sometimes it only prints 1 to 10.
+func main() {
+    ch := make(chan int)
+    go Print(ch)
+    for i := 1; i <= 11; i++ {
+        ch <- i
     }
+    close(ch)
+}
 
-    // Print prints all numbers sent on the channel.
-    // The function returns when the channel is closed.
-    func Print(ch <-chan int) {
-        for n := range ch { // reads from channel until it's closed
-            fmt.Println(n)
-        }
+// Print prints all numbers sent on the channel.
+// The function returns when the channel is closed.
+func Print(ch <-chan int) {
+    for n := range ch { // reads from channel until it's closed
+        fmt.Println(n)
     }
-
+}
+```
 See: [bug02.go](code/bug02.go) for source code to modify.
 
 ### Task 2 - Many Senders; Many Receivers
