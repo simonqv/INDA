@@ -1,6 +1,6 @@
 ### Deadline:
 
-This work should be completed before **Thursday 7th April**.
+This work should be completed before **5/6th April** (depending upon your övning group).
 
 ### Instructions:
 
@@ -11,7 +11,7 @@ Please note that this is individual work. You may discuss the work with other st
 ### Submission:
 
 * All required work must be committed to your KTH Github Repository
-* A repository will be created for you automatically and it can be found [here](https://gits-15.sys.kth.se/INDA15)
+* A repository will be created for you automatically and it can be found [here](https://gits-15.sys.kth.se/inda-16)
 * Please refer to the Kurswiki for help, contact your teaching assistant, or course leader if you get stuck
 
 ### Homework
