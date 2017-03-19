@@ -14,13 +14,16 @@ func main() {
 		"http://localhost:8081",
 		"http://localhost:8082",
 	}
+
+	// Add a time limit for all requests made by this client.
+	client := &http.Client{Timeout: 10 * time.Second}
+
 	for {
 		before := time.Now()
-		res := Get(server[0])
-		//res := Read(server[0], time.Second)
-		//res := MultiRead(server, time.Second)
+		res := Get(server[0], client)
+		//res := MultiGet(server, client)
 		after := time.Now()
-		fmt.Println("Response:", *res)
+		fmt.Println("Response:", res)
 		fmt.Println("Time:", after.Sub(before))
 		fmt.Println()
 		time.Sleep(500 * time.Millisecond)
@@ -32,12 +35,14 @@ type Response struct {
 	StatusCode int
 }
 
+func (r *Response) String() string {
+	return fmt.Sprintf("%q (%d)", r.Body, r.StatusCode)
+}
+
 // Get makes an HTTP Get request and returns an abbreviated response.
-// Status code 200 means that the request was successful.
-// The function returns &Response{"", 0} if the request fails
-// and it blocks forever if the server doesn't respond.
-func Get(url string) *Response {
-	res, err := http.Get(url)
+// The response is empty if the request fails.
+func Get(url string, client *http.Client) *Response {
+	res, err := client.Get(url)
 	if err != nil {
 		return &Response{}
 	}
@@ -50,28 +55,10 @@ func Get(url string) *Response {
 	return &Response{string(body), res.StatusCode}
 }
 
-// FIXME
-// I've found two insidious bugs in this function; both of them are unlikely
-// to show up in testing. Please fix them right away and don't forget to
-// write a doc comment this time.
-func Read(url string, timeout time.Duration) (res *Response) {
-	done := make(chan bool)
-	go func() {
-		res = Get(url)
-		done <- true
-	}()
-	select {
-	case <-done:
-	case <-time.After(timeout):
-		res = &Response{"Gateway timeout\n", 504}
-	}
-	return
-}
-
-// MultiRead makes an HTTP Get request to each url and returns
-// the response of the first server to answer with status code 200.
-// If none of the servers answer before timeout, the response is
-// "503: Service unavailable"
-func MultiRead(urls []string, timeout time.Duration) (res *Response) {
-	return // TODO
+// MultiGet makes an HTTP Get request to each url and returns
+// the response from the first server to answer with status code 200.
+// If none of the servers answer before timeout, the response is 503
+// – Service unavailable.
+func MultiGet(urls []string, client *http.Client) *Response {
+	return nil // TODO
 }

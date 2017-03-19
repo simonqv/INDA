@@ -1,6 +1,6 @@
 ### Deadline:
 
-This work should be completed before **Thursday 21st April**.
+This work should be completed before **20th/21st April** (depending upon your övning group).
 
 ### Instructions:
 
@@ -11,7 +11,7 @@ Please note that this is individual work. You may discuss the work with other st
 ### Submission:
 
 * All required work must be committed to your KTH Github Repository
-* A repository will be created for you automatically and it can be found [here](https://gits-15.sys.kth.se/INDA15)
+* A repository will be created for you automatically and it can be found [here](https://gits-15.sys.kth.se/inda-16)
 * Please refer to the Kurswiki for help, contact your teaching assistant, or course leader if you get stuck
 
 ### Homework
@@ -20,7 +20,7 @@ Study the following course literature:
 
 * Chapters 6-10 in [Fundamentals of Concurrent Programming](http://www.nada.kth.se/~snilsson/concurrency/)
 
-### Task 1 - Matching Behaviour
+### Task 1 - Matching Behavior
 
 Take a look at the program [matching.go](code/matching.go) from Chapter 9 in the [literature](http://www.nada.kth.se/~snilsson/concurrency/#Match). Explain what happens and why it happens if you make the following changes. Try first to reason about it, and then test your hypothesis by changing and running the program.
 
@@ -35,24 +35,23 @@ Hint: Think about the order of the instructions and what happens with arrays of 
 
 The file [julia.go](code/julia.go) contains a program that creates images and writes them to file. The program is pretty slow. Your assignment is to divide the computations so that they run in parallel on all available CPUs. Use the ideas from the example in [Chapter 10](http://www.nada.kth.se/~snilsson/concurrency/#Parallel) of the course literature.
 
-You can also make changes to the program, such as using different functions and other colourings.
+You can also make changes to the program, such as using different functions and other colorings.
 
-How many CPUs does you program use? How much faster is your parallell version?
+How many CPUs does you program use? How much faster is your parallel version?
 
 ### Task 3 - Weather station
 
-The file [client.go](code/client.go) contains a program that simulates three independent servers that show the temperature at KTH. The results are published at the following adresses:
+The file [server.go](code/server.go) contains a program that simulates three independent weather stations that show the temperature at KTH. The results are published at the following addresses once the serves are operational:
 
   * `http://localhost:8080`
   * `http://localhost:8081`
   * `http://localhost:8082`
 
-Start the program and try to visit the three adresses in your browser. You'll soon find that the three services aren't very reliable; they're pretty slow and sometimes you get no response at all. You might also get the error message "Service unavailable".
+Start the program and try to visit the three addresses in your browser. You'll soon find that the three services aren't very reliable; they're pretty slow and sometimes you get no response at all. You might also get the error message "Service unavailable".
 
-Your assingment is to write a client that simultaneously asks all servers and terminates the search as soon as one has responded with a correct temperature. The request should also terminate if no-one has answered within a given time. The file [client.go](code/client.go) contains a template from which you should build on.
+Your assignment is to write a client that simultaneously asks all servers and terminates the search as soon as one has responded with a correct temperature. The request should also terminate if no-one has answered within a given time. The file [client.go](code/client.go) contains a template from which you should build on.
 
-  * The `Read` function contains two nasty bugs. Describe in detail what's wrong
-  * Write a correct implementation of the `Read` function (don't forget the doc-comment)
+  * Read through the code and start the client whilst the weather stations are operational
   * Implement the function `Multiread`
 
 ---
