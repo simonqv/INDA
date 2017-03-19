@@ -52,7 +52,7 @@ Start the program and try to visit the three addresses in your browser. You'll s
 Your assignment is to write a client that simultaneously asks all servers and terminates the search as soon as one has responded with a correct temperature. The request should also terminate if no-one has answered within a given time. The file [client.go](code/client.go) contains a template from which you should build on.
 
   * Read through the code and start the client whilst the weather stations are operational
-  * Implement the function `Multiread`
+  * Implement the function `MultiGet`
 
 ---
 
