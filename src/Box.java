@@ -20,7 +20,19 @@ public class Box {
     }
 
     /**
+     * Create a copy of box.
+     *
+     * @param box A Box to copy.
+     */
+    public Box(Box box) {
+        this.height = box.height;
+        this.width = box.width;
+        this.depth = box.depth;
+    }
+
+    /**
      * Get this box's volume
+     *
      * @return the box's volume
      */
     public int volume() {
@@ -28,7 +40,29 @@ public class Box {
     }
 
     /**
+     * @return The box's height
+     */
+    public int getHeight() {
+        return height;
+    }
+
+    /**
+     * @return The box's width
+     */
+    public int getWidth() {
+        return width;
+    }
+
+    /**
+     * @return The box's depth
+     */
+    public int getDepth() {
+        return depth;
+    }
+
+    /**
      * Defines if two Boxes should be considered equal according to their volume.
+     *
      * @param o an object
      * @return true if the given object has equal volume to this Box
      */
@@ -44,6 +78,12 @@ public class Box {
 
     /**
      * Defines the hash code of this Box.
+     *
+     * This is required by the contract of hashCode, which states that if for
+     * two objects x and y, x.equals(y) is true, 
+     * then x.hashCode() == y.hashCode() must also be true. So, as we override
+     * the Object.equals(Object o), we must also override Object.hashCode().
+     *
      * For a good explanation, see Effective Java Recipe Item 9
      * @return the hash code of this Box
      */
