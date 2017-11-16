@@ -86,7 +86,7 @@ public class BoxProcessorTest {
         evenLengthLastElementCopy = new Box(unsortedEvenLengthArray[EVEN_LENGTH_LAST_INDEX]);
 
         unsortedOddLengthList = generateUniqueBoxList(ARBITRARY_ODD_LENGTH);
-        unsortedOddLengthArray = unsortedEvenLengthList.toArray(new Box[0]);
+        unsortedOddLengthArray = unsortedOddLengthList.toArray(new Box[0]);
 
         oddLengthFirstElementCopy = unsortedOddLengthArray[ODD_LENGTH_FIRST_INDEX];
         oddLengthMiddleElementCopy = unsortedOddLengthArray[ODD_LENGTH_MIDDLE_INDEX];
@@ -246,7 +246,7 @@ public class BoxProcessorTest {
             newOddLengthArray, boxNotInNewOddLengthArray);
 
         // Assert
-        assertThat(boxNotInNewOddArrayIndex, equalTo(BOX_NOT_FOUND_INDEX));
+        assertThat(boxNotInNewEvenArrayIndex, equalTo(BOX_NOT_FOUND_INDEX));
         assertThat(boxNotInNewOddArrayIndex, equalTo(BOX_NOT_FOUND_INDEX));
     }
 
@@ -329,7 +329,7 @@ public class BoxProcessorTest {
             newOddLengthArray, boxNotInNewOddLengthArray);
 
         // Assert
-        assertThat(boxNotInNewOddArrayIndex, equalTo(BOX_NOT_FOUND_INDEX));
+        assertThat(boxNotInNewEvenArrayIndex, equalTo(BOX_NOT_FOUND_INDEX));
         assertThat(boxNotInNewOddArrayIndex, equalTo(BOX_NOT_FOUND_INDEX));
     }
 
