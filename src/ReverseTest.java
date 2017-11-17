@@ -51,7 +51,7 @@ public class ReverseTest {
         int[] reversedEmptyArray = reverse.reversed(emptyArray);
 
         // Assert
-        assertThat(emptyArray.length, equalTo(0));
+        assertThat(reversedEmptyArray.length, equalTo(0));
     }
 
     @Test
