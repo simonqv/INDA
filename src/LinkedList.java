@@ -1,8 +1,8 @@
 /**
  * A singly linked list.
  * 
- * @author 
- * @version
+ * @author (NAME HERE PLZ)
+ * @version (DATE HERE PLZ)
  */
 public class LinkedList<T> { 
     private ListElement<T> first;   // First element in list.
@@ -23,21 +23,6 @@ public class LinkedList<T> {
     }
     
     /**
-     * This TEST METHOD returns true if the following invariants hold:
-     * <ul>
-     *   <li> size equals the number of list elements, </li>
-     *   <li> if size == 0, first == null and last == null, </li>
-     *   <li> if size > 0, first != null and last != null, </li>
-     *   <li> if size == 1, first == last, </li>
-     *   <li> last.next == null. </li>
-     * </ul>
-     */
-    public boolean isHealthy() {
-    	// TODO
-    	return false;
-    }
-    
-    /**
      * Creates an empty list.
      */
     public LinkedList() {
@@ -46,6 +31,8 @@ public class LinkedList<T> {
 
     /**
      * Inserts the given element at the beginning of this list.
+     *
+     * @param element An element to insert into the list.
      */
     public void addFirst(T element) {
         // TODO
@@ -53,14 +40,16 @@ public class LinkedList<T> {
 
     /**
      * Inserts the given element at the end of this list.
+     *
+     * @param element An element to insert into the list.
      */
     public void addLast(T element) {
         // TODO
     }
 
     /**
-     * Returns the first element of this list.
-     * Returns <code>null</code> if the list is empty.
+     * @return The head of the list.
+     * @throws NoSuchElementException if the list is empty.
      */
     public T getFirst() {
         // TODO
@@ -68,8 +57,8 @@ public class LinkedList<T> {
     }
 
     /**
-     * Returns the last element of this list.
-     * Returns <code>null</code> if the list is empty.
+     * @return The tail of the list.
+     * @throws NoSuchElementException if the list is empty.
      */
     public T getLast() {
         // TODO
@@ -77,8 +66,11 @@ public class LinkedList<T> {
     }
 
     /**
-     * Returns the element at the specified position in this list.
-     * Returns <code>null</code> if <code>index</code> is out of bounds.
+     * Returns an element from a specified index.
+     *
+     * @param index A list index.
+     * @return The element at the specified index.
+     * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
     public T get(int index) {
         // TODO
@@ -86,8 +78,10 @@ public class LinkedList<T> {
     }
 
     /**
-     * Removes and returns the first element from this list.
-     * Returns <code>null</code> if the list is empty.
+     * Removes the first element from the list.
+     *
+     * @return The removed element.
+     * @throws NoSuchElementException if the list is empty.
      */
     public T removeFirst() {
         // TODO
@@ -95,14 +89,14 @@ public class LinkedList<T> {
     }
 
     /**
-     * Removes all of the elements from this list.
+     * Removes all of the elements from the list.
      */
     public void clear() {
         // TODO
     }
 
     /**
-     * Returns the number of elements in this list.
+     * @return The number of elements in the list.
      */
     public int size() {
         // TODO
@@ -110,19 +104,28 @@ public class LinkedList<T> {
     }
 
     /**
-     * Returns <code>true</code> if this list contains no elements.
+     * Note that by definition, the list is empty if both first and last
+     * are null, regardless of what value the size field holds (it should
+     * be 0, otherwise something is wrong).
+     *
+     * @return <code>true</code> if this list contains no elements.
      */
     public boolean isEmpty() {
-        // TODO
-        return false;
+        return first == null && last == null;
     }
 
     /**
-     * Returns a string representation of this list. The string
+     * Creates a string representation of this list. The string
      * representation consists of a list of the elements enclosed in
      * square brackets ("[]"). Adjacent elements are separated by the
      * characters ", " (comma and space). Elements are converted to
      * strings by the method toString() inherited from Object.
+     *
+     * Examples:
+     *  "[1, 4, 2, 3, 44]"
+     *  "[]"
+     *
+     * @return A string representing the list.
      */
     public String toString() {
         // TODO

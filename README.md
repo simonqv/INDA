@@ -1,110 +1,166 @@
 ### Deadline:
-This work should be completed before **Friday 26th January**.
+This work should be completed before the exercise on **Friday 26th January**.
 
-### Instructions:
-To pass the assignment, you must do all of the tasks. Small errors are acceptable, but the most important thing is that you attempt all the tasks. If you get stuck, then help is available in the labs.
-
-Please note that this is individual work. You may discuss the work with other students, but it is absolutely forbidden to submit copies of other student's work as your own. Please read and consider the [Code of Honour](https://www.kth.se/csc/utbildning/hederskodex) carefully.
-
-### Submission:
-* All required work must be committed to your KTH Github Repository
-* A week-14 repository will be created for you automatically and it can be found [here](https://gits-15.sys.kth.se/inda-16)
-* Please refer to the Kurswiki for help, contact your teaching assistant, or course leader if you get stuck
+### Instructions
+For instructions on how to do and submit the assignment, please see the
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions#assignments).
 
 ### Homework
 Study the following course literature:
 
-* Chapter 9: More about Inheritance, Objects First with Java
+* _Objects first with Java 5th ed (6th ed)_: Chapter 9 (Chapter 11) Improving
+  Structure with Inheritance
+  - Parenthesized chapter/exercise numbers are for the 6th edition, while those
+  without are for the 5th.
+
+### Github Task
+* Complete exercises 9.11 -- 9.16 (11.11 - 11.16) ([Task 1](#task-1---inheritance))
+* Complete the exercises on the linked list ([Task 2](#task-2---linked-lists)).
+
+Please commit any Java code developed to the [`src`](src) folder and any
+written answers to the [`docs`](docs) folder.
 
 ### Task 1 - Inheritance
 
-#### Exercise 1:
+#### Exercise 9.11 (11.11)
 Assume that you see the following lines of code:
 
-	Device dev = new Printer();
-	dev.getName();
+```java
+Device dev = new Printer();
+dev.getName();
+```
 
-`Printer` is a subclass of `Device`. Which of these classes must have a definition of method `getName` for this code to compile?
+`Printer` is a subclass of `Device`. Which of these classes must have a
+definition of method `getName` for this code to compile?
 
-(See Exercise 9.11 for context, in Chp9, Objects First with Java)
-
-#### Exercise 2:
+#### Exercise 9.12 (11.12)
 In the same situation as in the previous exercise, if both classes have an
 implementation of `getName`, which one will be executed?
 
-(See Exercise 9.12 for context, in Chp9, Objects First with Java)
+#### Exercise 9.13 (11.13)
+Assume that you write a class `Student` that does not have a declared
+superclass. You do not write a `toString` method. Consider the following lines
+of code:
 
-#### Exercise 3:
-Assume that you write a class `Student` that does not have a declared su-
-perclass. You do not write a `toString` method. Consider the following lines of code:
+```java
+Student st = new Student();
+String s = st.toString();
+```
 
-	Student st = new Student();
-	String s = st.toString();
+Will these lines compile? If so, what exactly will happen when you try to
+execute?
 
-Will these lines compile? If so, what exactly will happen when you try to execute?
+#### Exercise 9.14 (11.14)
+In the same situation as before (class `Student`, no `toString` method), will
+the following lines compile? Why?
 
-(See Exercise 9.13 for context, in Chp9, Objects First with Java)
+```java
+Student st = new Student();
+System.out.println(st);
+```
 
-#### Exercise 4:
-In the same situation as before (class `Student`, no `toString` method), will the following lines compile? Why?
+#### Exercise 9.15 (11.15)
+Assume that your class `Student` overrides `toString` so that it returns the
+student's name. You now have a list of students. Will the following code
+compile? If not, why not? If yes, what will it print? Explain in detail what
+happens.
 
-	Student st = new Student();
-	System.out.println(st);
+```java
+for (Object st : myList) {
+    System.out.println(st);
+}
+```
 
-(See Exercise 9.14 for context, in Chp9, Objects First with Java)
-
-#### Exercise 5:
-Assume that your class `Student` overrides `toString` so that it returns the student’s name. You now have a list of students. Will the following code compile? If not, why not? If yes, what will it print? Explain in detail what happens.
-
-	for(Object st : myList) {
-    	System.out.println(st);
-	}
-
-(See Exercise 9.14 for context, in Chp9, Objects First with Java)
-
-#### Exercise 6:
-Write a few lines of code that result in a situation where a variable `x` has the static type `T` and the dynamic type `D`.
-
-(See Exercise 9.16 for context, in Chp9, Objects First with Java)
+#### Exercise 9.16 (11.16)
+Write a few lines of code that result in a situation where a variable `x` has
+the static type `T` and the dynamic type `D`.
 
 ### Task 2 - Linked Lists
-A list, a number of elements ordered in a linear structure, is perhaps the simplest and most elementary data structure. Java provides several variants of lists:
+A list, a number of elements ordered in a linear structure, is perhaps the
+simplest and most elementary data structure. Java provides several variants of
+lists:
 
-* The standard `array` (`int[]` for example) has hardware support, but is simple and somewhat limited
+* The standard `array` (`int[]` for example) has hardware support, but is
+  simple and somewhat limited. In memory, the elements must come one after
+  the other in order (by index).
 
-* `ArrayList` is implemented using an array, but has added functionality
+* `ArrayList` is implemented using an array, but has added functionality Just
+  like with the `array`, the elements must be ordered in memory (by index).
 
-* `LinkedList` which has largely the same functionality as ArrayList but different performance
+* `LinkedList` which has largely the same functionality as ArrayList but
+  different performance qualities. The elements do not have to come one after
+  another in memory.
 
-A linked list is a sequence of list elements connected by pointers. A linked list with three integers `[2,2,1]` looks as follows:
+A singly linked list can be seen as a set of containers (which we will refer to
+as _elements_ from now on) with two buckets each:
+one that holds the element's value, and one that holds a reference to the
+next element. A huge benefit of this is that the elements can be stored in
+arbitrary locations in memory (i.e. they don't have to follow each other).
 
-	     ----------        ----------        ----------
-	    |     |    |      |     |    |      |     |    |
-	--->|  2  |  -------->|  2  |  -------->|  1  |null|
-	    |     |    |      |     |    |      |     |    |
-	     ----------        ----------        ----------
+The data structure itself usually only knows where the first element (the
+_head_) and the last element (the _tail_) are located, as well as how many
+elements are currently in the list. It may look something like this (but
+remember that elements are not necessarily ordered _in memory_, the may be
+located all over the place).
 
-The elements can be implemented as objects with two instance variables containing the value of the node, and a variable containing a pointer to the next element in the list:
 
-	class ListElement {
-	    int data;
-	    ListElement next;
-	}
+```
+     ----------        ----------        ----------
+    |     |    |      |     |    |      |     |    |
+--->|  2  |  -------->|  2  |  -------->|  1  |null|
+    |     |    |      |     |    |      |     |    |
+     ----------        ----------        ----------
+```
 
-You are to complete the following tasks:
+The elements can be implemented as objects with two instance variables
+containing the value of the node and a reference to the next element in the
+list:
 
-1. Implement a singly linked list. A code skeleton can be found in the file code/LinkedList.java. You are not allowed to change the API of the class, that is, you are not allowed to modify the signatures of the public methods in the class `LinkedList`, or add any new public methods.
+```java
+private static class ListElement<T> {
+    public T data;
+    public ListElement<T> next;
+    
+    public ListElement(T data) {
+        this.data = data;
+        this.next = null;
+    }
+}
+```
+Note that the fields of `ListElement` are `public`, so they are meant to be
+accessed directly (e.g. with `elem.data`), and not via getter/setter.
 
-2. Calculate the asymptotic worst-case-time for all public methods in your implementation. Express the time as a function of the number of elements `n` in the list.
+A _doubly_ linked list would also have a reference to the previous element, but
+that slightly complicates some operations, so we will stick to a singly linked
+list this time around.
 
-3. Write extensive test-code. All public methods shall be tested. Don't forget that your code works even for the empty list. It is recommended that you write the test-code first.
+##### You are to complete the following tasks:
 
-It can be hard to test data structures; a method might return a correct answer but still be broken. A good way to uncover these types of errors is to use a test-method that ensures the list is in a correct state, such that:
+1. Implement a singly linked list. A code skeleton can be found in the file
+   [src/LinkedList.java](src/LinkedList.java). You are not allowed to change the
+   API of the class. That is to say, you are not allowed to modify the
+   signatures of the public methods in the class `LinkedList`, or add any new
+   public methods.  Be sure to read through the method comments thoroughly!
 
-* `size` is equal to the number of `ListElements`
+2. Calculate the asymptotic worst-case-time for all public methods in your
+   implementation. Express the time as a function of the number of elements `n`
+   in the list. Put your answers in [`docs/README.md`](docs/README.md)
 
-* If the list is empty, `first` and `last` both point to `null`. Otherwise they point to a `ListElement`.
+### Testing
+Testing this week is important, and can be somewhat difficult. It is doubly
+recommended here to _implement the tests first_. The majority of the unit tests
+attempt to assert one of four invariants:
 
-* If an element is in the last position of the list, `next` should point to `null`
+1. size equals the number of list elements,
+2. if size == 0, first == null and last == null,
+3. if size > 0, first != null and last != null,
+4. if size == 1, first == last,
 
-You shall implement a method `isHealthy()` that checks the above requirements. In appropriate places (probably quite many) in your test-code you will call `isHealthy()` to determine that the list hasn't been broken during implementation.
+A 5th invariant, that is difficult to test without exposing too much of the
+data structure, can be good to have in mind:
+
+5. last.next == null
+
+Use the `removeElements` helper method for the tests that require removal of
+elements (except if it is explicitly stated that clear should be used!). As
+usual, you are to implement all tests with a `fail` statement.
