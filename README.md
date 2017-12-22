@@ -22,13 +22,17 @@ and
 A stack is an abstract data type (in Java "collection") that usually supports
 at least the 5 methods outlined below.
 
-* `void push(T)` Adds the element to the top of the stack
+* `void push(T)` Adds the element to the top of the stack.
 
 * `T pop()` Removes and returns the top element in the stack, that is the element
-  that was last added to the stack. An error occurs if the stack is empty.
+  that was last added to the stack. **Throws an
+  [EmptyStackException (you need to import these, see the docs!)](https://docs.oracle.com/javase/9/docs/api/java/util/EmptyStackException.html)
+  if the stack is empty!**
 
-* `T top()` Returns the top element in the stack without removing it. An error
-  occurs if the stack is empty.
+
+* `T top()` Returns the top element in the stack without removing it. **Throws
+  an [EmptyStackException (you need to import these, see the docs!)](https://docs.oracle.com/javase/9/docs/api/java/util/EmptyStackException.html)
+  if the stack is empty!**
 
 * `int size()` Returns the number of elements in the stack.
 
@@ -42,7 +46,6 @@ often implemented similarly to an `ArrayList`).
 The two most iconic methods, that you will later come to associate with stacks,
 are `push` and `pop`. They constitute the basic _LIFO_ (Last In First Out)
 behavior of the stack, which is illustrated in the image below:
-
 ![push and pop](https://upload.wikimedia.org/wikipedia/commons/b/b4/Lifo_stack.png)
 
 **Your task** is to describe this abstract data type in Java using an
@@ -58,10 +61,10 @@ code.
 > in the method headers!
 
 ### Task 2 - Create an implementation of Stack
-Write a class that implements this interface. It's up to you how to handle errors. Make
-sure that all methods are O(1) in the worst case. Testing is crucial when implementing
-something like this, it may be a good idea to skip ahead to the
-[testing section](#testing) and implement the tests first!
+Write a class that implements this interface. Make sure that all methods are
+O(1) in the worst case. Testing is crucial when implementing something like
+this, it may be a good idea to skip ahead to the [testing section](#testing)
+and implement the tests first!
 
 As mentioned in [Task 1](#task-1---create-a-stack-interface), a stack is in
 terms of functionality essentially a simplified linked list. You should copy
