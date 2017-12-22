@@ -9,10 +9,10 @@
  * be separated by whitespace.
  *
  * @author  NN // TODO
- * @version 2013-02-01
+ * @version 2017-12-12
  */
 public class Postfix {
-	private static class ExpressionException extends Exception {
+	public static class ExpressionException extends Exception {
 		public ExpressionException(String message) {
 			super(message);
 		}
@@ -62,58 +62,6 @@ public class Postfix {
 	 */
 	private static boolean isInteger(String s) {
 		// TODO
-		return false;
-	}
-	
-	/**
-	 * Unit test. Run with "java -ea Postfix".
-	 */
-	public static void main(String[] args) throws ExpressionException {
-		assert evaluate("0") == 0;
-		assert evaluate("-0") == -0;
-		assert evaluate("1234567890") == 1234567890;
-		assert evaluate("-1234567890") == -1234567890;
-		assert evaluate("1 23 +") == 1 + 23;
-		assert evaluate("1	23	+") == 1 + 23; // tabs instead of spaces
-		assert evaluate("0 1 /") == 0 / 1;
-		assert evaluate("1 2 + -3 *") == (1 + 2) * -3;
-		assert evaluate("12 34 - 56 -78 + *") == (12 - 34) * (56 + -78);
-		assert evaluate("1 2 + 3 * 4 - 5 /") == (((1 + 2) * 3) - 4) / 5;
-		assert evaluate("2 3 4 -0 + - *") == 2 * (3 - (4 + -0));
-		assert evaluate("  		1 	-2	 + ") == 1 - 2; // tabs and spaces
-
-		assert explodes("");
-		assert explodes("+");
-		assert explodes("--1");
-		assert explodes("-1-0");
-		assert explodes("-0-1");
-		assert explodes("1 +");
-		assert explodes("1 2 ,");
-		assert explodes("1 2 .");
-		assert explodes("1 2 3 +");
-		assert evaluate("4") == 4;
-		assert explodes("1 2 + +");
-		assert explodes("017");
-		assert explodes("0x17");
-		assert explodes("-03");
-		assert explodes("x");
-		assert explodes("1234L");
-		assert explodes("9876543210"); // larger than maxint
-		assert explodes("1 0 /");
-		assert explodes("1 2+");
-		assert explodes("1 2 3 +*");
-	}
-	
-	/**
-	 * Returns true if <code>evaluate(expr)</code> throws
-	 * a subclass of RuntimeException.
-	 */
-	private static boolean explodes(String expr) {
-		try {
-			evaluate(expr);
-		} catch (ExpressionException e) {
-			return true;
-		}
 		return false;
 	}
 }
