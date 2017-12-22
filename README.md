@@ -26,12 +26,12 @@ at least the 5 methods outlined below.
 
 * `T pop()` Removes and returns the top element in the stack, that is the element
   that was last added to the stack. **Throws an
-  [EmptyStackException (you need to import these, see the docs!)](https://docs.oracle.com/javase/9/docs/api/java/util/EmptyStackException.html)
+  [EmptyStackException (you need to import this, see the docs!)](https://docs.oracle.com/javase/9/docs/api/java/util/EmptyStackException.html)
   if the stack is empty!**
 
 
 * `T top()` Returns the top element in the stack without removing it. **Throws
-  an [EmptyStackException (you need to import these, see the docs!)](https://docs.oracle.com/javase/9/docs/api/java/util/EmptyStackException.html)
+  an [EmptyStackException (you need to import this, see the docs!)](https://docs.oracle.com/javase/9/docs/api/java/util/EmptyStackException.html)
   if the stack is empty!**
 
 * `int size()` Returns the number of elements in the stack.
