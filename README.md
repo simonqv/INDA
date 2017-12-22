@@ -1,87 +1,114 @@
 ### Deadline:
-This work should be completed before **Friday 20th January**.
+This work should be completed before the exercise on **Friday 19th January**.
 
-### Instructions:
-To pass the assignment, you must do all of the tasks. Small errors are acceptable, but the most important thing is that you attempt all the tasks. If you get stuck, then help is available in the labs.
-
-Please note that this is individual work. You may discuss the work with other students, but it is absolutely forbidden to submit copies of other student's work as your own. Please read and consider the [Code of Honour](https://www.kth.se/csc/utbildning/hederskodex) carefully.
-
-### Submission:
-* All required work must be committed to your KTH Github Repository
-* A week-13 repository will be created for you automatically and it can be found [here](https://gits-15.sys.kth.se/inda-16)
-* Please refer to the Kurswiki for help, contact your teaching assistant, or course leader if you get stuck
+### Instructions
+For instructions on how to do and submit the assignment, please see the
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions#assignments).
 
 ### Homework
 Study all the following course literature:
 
-* Chapter 8: Improving Structure with Inheritance, Objects first with Java
+* _Objects first with Java 5th ed (6th ed)_: Chapter 8 (Chapter 10) Improving
+  Structure with Inheritance
+  - Parenthesized chapter/exercise numbers are for the 6th edition, while those
+  without are for the 5th.
 * [Loop Invariants](http://www.nada.kth.se/~snilsson/algoritmer/loopinvariant/)
 * [Induction and Recursive Functions](http://www.nada.kth.se/~snilsson/algoritmer/induktion/)
 * [Time Complexity for Recursion](http://www.nada.kth.se/~snilsson/algoritmer/rekursion/)
 
-### Github Task: Time Complexity
+### Github Task
+* Complete exercises 8.12 and 8.14 -- 8.16 (10.12 and 10.14 -- 10.16)
+* Complete exercise 8.XX
 
-#### Exercise: 1
-Assume that we have four classes: `Person`, `Teacher`, `Student`, and `PhDStudent`. `Teacher` and `Student` are both subclasses of `Person`. `PhDStudent` is a subclass of `Student`.
+Please commit any Java code developed to the [`src`](src) folder and any
+written answers to the [`docs`](docs) folder.
+
+#### Exercise 8.12 (10.12)
+Assume that we have four classes: `Person`, `Teacher`, `Student`, and
+`PhDStudent`. `Teacher` and `Student` are both subclasses of `Person`.
+`PhDStudent` is a subclass of `Student`.
 
 a. Which of the following assignments are legal, and why or why not?
 
-    Person p1 = new Student();
-    Person p2 = new PhDStudent();
-    PhDStudent phd1 = new Student();
-    Teacher t1 = new Person();
-    Student s1 = new PhDStudent();
+```java
+Person p1 = new Student();
+Person p2 = new PhDStudent();
+PhDStudent phd1 = new Student();
+Teacher t1 = new Person();
+Student s1 = new PhDStudent();
+```
 
 b. Suppose that we have the following legal declarations and assignments:
 
-    Person p1 = new Person();
-    Person p2 = new Person();
-    PhDStudent phd1 = new PhDStudent();
-    Teacher t1 = new Teacher();
-    Student s1 = new Student();
+```java
+Person p1 = new Person();
+Person p2 = new Person();
+PhDStudent phd1 = new PhDStudent();
+Teacher t1 = new Teacher();
+Student s1 = new Student();
+```
 
-Based on those just mentioned, which of the following assignments are legal, and why or why not?
+Based on those just mentioned, which of the following assignments are legal,
+and why or why not?
 
-    s1 = p1;
-    s1 = p2;
-    p1 = s1;
+```java
+s1 = p1;
+s1 = p2;
+p1 = s1;
+```
 
-(See task 8.12 for context, from Chp8, Objects first with Java)
+#### Exercise 8.14 (10.14)
+What has to change in the `NewsFeed` class when another `Post` subclass (for
+example, a class `EventPost`) is added? Why?
 
-#### Exercise: 2
-What has to change in the `NewsFeed` class when another `Post` subclass (for example, a class `EventPost`) is added? Why?
+#### Exercise 8.15 (10.15)
+Exercise 8.15 Use the documentation of the Java standard class libraries to
+find out about the inheritance hierarchy of the collection classes. Draw a
+diagram showing the hierarchy.
 
-(See task 8.14 for context, in Chp8, Objects first with Java)
+#### Exercise 8.16 (10.16)
+Go back to the lab-classes project from Chapter 1. Add instructors to the
+project (every lab class can have many students and a single instructor). Use
+inheritance to avoid code duplication between students and instructors (both
+have a name, contact details, etc.).
 
-#### Exercise: 3
-Exercise 8.15 Use the documentation of the Java standard class libraries to find out about the inheritance hierarchy of the collection classes. Draw a diagram showing the hierarchy.
+#### Exercise 8.XX
+Below are two algorithms that calculate x<sup>n</sup>, where x is a real number
+and n is a non-negative integer. You are to:
 
-(See task 8.15 for context, in Chp8, Objects first with Java)
+**a.** Argue the correctness of the algorithms using a loop invariant or proof
+by induction.
 
-#### Exercise: 4
-Go back to the lab-classes project from Chapter 1. Add instructors to the project (every lab class can have many students and a single instructor). Use inheritance to avoid code duplication between students and instructors (both have a name, contact details, etc.).
+**b.** Calculate the time-complexity as a function of n for both algorithms.
+Give the result using Big-O notation.
 
-(See task 8.16 for context, in Chp8, Objects first with Java)
+```java
+double expIterative(double x, int n) {
+    double res = 1.0;
 
-#### Exercise: 5
-Here are two algorithms that calculate x<sup>n</sup>, where x is a real number and n is a non-negative integer.
+    for (int i = 0; i < n; i++) {
+        res *= x;
+    }
+    return res;
+}
+```
+> **Assistant's note:** Try to find a correlation between the loop counter `i`
+> and the `res` variable. A loop invariant is most appropriate for this
+> algorithm.
 
-    double expIterativ(double x, int n) {
-        double res = 1.0;
-
-        for (int i = 0; i < n; i++)
-            res *= x;
-        return res;
+```java
+double expRecursive(double x, int n) {
+    if (n <= 4) {
+        return expIterativ(x, n);
     }
 
-    double expRekursiv(double x, int n) {
-        if (n <= 4)
-            return expIterativ(x, n);
-
-        return expRekursiv(x, n/2) *
-               expRekursiv(x, (n + 1)/2);
-    }
-
-Argue the correctness of both algorithms. You could for example use a loop invariant, and a proof by induction, respectively.
-
-Calculate the time-complexity as a function of n for both algorithms. Give the result using Big-O notation.
+    return expRecursive(x, n/2) *
+           expRecursive(x, (n + 1)/2);
+}
+```
+> **Assistant's note:** Even if you haven't managed to complete the previous
+> proof, assume that `expIterative(x, n)` has been proven to be correct for any
+> x &#8712; **R** and `n >= 0`. Furthermore, remember that integer divison
+> always rounds off toward 0, and consider the two cases when `n` is odd and
+> when `n` is even.  A proof by induction is most appropriate for this
+> algorithm.
