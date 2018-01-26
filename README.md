@@ -1,55 +1,82 @@
 ### Deadline:
-This work should be completed before **Friday 17th Feburary**.
+This work should be completed before the exercise **Friday 16th Feburary**.
 
-### Instructions:
-To pass the assignment, you must do all of the tasks. Small errors are acceptable, but the most important thing is that you attempt all the tasks. If you get stuck, then help is available in the labs.
-
-Please note that this is individual work. You may discuss the work with other students, but it is absolutely forbidden to submit copies of other student's work as your own. Please read and consider the [Code of Honour](https://www.kth.se/csc/utbildning/hederskodex) carefully.
-
-### Submission:
-* All required work must be committed to your KTH Github Repository
-* A week-17 repository will be created for you automatically and it can be found [here](https://gits-15.sys.kth.se/inda-16)
-* Please refer to the Kurswiki for help, contact your teaching assistant, or course leader if you get stuck
+### Instructions
+For instructions on how to do and submit the assignment, please see the
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions#assignments).
 
 ### Homework
 Study the following course literature:
 
 * [Träd](http://www.nada.kth.se/~snilsson/algoritmer/trad/)
-* [Treaps](http://www.nada.kth.se/~snilsson/treap/)
+    - **Note:** This text refers to the _depth of a tree_. This is more commonly
+      referred to as the _height_ of the tree, and we will use the latter
+      terminology in this assignment.
 
 ### Task 1 - Implement a BST
-Implement a Binary Search Tree (BST) in Java. As usual, all public methods should be well-specified and the test-code should be submitted as well.
+Implement a Binary Search Tree (BST) in Java. As usual, all public methods
+should be well-documented.
 
-The keys are Objects that implements the interface `java.lang.Comparable`. A generic class with a type-parameter that matches classes that implements Comparable can be written as follows:
+The keys are Objects that implement the interface `java.lang.Comparable`. A
+generic class with a type-parameter that matches classes that implement
+`Comparable` can be written as follows:
 
-    class Tree<T extends Comparable<T>>
+```java
+class Tree<T extends Comparable<T>>
+```
 
-Each node in the tree should be represented by an object that contains two pointers, one the the left and one to the right sub-tree. The following operations have to be implemented.
+Each node in the tree should be represented by an object that contains two
+references, one to the left and one to the right sub-tree. Methods with the
+following headers must be implemented. Pay careful attention to the instructions
+here!
 
-* Search -- test for presence of a value
-* Insert -- add value to tree; duplicates are not allowed
-* Size -- the number of elements
-* Depth -- the height of the tree
-* Leaves -- the number of leaves
-* toString -- elements should be ordered
+* `public boolean search(T)` -- test for presence of a value.
+    - Should be implemented iteratively!
+* `public boolean insert(T)` -- add value to tree; duplicates are not allowed.
+  Return true if the element is not already present (and is thus inserted),
+  false otherwise.
+    - Should be implemented iteratively!
+* `public int size()` -- the number of elements in the tree.
+    - Should be implemented to run in `O(1)` time.
+* `public int height()` -- the height of the tree. The empty tree and the tree
+  with only the root node both have height 0.
+    - Should be implemented recursively!
+    - The height of the empty tree is 
+      [often undefined](https://xlinux.nist.gov/dads/HTML/height.html),
+      but we decide that it is 0 (because we need it to be something). Another
+      common choice is -1, to differentiate between the empty tree and the
+      root-only tree.
+* `public int leaves()` -- the number of leaves in the tree.
+    - Should be implemented recursively!
+* `public String toString()` -- a string describing the tree.
+    - Should be implemented recursively!
+    - The string should represent the tree in ascending order, like a sorted
+      list. E.g, a tree with elements `1`, `54` and `-3` should be represented
+      as `[-3, 1, 54]`.
+    - Choose the most appropriate traversal technique out of in-, pre- and
+      post-order.
 
-Search and Insert operations should be implemented iteratively.  Size can be implemented in a variety of ways and you are free to choose the most efficient.  Depth, Number of Leaves and toString() should be implmented using recursion.
+You are of course free to add any number of helper methods that you deem
+appropriate, but the public API of the class may not be changed.
+
+> **Assistant's requirement:** You should use `Comparable.compareTo` to navigate
+> the tree! You can assume that `compareTo` is consistent with `equals`. That
+> is to say, `x.compareTo(y) == 0 <==> x.equals(y)`.
 
 ### Task 2 - Time Complexity
-Calculate the worst-case time complexity for all operations of the BST and complete the table below.  As usual, motivate your answers.
+Calculate the worst-case time complexity for all operations of the BST and
+complete the table below.  As usual, motivate your answers.
 
 | Operation (BST)     | Time Complexity (worst case)    |
 | ------------------- | ------------------------------- |
-| Search              |                                 |
-| Insert              |                                 |
-| Size                |                                 |
-| Depth               |                                 |
-| Leaves              |                                 |
+| search              |                                 |
+| insert              |                                 |
+| size                |                                 |
+| height              |                                 |
+| leaves              |                                 |
 | toString            |                                 |
 
-If you instead use a randomized BST (Treap) the time complexity gets better.  What's the expected time complexity for Search and Insert in a treap? Motivate your answer.
-
-| Operation (Treap)   | Time Complexity (worst case)    |
-| ------------------- | ------------------------------- |
-| Search              |                                 |
-| Insert              |                                 |
+### Testing
+The testing this week is simpler than in the previous weeks. There is only the
+one test class, at [src/TreeTest.java](src/TreeTest.java), and you are to
+implement the methods with the `fail("Not implemented!")` statements.
