@@ -1,100 +1,128 @@
 ### Deadline:
-This work should be completed before **Friday 10th Feburary**.
+This work should be completed before the exercise on **Friday 9th February**.
 
-### Instructions:
-To pass the assignment, you must do all of the tasks. Small errors are acceptable, but the most important thing is that you attempt all the tasks. If you get stuck, then help is available in the labs.
-
-Please note that this is individual work. You may discuss the work with other students, but it is absolutely forbidden to submit copies of other student's work as your own. Please read and consider the [Code of Honour](https://www.kth.se/csc/utbildning/hederskodex) carefully.
-
-### Submission:
-* All required work must be committed to your KTH Github Repository
-* A week-16 repository will be created for you automatically and it can be found [here](https://gits-15.sys.kth.se/inda-16)
-* Please refer to the Kurswiki for help, contact your teaching assistant, or course leader if you get stuck
+### Instructions
+For instructions on how to do and submit the assignment, please see the
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions#assignments).
 
 ### Homework
 Study the following course literature:
 
 * [Hash Tables](http://www.nada.kth.se/~snilsson/algoritmer/hashtabell/)
 
-### Task 1 - Implement a Hash table
-Hash tables are built into Java in the form of the classes `HashMap` and `HashSet`, together with the methods `equals` and `hashCode` in the `Object` class. To use these efficiently one has to understand how a hash table works. That's what we'll learn in this assignment.
+### Task 1 - Implement a hash table
+Hash tables are built into Java in the form of the classes `HashMap`,
+`Hashtable` (which is almost identical to `HashMap`) and `HashSet`, together
+with the methods `equals` and `hashCode` in the `Object` class. To use these
+efficiently one has to understand how a hash table works.  That's what we'll
+learn in this assignment.
 
-You will implement the following interface, `StringDictionary` with the help of a hash table.
+You will implement a hashtable that functions as a _set_ (so, `HashSet`), that
+is to say, it can hold only unique values. The interface is described below
+(and available in [`Set.java`](src/Set.java)).
 
-	/**
- 	 * An interface describing a dictionary of strings.
- 	 * The dictionary cannot contain duplicate strings.
- 	 *
- 	 * @author Stefan Nilsson
- 	 * @version 2012-12-14
- 	 */
-	public interface StringDictionary {
+```java
+/**
+ * An interface describing a generic set. Duplicates are not allowed.
+ *
+ * @author Simon Larsén
+ * @version 2018-01-15
+ */
+public interface Set<T> {
 
-    	/**
-     	 * Adds the given string to this table.
-     	 * Returns <code>true</code> if the dictionary
-     	 * did not already contain the given string.
-     	 *
-     	 * Complexity: O(1) expected time.
-     	 */
-    	public boolean add(String s);
+    /**
+     * Adds the given element to the set.
+     *
+     * Complexity: O(1) expected time.
+     *
+     * @param elem An element to add to the set.
+     * @return true if the set did not contain the element, otherwise false.
+     */
+    boolean add(T elem);
 
-    	/**
-     	 * Removes the given string from this dictionary
-     	 * if it is present. Returns <code>true</code> if
-     	 * the dictionay contained the specified element.
-     	 *
-     	 * Complexity: O(1) expected time.
-     	 */
-    	public boolean remove(String s);
+    /**
+     * Removes the given element from the dictionary, if it is present.
+     *
+     * Complexity: O(1) expected time.
+     *
+     * @param elem An element to remove from the set.
+     * @return true if the set contained the element, false otherwise.
+     */
+    boolean remove(T elem);
 
-    	/**
-     	 * Returns <code>true</code> if the string is
-     	 * in this dictionary.
-     	 *
-     	 * Complexity: O(1) expected time.
-     	 */
-    	public boolean contains(String s);
-	}
+    /**
+     * Check if an element is in the Set.
+     *
+     * Complexity: O(1) expected time.
+     *
+     * @param elem An element to look for.
+     * @return true if the element is in the set, false otherwise.
+     */
+    boolean contains(T elem);
 
-The size of the table (number of lists) should be given when a new table is created. Please use the `hashCode` method in Java's `String` class to implement your hash-function. As usual you should write and hand in test code.
+    /**
+     * Returns the number of elements in this set.
+     *
+     * Complexity: O(1) expected time.
+     *
+     * @return The amount of elements in this set.
+     */
+    int size();
+}
+```
+The next section will give you some pointers on how to implement the `Set`
+interface.
 
-#### Option 1
-This assignment has some unexpected complications because arrays and generics work pretty badly together in Java. There are two (reasonably good) solutions to this problem. Either you avoid arrays and use an `ArrayList` instead. Then you can declare and create the hash table in the following way:
+#### Practicalities
+This assignment has some unexpected complications because arrays and generics
+work pretty poorly together in Java. There are two (reasonably good) solutions
+to this problem, and these are outlined in the next two subsections. Whichever
+option you pick, **the following requirements are placed on your
+implementation**:
 
-	ArrayList<LinkedList<String>> table = new ArrayList<>();
+* To implement your hash method, use the `hashCode` method of the stored
+  object. Every object in java has the `hashCode` method, as it is defined in
+  `Object`, and every class extends `Object`.
+* Your implementation must handle hash collisions. That is to say it should be
+  possible to store two objects that are not equal, but have the same hash.
+* Your implementation **does not** have to resize dynamically (i.e. the amount
+  of buckets may be constant).
+* **Work from the code skeleton in [src/HashSet.java](src/HashSet.java).**
 
-#### Option 2
-If you'd rather use arrays, for efficiency-reasons, some more unexpected issues pop up. You can't actually create an array of `String`-lists in a type-safe fashion in Java. The following, seemingly natural code:
+##### Option 1
+Option 1 is to avoid arrays and use an `ArrayList` instead. Then
+you can declare and create the hash table in the following way:
 
-	new LinkedList<String>[size]
+```java
+ArrayList<LinkedList<T>> table = new ArrayList<>();
+```
 
-doesn't work. code/StringHash.java is a skeleton that shows how you can get around this.
+##### Option 2
+If you'd rather use arrays, for efficiency-reasons, some more unexpected issues
+pop up. You can't actually create an array of generic lists in a type-safe
+fashion in Java. The following, seemingly natural code:
 
-#### Option 3
-You can also skip using generics and finished list-code and instead create a simple and efficient implementation from scratch. This might be the best alternative. The following can be a good starting point in that case:
+```java
+new LinkedList<T>[size];
+```
 
-	public class StringHash implements StringDictionary {
-    	private ListElement[] table;
-
-    	private static class ListElement {
-      		String value;
-      		ListElement next;
-    	}
-
-    	// TODO
-	}
+doesn't work. [HashSet.java](src/HashSet.java) is a skeleton that shows how you
+can get around this.
 
 ### Task 2 - Time Complexities for Data Structures
-Calculate the average-case time complexity for the operations (Find, Insert and Remove) in the following data-structures:
+Calculate the average-case time complexity for the operations (Find, Insert and
+Remove) in the following data-structures:
 
 * Unsorted Array
 * Sorted Array
 * Unsorted Singly Linked List
 * Sorted Singly Linked List
-* Hash Table (You can assume that the number of elements is equal to the size of the table)
+* Hash Table (You can assume that the number of elements is equal to the size
+  of the table)
 
-Let n be the number of elements and present the solution in a table with three rows and five columns as shown below. As usual you should motivate your answers.
+Let n be the number of elements and present the solution in a table with three
+rows and five columns as shown below. As usual you should motivate your
+answers.
 
 | Operation | Unsorted Array | Sorted Array | Unsorted SLL | Sorted SLL | Hashtable |
 |-----------|----------------|--------------|--------------|------------|-----------|
@@ -103,24 +131,64 @@ Let n be the number of elements and present the solution in a table with three r
 | Remove    |                |              |              |            |           |
 
 ### Task 3 - Dynamic Tables
-The `ArrayList` in Java is a convenient wrapper to make the primitive arrays more flexible.  However, arrays are fixed in size at the point of creation, i.e. they have a certain `capacity`. This means there is a cost involved if we grow beyond the intial capacity by adding more elements than can be stored. But, the API for `Arraylist` states, "*The add operation runs in amortized constant time*".
+The `ArrayList` in Java is a convenient wrapper to make the primitive arrays
+more flexible.  However, arrays are fixed in size at the point of creation,
+i.e. they have a certain `capacity`. This means there is a cost involved if we
+grow beyond the intial capacity by adding more elements than can be stored.
+But, the API for `Arraylist` states, "*The add operation runs in amortized
+constant time*".
 
-Consider an `Arraylist` that grows from it's initial size of zero with a sequence of calls to `add(E e)`, to a size of 20 elements.
+Consider an `Arraylist` that grows from it's initial size of zero with a
+sequence of calls to `add(E e)`, to a size of 20 elements.
 
-	ArrayList list = new ArrayList();
+```java
+ArrayList list = new ArrayList();
 
-	// Adding elements
-	for(int i = 0; i<20; i++) {
-		list.add(new Object());
-	}
+// Adding elements
+for(int i = 0; i<20; i++) {
+    list.add(new Object());
+}
+```
 
 Answer the following:
 
-* What is the initial capacity of an `ArrayList`'s internal array?
-* At what size does the internal array grow, and by how much?
-* Explain what really happens by the term "grow" in this context?
-* What is the capacity of the internal array once 20 elements have been added?
-* If objects were removed, would the size of the internal array change also?
-* What is the worst, average, and best-case time complexity of the `add(E e)` method of `Arraylist`?
+1. What is the initial capacity of an `ArrayList`'s internal array?
+2. At what size does the internal array grow, and by how much?
+3. Explain what really happens by the term "grow" in this context?
+4. What is the capacity of the internal array once 20 elements have been added?
+5. If objects were removed, would the size of the internal array change also?
+6. What is the worst, average, and best-case time complexity of the `add(E e)`
+   method of `Arraylist`?
 
-(hint: Reading the source code for [ArrayList](http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/6-b14/java/util/ArrayList.java), or using BlueJ's built-in Object Inspector might help as you cannot easily access the internal array)
+(hint: Reading the source code for
+[ArrayList](http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/util/ArrayList.java),
+or using BlueJ's built-in Object Inspector might help as you cannot easily
+access the internal array)
+
+### Testing
+Just like in week 15, this week's testing makes use of inheritance to keep the
+tests neatly organized. This time around, the fact that a hash-based set bears
+some special traits in terms of hash collisions, the extending class also
+includes tests of its own. Notable about this week is:
+
+* The abstract test class [SetTest](src/SetTest.java) contains tests that assert
+  the general behavior of a set. Remember that an abstract class cannot be
+  instantiated, and thus, `SetTest` cannot be run.
+* A few of the tests make use of streams. You don't have to use streams if you
+  don't want to, it is fine to write loops instead. The first test method in
+  `SetTest` explains what the stream does, and how to write it as a loop.
+* The extending test class [HashSetTest](src/HashSetTest.java) (which _can_ be
+  run!) asserts some particular behavior of a hash-based set, namely that when
+  there are hash collisions. There is a helper class included at the very bottom
+  of the test class, which has the same hash for every instance, but instances
+  equal only themselves.
+* Take a good look at the `setUp` method of `HashSetTest`. It overrides the
+  `setUp` method of `SetTest`, but also calls it, so that the setup from the
+  base class is not lost (in which case, the base tests would break).
+* The `is` matcher does the exact same thing as the `equalTo` matcher (when
+  used with an object or primitive), and is used because the author thought
+  that `is(false)` sounded better than `equalTo(false)`.
+
+As usual, you are to implement the test methods with a `fail("Not implemented!")`
+statement! Note that **both `SetTest` and `HashSetTest` have unimplemented
+tests!**
