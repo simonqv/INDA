@@ -17,7 +17,7 @@ with the methods `equals` and `hashCode` in the `Object` class. To use these
 efficiently one has to understand how a hash table works.  That's what we'll
 learn in this assignment.
 
-You will implement a hashtable that functions as a _set_ (so, `HashSet`), that
+You will implement a hash table that functions as a _set_ (so, `HashSet`), that
 is to say, it can hold only unique values. The interface is described below
 (and available in [`Set.java`](src/Set.java)).
 
@@ -121,9 +121,10 @@ Calculate the average and worst case time complexity for the operations (Find, I
 
 * Hash Table (You can assume that the number of elements is equal to the size of the table)
 
-Let n be the number of elements and present the solution in a table with three rows and five columns as shown below. As usual you should motivate your answers.
+Let n be the number of elements and present the solution in a table as shown
+below. As usual you should **motivate your answers**.
 
-| Operation | Unsorted Array | Sorted Array | Unsorted SLL | Sorted SLL | Hashtable (Average)| Hashtable (Worst) |
+| Operation | Unsorted Array | Sorted Array | Unsorted SLL | Sorted SLL | Hash table (Average)| Hash table (Worst) |
 |-----------|----------------|--------------|--------------|------------|----------------|-------------------|
 | Find      |                |              |              |            |                |                   |
 | Insert    |                |              |              |            |                |                   |
@@ -180,7 +181,8 @@ includes tests of its own. Notable about this week is:
   run!) asserts some particular behavior of a hash-based set, namely that when
   there are hash collisions. There is a helper class included at the very bottom
   of the test class, which has the same hash for every instance, but instances
-  equal only themselves.
+  equal only themselves. Running `HashSetTest` will result in both the tests in
+  `HashSetTest` and the superclass `SetTest` being executed.
 * Take a good look at the `setUp` method of `HashSetTest`. It overrides the
   `setUp` method of `SetTest`, but also calls it, so that the setup from the
   base class is not lost (in which case, the base tests would break).
