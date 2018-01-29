@@ -110,25 +110,24 @@ doesn't work. [HashSet.java](src/HashSet.java) is a skeleton that shows how you
 can get around this.
 
 ### Task 2 - Time Complexities for Data Structures
-Calculate the average-case time complexity for the operations (Find, Insert and
-Remove) in the following data-structures:
+Calculate the worst-case time complexity for the operations (Find, Insert and Remove) in the following:
 
 * Unsorted Array
 * Sorted Array
 * Unsorted Singly Linked List
 * Sorted Singly Linked List
-* Hash Table (You can assume that the number of elements is equal to the size
-  of the table)
 
-Let n be the number of elements and present the solution in a table with three
-rows and five columns as shown below. As usual you should motivate your
-answers.
+Calculate the average and worst case time complexity for the operations (Find, Insert and Remove):
 
-| Operation | Unsorted Array | Sorted Array | Unsorted SLL | Sorted SLL | Hashtable |
-|-----------|----------------|--------------|--------------|------------|-----------|
-| Find      |                |              |              |            |           |
-| Insert    |                |              |              |            |           |
-| Remove    |                |              |              |            |           |
+* Hash Table (You can assume that the number of elements is equal to the size of the table)
+
+Let n be the number of elements and present the solution in a table with three rows and five columns as shown below. As usual you should motivate your answers.
+
+| Operation | Unsorted Array | Sorted Array | Unsorted SLL | Sorted SLL | Hashtable (Average)| Hashtable (Worst) |
+|-----------|----------------|--------------|--------------|------------|----------------|-------------------|
+| Find      |                |              |              |            |                |                   |
+| Insert    |                |              |              |            |                |                   |
+| Remove    |                |              |              |            |                |                   |
 
 ### Task 3 - Dynamic Tables
 The `ArrayList` in Java is a convenient wrapper to make the primitive arrays
