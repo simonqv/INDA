@@ -162,7 +162,7 @@ public class TreeTest {
     }
 
     @Test
-    public void leavesIsTwoWhenCompleteTreeHasThreeElements() {
+    public void leavesIsTwoWhenPerfectTreeHasThreeNodes() {
         // Arrange
         Tree<Integer> tree = new Tree<>();
         // root must be smaller than one and larger than the other child
@@ -177,12 +177,20 @@ public class TreeTest {
     }
 
     @Test
-    public void leavesIsNWhenTreeIsFullAndCompleteWith2NMinus1Nodes() {
-        // n >= 4, you have to construct this tree yourself!
-        // A complete and full tree with n leaves <==> 2*n-1 nodes
+    public void leavesIsCorrectWhenTreeIsPerfect() {
+        // A perfect tree has all leaves at the same depth, and all internal nodes
+        // (i.e. non-leaves) have two children
         //
-        // Complete BST: Every level must be filled, except for the deepest one
-        // Full BST: Every node has either two children or is a leaf
+        // This test should assert that a perfect tree with 2*n-1 nodes total,
+        // has exactly n leaves (i.e. that Tree.leaves() returns n).
+        //
+        // An example is the perfect three-node tree from the test above:
+        //
+        //                        (1338)
+        //                        /    \
+        //                    (1337)  (1396)
+        //
+        // You have to construct your own tree here, with n >= 4!
         fail("Not implemented!");
     }
 
