@@ -30,11 +30,11 @@ public interface Graph {
     int numEdges();
 
     /**
-     * Returns the degree of vertex v.
+     * Returns the outdegree of vertex v.
      *
      * @param v
      *            vertex
-     * @return the degree of vertex v
+     * @return the outdegree of vertex v
      * @throws IllegalArgumentException
      *             if v is out of range
      */
