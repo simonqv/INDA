@@ -1,42 +1,33 @@
 ### Deadline:
+This work should be completed before the exercise on **Thursday 29th March**.
 
-This work should be completed before **23rd/24th March** (depending upon your övning group).
-
-### Instructions:
-
-To pass the assignment, you must do all of the tasks. Small errors are acceptable, but the most important thing is that you attempt all the tasks. If you get stuck, then help is available in the labs.
-
-Please note that this is individual work. You may discuss the work with other students, but it is absolutely forbidden to submit copies of other student's work as your own. Please read and consider the [Code of Honour](https://www.kth.se/csc/utbildning/hederskodex) carefully.
-
-### Submission:
-
-* All required work must be committed to your KTH Github Repository
-* A repository will be created for you automatically and it can be found [here](https://gits-15.sys.kth.se/inda-16)
-* Please refer to the Kurswiki for help, contact your teaching assistant, or course leader if you get stuck
+### Instructions
+For instructions on how to do and submit the assignment, please see the
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions#assignments).
 
 ### Homework
-
 Study the following course literature:
 
-* Read [Go for Java Programmers](http://www.nada.kth.se/~snilsson/go_for_java_programmers/)
-* Read Parts 1 and 2 of [Fundamentals of Concurrent Programming](http://www.nada.kth.se/~snilsson/concurrency/)
-* Take a look at [An Introduction to Programming in Go](https://www.golang-book.com/books/intro) for reference
+- Read [Go for Java Programmers](http://yourbasic.org/golang/go-java-tutorial/)
+- Take a look at [An Introduction to Programming in Go](https://www.golang-book.com/books/intro) for more info
+- Read the following from the [Fundamentals of Concurrent Programming](http://yourbasic.org/golang/concurrent-programming/)
+  - [Goroutines](http://yourbasic.org/golang/goroutines-explained/)
 
 ### Task 1 - Go Environment
 
 The first task is to determine that you have a functioning Go environment on the computer that you are working from.
 
-* On a KTH computer - Go should be installed and ready to use
-* On your own computer - Goto the [downloads page](https://golang.org/dl/) for and follow the installation instructions for your preferred operating system.
+- On a KTH computer - Go should be installed and ready to use
+- On your own computer - Goto the [downloads page](https://golang.org/dl/) for and follow the installation instructions for your preferred operating system.
 
 ### Task 2 - A Tour of Go
 
 In this task we shall follow the online exercises hosted on [A Tour of Go](http://tour.golang.org/welcome/1).  Start at the beginning and read through the tutorial. You are expected to submit solutions for the following exercises:
 
-* [Loops and Functions](http://tour.golang.org/flowcontrol/8)
-* [Slices](http://tour.golang.org/moretypes/18)
-* [Maps](http://tour.golang.org/moretypes/23)
-* [Fibbonacci Closure](http://tour.golang.org/moretypes/26)
+- [Loops and Functions](http://tour.golang.org/flowcontrol/8)
+- [Slices](http://tour.golang.org/moretypes/18)
+- [Maps](http://tour.golang.org/moretypes/23)
+- [Fibbonacci Closure](http://tour.golang.org/moretypes/26)
 
 To finish with, you should become familiar with Go's unit testing framework.  Try the example given in [Chp 12](https://www.golang-book.com/books/intro/12) of the Go book.  You can execute the tests as follows:
 
@@ -94,4 +85,4 @@ See: [twopartsum.go](code/twopartsum.go) for source code to modify.
 
 ---
 
-Please commit any written answers or diagrams to the "docs" folder as a PDF (or Markdown) document, and commit any Java code developed to the "code" folder of your KTH Github repo. Remember to push to KTH Github.
+Please commit any written answers or diagrams to the "docs" folder as a PDF (or Markdown) document, and commit any code developed to the "code" folder of your KTH Github repo. Remember to push to KTH Github before your exercise.
