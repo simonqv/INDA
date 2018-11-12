@@ -146,10 +146,9 @@ is just there to make sure that you correctly implement `Comparable<Box>`.
 Make sure to run it before you make your final push.
 
 The second test class, and the one you should work on, is
-[`BoxProcessorTest.java`](src/BoxProcessorTest.java). You have been given all
-test implementations for the array versions of the methods, and some for
-the list versions. You should implement all of the test methods that consist
-of this single fail statement:
+[`BoxProcessorTest.java`](src/BoxProcessorTest.java). You have been given most 
+test implementations but not all. You should implement all of the test methods
+that consist of this single fail statement:
 
 ```java
 fail("Not implemented");
@@ -160,3 +159,4 @@ fail("Not implemented");
 > the tests, you can be confident that you will not get komplettering on the
 > functionality of your code (style issues may still be cause for
 > komplettering).
+

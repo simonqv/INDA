@@ -1,6 +1,5 @@
 import org.junit.Test;
 import org.junit.Before;
-import static org.junit.Assert.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
@@ -15,393 +14,460 @@ import java.util.Random;
  * Test class for BoxProcessor.
  *
  * @author Simon Larsén
- * @version 2017-08-16
+ * @author Anton Lyxell
+ * @version 2018-11-11
  */
 public class BoxProcessorTest {
-    // Arrange
+
+    /* An instance of the boxProcessor */
     private BoxProcessor boxProcessor;
-    private final int BOX_NOT_FOUND_INDEX = -1;
 
-    private final int ARBITRARY_EVEN_LENGTH = 100;
-    private final int EVEN_LENGTH_FIRST_INDEX = 0;
-    private final int EVEN_LENGTH_MIDDLE_INDEX = ARBITRARY_EVEN_LENGTH/2;
-    private final int EVEN_LENGTH_LAST_INDEX = ARBITRARY_EVEN_LENGTH - 1;
-    private Box[] unsortedEvenLengthArray;
-    private List<Box> unsortedEvenLengthList;
-    private Box evenLengthFirstElementCopy;
-    private Box evenLengthMiddleElementCopy;
-    private Box evenLengthLastElementCopy;
-    private Box[] sortedEvenLengthArray;
+    /* An instance of a helper class, used to construct boxes */
+    private BoxFactory boxFactory;
 
-    private List<Box> sortedEvenLengthList;
-    private Box sortedEvenLengthFirstElementCopy;
-    private Box sortedEvenLengthMiddleElementCopy;
-    private Box sortedEvenLengthLastElementCopy;
+    /* The length of the even length list used in the tests */
+    private final int EVEN_LIST_LENGTH = 100;
+    /* The length of the odd length list used in the tests */
+    private final int ODD_LIST_LENGTH = 99;
 
-    private final int ARBITRARY_ODD_LENGTH = 99;
-    private final int ODD_LENGTH_FIRST_INDEX = 0;
-    private final int ODD_LENGTH_MIDDLE_INDEX = ARBITRARY_ODD_LENGTH/2;
-    private final int ODD_LENGTH_LAST_INDEX = ARBITRARY_ODD_LENGTH - 1;
-    private Box[] unsortedOddLengthArray;
-    private List<Box> unsortedOddLengthList;
-    private Box oddLengthFirstElementCopy;
-    private Box oddLengthMiddleElementCopy;
-    private Box oddLengthLastElementCopy;
+    /* An array of even length */
+    private Box[] evenArray;
+    /* An array of odd length */
+    private Box[] oddArray;
 
-    private Box[] sortedOddLengthArray;
-    private List<Box> sortedOddLengthList;
-    private Box sortedOddLengthFirstElementCopy;
-    private Box sortedOddLengthMiddleElementCopy;
-    private Box sortedOddLengthLastElementCopy;
+    /* A list of even length */
+    private List<Box> evenList;
+    /* A list of odd length */
+    private List<Box> oddList;
 
-    private Box[] singleElementArray;
-    private List<Box> singleElementList;
-
-    private Box[] emptyArray;
-    private List<Box> emptyList;
-
+    /**
+     * Set up variables to be available for each test case.
+     *
+     * Assistant's note: this function is executed once before every test
+     * case in this class. In this method we initalize some default
+     * values that will use to verify the correctness of the list processor.
+     */
     @Before
     public void setUp() {
-        // Arrange
         boxProcessor = new BoxProcessor();
-
-        setUpUnsorted();
-        setUpSorted();
-
-        Box box = new Box(1, 2, 3);
-        singleElementArray = new Box[]{box};
-        singleElementList = new ArrayList<>();
-        singleElementList.add(box);
-
-        emptyArray = new Box[0];
-        emptyList = new ArrayList<>();
-    }
-
-    private void setUpUnsorted() {
-        unsortedEvenLengthList = generateUniqueBoxList(ARBITRARY_EVEN_LENGTH);
-        unsortedEvenLengthArray = unsortedEvenLengthList.toArray(new Box[0]);
-
-        evenLengthFirstElementCopy = new Box(unsortedEvenLengthArray[EVEN_LENGTH_FIRST_INDEX]);
-        evenLengthMiddleElementCopy = new Box(unsortedEvenLengthArray[EVEN_LENGTH_MIDDLE_INDEX]);
-        evenLengthLastElementCopy = new Box(unsortedEvenLengthArray[EVEN_LENGTH_LAST_INDEX]);
-
-        unsortedOddLengthList = generateUniqueBoxList(ARBITRARY_ODD_LENGTH);
-        unsortedOddLengthArray = unsortedOddLengthList.toArray(new Box[0]);
-
-        oddLengthFirstElementCopy = unsortedOddLengthArray[ODD_LENGTH_FIRST_INDEX];
-        oddLengthMiddleElementCopy = unsortedOddLengthArray[ODD_LENGTH_MIDDLE_INDEX];
-        oddLengthLastElementCopy = unsortedOddLengthArray[ODD_LENGTH_LAST_INDEX];
-    }
-
-    private void setUpSorted() {
-        sortedEvenLengthList = new ArrayList<>(unsortedEvenLengthList);
-        Collections.sort(sortedEvenLengthList);
-        sortedEvenLengthArray = sortedEvenLengthList.toArray(new Box[0]);
-
-        sortedEvenLengthFirstElementCopy = new Box(sortedEvenLengthArray[EVEN_LENGTH_FIRST_INDEX]);
-        sortedEvenLengthMiddleElementCopy = new Box(sortedEvenLengthArray[EVEN_LENGTH_MIDDLE_INDEX]);
-        sortedEvenLengthLastElementCopy = new Box(sortedEvenLengthArray[EVEN_LENGTH_LAST_INDEX]);
-
-        sortedOddLengthList = new ArrayList<>(unsortedOddLengthList);
-        Collections.sort(sortedOddLengthList);
-        sortedOddLengthArray = sortedOddLengthList.toArray(new Box[0]);
-
-        sortedOddLengthFirstElementCopy = new Box(sortedOddLengthArray[ODD_LENGTH_FIRST_INDEX]);
-        sortedOddLengthMiddleElementCopy = new Box(sortedOddLengthArray[ODD_LENGTH_MIDDLE_INDEX]);
-        sortedOddLengthLastElementCopy = new Box(sortedOddLengthArray[ODD_LENGTH_LAST_INDEX]);
+        boxFactory   = new BoxFactory();
+        oddList      = boxFactory.boxList(ODD_LIST_LENGTH);
+        evenList     = boxFactory.boxList(EVEN_LIST_LENGTH);
+        oddArray     = boxFactory.boxArray(ODD_LIST_LENGTH);
+        evenArray    = boxFactory.boxArray(EVEN_LIST_LENGTH);
     }
 
     /**
-     * Tests for sort(Box[])
+     * Assert that sorting an empty array has no effects.
      */
-
     @Test
-    public void sortCorrectlySortsWhenArrayIsUnsorted() {
+    public void sortHasNoEffectWhenArrayIsEmpty() {
         // Arrange
-        Box[] unsortedEvenLengthArrayCopy = Arrays.copyOf(unsortedEvenLengthArray, unsortedEvenLengthArray.length);
-        Box[] unsortedOddLengthArrayCopy = Arrays.copyOf(unsortedOddLengthArray, unsortedOddLengthArray.length);
-
+        Box[] array = boxFactory.boxArray(0);
         // Act
-        boxProcessor.sort(unsortedEvenLengthArray);
-        Arrays.sort(unsortedEvenLengthArrayCopy);
-        boxProcessor.sort(unsortedOddLengthArray);
-        Arrays.sort(unsortedOddLengthArrayCopy);
-
+        boxProcessor.sort(array);
         // Assert
-        assertThat(unsortedEvenLengthArray, equalTo(unsortedEvenLengthArrayCopy));
-        assertThat(unsortedOddLengthArray, equalTo(unsortedOddLengthArrayCopy));
-    }
-
-    @Test
-    public void sortCorrectlySortsWhenArrayIsSorted() {
-        // Arrange
-        Box[] sortedEvenLengthArrayCopy = Arrays.copyOf(sortedEvenLengthArray, sortedEvenLengthArray.length);
-        Box[] sortedOddLengthArrayCopy = Arrays.copyOf(sortedOddLengthArray, sortedOddLengthArray.length);
-
-        // Act
-        boxProcessor.sort(sortedEvenLengthArray);
-        Arrays.sort(sortedEvenLengthArrayCopy);
-        boxProcessor.sort(sortedOddLengthArray);
-        Arrays.sort(sortedOddLengthArrayCopy);
-
-        // Assert
-        assertThat(sortedEvenLengthArray, equalTo(sortedEvenLengthArrayCopy));
-        assertThat(sortedOddLengthArray, equalTo(sortedOddLengthArrayCopy));
-    }
-
-    @Test
-    public void sortCorrectlySortsWhenArrayContainsSingleElement() {
-        // Arrange
-        Box boxCopy = new Box(singleElementArray[0]);
-
-        // Act
-        boxProcessor.sort(singleElementArray);
-
-        // Assert
-        assertThat(singleElementArray.length, equalTo(1));
-        assertThat(singleElementArray[0], equalTo(boxCopy));
-    }
-
-    @Test
-    public void sortDoesNothingWhenArrayIsEmpty() {
-        // Act
-        boxProcessor.sort(emptyArray);
-        // Assert
-        assertThat(emptyArray.length, equalTo(0));
+        assertThat(array.length, equalTo(0));
     }
 
     /**
-     * Tests for sort(List<Box>)
+     * Assert that sorting an empty list has no effects.
      */
-
     @Test
-    public void sortCorrectlySortsWhenListIsUnsorted() {
+    public void sortHasNoEffectWhenListIsEmpty() {
         // Arrange
-        List<Box> unsortedEvenLengthListCopy = new ArrayList<>(unsortedEvenLengthList);
-        List<Box> unsortedOddLengthListCopy = new ArrayList<>(unsortedOddLengthList);
-
+        List<Box> list = boxFactory.boxList(0);
         // Act
-        boxProcessor.sort(unsortedEvenLengthList);
-        Collections.sort(unsortedEvenLengthListCopy);
-        boxProcessor.sort(unsortedOddLengthList);
-        Collections.sort(unsortedOddLengthListCopy);
-
+        boxProcessor.sort(list);
         // Assert
-        assertThat(unsortedEvenLengthList, equalTo(unsortedEvenLengthListCopy));
-        assertThat(unsortedOddLengthList, equalTo(unsortedOddLengthListCopy));
+        assertThat(list.size(), equalTo(0));
     }
 
+    /**
+     * Assert that sorting an array with a single element has no effects.
+     */
     @Test
-    public void sortCorrectlySortsWhenListIsSorted() {
-        fail("Not implemented");
-    }
-
-    @Test
-    public void sortCorrectlySortsWhenListContainsSingleElement() {
-        // Arrange
-        Box boxCopy = new Box(singleElementList.get(0));
-
-        // Act
-        boxProcessor.sort(singleElementList);
-
-        // Assert
-        assertThat(singleElementList.size(), equalTo(1));
-        assertThat(singleElementList.get(0), equalTo(boxCopy));
-    }
-
-    @Test
-    public void sortDoesNothingWhenListIsEmpty() {
+    public void sortHasNoEffectWhenArrayHasSingleElement() {
         fail("Not implemented");
     }
 
     /**
-     * Tests for sequentialSearch(Box[])
+     * Assert that sorting a list with a single element has no effects.
      */
-
     @Test
-    public void sequentialSearchFindsBoxThatIsInArray() {
-        // Act
-        int firstBoxIndex = boxProcessor.sequentialSearch(unsortedEvenLengthArray, evenLengthFirstElementCopy);
-        int middleBoxIndex = boxProcessor.sequentialSearch(unsortedEvenLengthArray, evenLengthMiddleElementCopy);
-        int lastBoxIndex = boxProcessor.sequentialSearch(unsortedEvenLengthArray, evenLengthLastElementCopy);
-
-        // Assert
-        assertThat(firstBoxIndex, equalTo(EVEN_LENGTH_FIRST_INDEX));
-        assertThat(middleBoxIndex, equalTo(EVEN_LENGTH_MIDDLE_INDEX));
-        assertThat(lastBoxIndex, equalTo(EVEN_LENGTH_LAST_INDEX));
-    }
-
-    @Test
-    public void sequentialSearchDoesNotFindBoxThatIsNotInUnsortedArray() {
-        // Arrange
-        Box[] newOddLengthArray = Arrays.copyOf(unsortedEvenLengthArray, unsortedEvenLengthArray.length - 1);
-        Box boxNotInNewOddLengthArray = evenLengthLastElementCopy;
-        Box[] newEvenLengthArray = Arrays.copyOf(unsortedOddLengthArray, unsortedOddLengthArray.length - 1);
-        Box boxNotInNewEvenLengthArray = oddLengthLastElementCopy;
-
-        // Act
-        int boxNotInNewEvenArrayIndex = boxProcessor.sequentialSearch(
-            newEvenLengthArray, boxNotInNewEvenLengthArray);
-        int boxNotInNewOddArrayIndex = boxProcessor.sequentialSearch(
-            newOddLengthArray, boxNotInNewOddLengthArray);
-
-        // Assert
-        assertThat(boxNotInNewEvenArrayIndex, equalTo(BOX_NOT_FOUND_INDEX));
-        assertThat(boxNotInNewOddArrayIndex, equalTo(BOX_NOT_FOUND_INDEX));
-    }
-
-    /**
-     * Tests for sequentialSearch(List<Box>)
-     */
-
-    @Test
-    public void sequentialSearchFindsBoxThatIsInList() {
-        // Act
-        int firstBoxIndex = boxProcessor.sequentialSearch(unsortedEvenLengthList, evenLengthFirstElementCopy);
-        int middleBoxIndex = boxProcessor.sequentialSearch(unsortedEvenLengthList, evenLengthMiddleElementCopy);
-        int lastBoxIndex = boxProcessor.sequentialSearch(unsortedEvenLengthList, evenLengthLastElementCopy);
-
-        // Assert
-        assertThat(firstBoxIndex, equalTo(EVEN_LENGTH_FIRST_INDEX));
-        assertThat(middleBoxIndex, equalTo(EVEN_LENGTH_MIDDLE_INDEX));
-        assertThat(lastBoxIndex, equalTo(EVEN_LENGTH_LAST_INDEX));
-    }
-
-    @Test
-    public void sequentialSearchDoesNotFindBoxThatIsNotInUnsortedList() {
+    public void sortHasNoEffectWhenListHasSingleElement() {
         fail("Not implemented");
     }
 
     /**
-     * Tests for binarySearch(Box[])
+     * Assert that sorting a multiple element array results in a correct
+     * ordering of the elements.
      */
-
     @Test
-    public void binarySearchFindsBoxWhenItisInSortedEvenLengthArray() {
-        // Act
-        int firstBoxIndex = boxProcessor.binarySearch(sortedEvenLengthArray, sortedEvenLengthFirstElementCopy);
-        int middleBoxIndex = boxProcessor.binarySearch(sortedEvenLengthArray, sortedEvenLengthMiddleElementCopy);
-        int lastBoxIndex = boxProcessor.binarySearch(sortedEvenLengthArray, sortedEvenLengthLastElementCopy);
-
-        // Assert
-        assertThat(firstBoxIndex, equalTo(EVEN_LENGTH_FIRST_INDEX));
-        assertThat(middleBoxIndex, equalTo(EVEN_LENGTH_MIDDLE_INDEX));
-        assertThat(lastBoxIndex, equalTo(EVEN_LENGTH_LAST_INDEX));
-    }
-
-    @Test
-    public void binarySearchFindsBoxWhenItisInSortedOddLengthArray() {
-        // Act
-        int firstBoxIndex = boxProcessor.binarySearch(sortedOddLengthArray, sortedOddLengthFirstElementCopy);
-        int middleBoxIndex = boxProcessor.binarySearch(sortedOddLengthArray, sortedOddLengthMiddleElementCopy);
-        int lastBoxIndex = boxProcessor.binarySearch(sortedOddLengthArray, sortedOddLengthLastElementCopy);
-
-        // Assert
-        assertThat(firstBoxIndex, equalTo(ODD_LENGTH_FIRST_INDEX));
-        assertThat(middleBoxIndex, equalTo(ODD_LENGTH_MIDDLE_INDEX));
-        assertThat(lastBoxIndex, equalTo(ODD_LENGTH_LAST_INDEX));
-    }
-
-    @Test
-    public void binarySearchFindsBoxInSingleElementArray() {
+    public void sortMultipleElementArrayGivesCorrectOrdering() {
         // Arrange
-        Box boxCopy = new Box(singleElementArray[0]);
-
+        Box[] actual = evenArray;
+        Box[] expected = actual.clone();
         // Act
-        int foundIndex = boxProcessor.binarySearch(singleElementArray, boxCopy);
-
+        Arrays.sort(expected);
+        boxProcessor.sort(actual);
         // Assert
-        assertThat(foundIndex, equalTo(0));
-    }
-
-    @Test
-    public void binarySearchDoesNotFindBoxThatIsNotInSortedArray() {
-        // Arrange
-        Box[] newOddLengthArray = Arrays.copyOf(sortedEvenLengthArray, sortedEvenLengthArray.length - 1);
-        Box boxNotInNewOddLengthArray = sortedEvenLengthLastElementCopy;
-        Box[] newEvenLengthArray = Arrays.copyOf(sortedOddLengthArray, sortedOddLengthArray.length - 1);
-        Box boxNotInNewEvenLengthArray = sortedOddLengthLastElementCopy;
-
-        // Act
-        int boxNotInNewEvenArrayIndex = boxProcessor.binarySearch(
-            newEvenLengthArray, boxNotInNewEvenLengthArray);
-        int boxNotInNewOddArrayIndex = boxProcessor.binarySearch(
-            newOddLengthArray, boxNotInNewOddLengthArray);
-
-        // Assert
-        assertThat(boxNotInNewEvenArrayIndex, equalTo(BOX_NOT_FOUND_INDEX));
-        assertThat(boxNotInNewOddArrayIndex, equalTo(BOX_NOT_FOUND_INDEX));
+        assertThat(actual, equalTo(expected));
     }
 
     /**
-     * Tests for binarySearch(List<Box>)
+     * Assert that sorting a multiple element list results in a correct
+     * ordering of the elements.
      */
-
     @Test
-    public void binarySearchFindsBoxWhenItisInSortedEvenLengthList() {
-        fail("Not implemented");
-    }
-
-    @Test
-    public void binarySearchFinsBoxWhenItisInSortedOddLengthList() {
-        fail("Not implemented");
-    }
-
-    @Test
-    public void binarySearchDoesNotFindBoxThatIsNotInSortedList() {
-        fail("Not implemented");
-    }
-
-    @Test
-    public void binarySearchFindsBoxInSingleElementList() {
+    public void sortMultipleElementListGivesCorrectOrdering() {
         // Arrange
-        Box boxCopy = new Box(singleElementList.get(0));
-
+        List<Box> actual = evenList;
+        List<Box> expected = new ArrayList<>(actual);
         // Act
-        int foundIndex = boxProcessor.binarySearch(singleElementList, boxCopy);
-
+        Collections.sort(expected);
+        boxProcessor.sort(actual);
         // Assert
-        assertThat(foundIndex, equalTo(0));
+        assertThat(actual, equalTo(expected));
     }
 
     /**
-     * Helper methods for setting up the box collections.
+     * Assert that sequentialSearch returns the correct index when searching
+     * for the first element of an array.
      */
+    @Test
+    public void sequentialSearchFindsFirstElementInArray() {
+        // Act, Assert
+        assertThat(boxProcessor.sequentialSearch(evenArray, evenArray[0]),
+            equalTo(0));
+    }
 
     /**
-     * Generate a List of boxes with unique volumes.
-     * The generation is deterministic.
+     * Assert that sequentialSearch returns the correct index when searching
+     * for the first element of a list.
+     */
+    @Test
+    public void sequentialSearchFindsFirstElementInList() {
+        // Act, Assert
+        assertThat(boxProcessor.sequentialSearch(evenList, evenList.get(0)),
+            equalTo(0));
+    }
+
+    /**
+     * Assert that sequentialSearch returns the correct index when searching
+     * for the element in the middle of an array.
+     */
+    @Test
+    public void sequentialSearchFindsMiddleElementInArray() {
+        // Arrange
+        final int index = evenArray.length / 2;
+        Box[] list = evenArray;
+        // Act, Assert
+        assertThat(boxProcessor.sequentialSearch(list, list[index]),
+            equalTo(index));
+    }
+
+    /**
+     * Assert that sequentialSearch returns the correct index when searching
+     * for the element in the middle of a list.
+     */
+    @Test
+    public void sequentialSearchFindsMiddleElementInList() {
+        // Arrange
+        final int index = evenList.size() / 2;
+        // Act, Assert
+        assertThat(boxProcessor.sequentialSearch(evenList, evenList.get(index)),
+            equalTo(index));
+    }
+
+    /**
+     * Assert that sequentialSearch returns the correct index when searching
+     * for the last element of an array.
+     */
+    @Test
+    public void sequentialSearchFindsLastElementInArray() {
+        fail("Not implemented");
+    }
+
+    /**
+     * Assert that sequentialSearch returns the correct index when searching
+     * for the last element of a list.
+     */
+    @Test
+    public void sequentialSearchFindsLastElementInList() {
+        fail("Not implemented");
+    }
+
+    /**
+     * Assert that sequentialSearch returns negative one as
+     * index when the element is not found in the array.
+     */
+    @Test
+    public void sequentialSearchInArrayReturnsNegativeOneOnNotFound() {
+        // Arrange
+        Box[] array = boxFactory.boxArray(0);
+        // Act, Assert
+        assertThat(boxProcessor.sequentialSearch(array, new Box(0, 0, 0)),
+            equalTo(-1));
+    }
+
+    /**
+     * Assert that sequentialSearch returns negative one as
+     * index when the element is not found in the list.
+     */
+    @Test
+    public void sequentialSearchInListReturnsNegativeOneOnNotFound() {
+        // Arrange
+        List<Box> list = boxFactory.boxList(0);
+        // Act, Assert
+        assertThat(boxProcessor.sequentialSearch(list, new Box(0, 0, 0)),
+            equalTo(-1));
+    }
+
+    /**
+     * Assert that binarySearch returns the correct index when searching
+     * for the first element of an array of even length.
+     */
+    @Test
+    public void binarySearchFindsFirstElementInEvenArray() {
+        // Arrange
+        Arrays.sort(evenArray);
+        // Act, Assert
+        assertThat(boxProcessor.binarySearch(evenArray, evenArray[0]),
+            equalTo(0));
+    }
+
+    /**
+     * Assert that binarySearch returns the correct index when searching
+     * for the first element of a list of even length.
+     */
+    @Test
+    public void binarySearchFindsFirstElementInEvenList() {
+        // Arrange
+        Collections.sort(evenList);
+        // Act, Assert
+        assertThat(boxProcessor.binarySearch(evenList, evenList.get(0)),
+            equalTo(0));
+    }
+
+    /**
+     * Assert that binarySearch returns the correct index when searching
+     * for the element in the middle of an array of even length.
+     */
+    @Test
+    public void binarySearchFindsMiddleElementInEvenArray() {
+        // Arrange
+        final int index = evenArray.length / 2;
+        Arrays.sort(evenArray);
+        // Act, Assert
+        assertThat(boxProcessor.binarySearch(evenArray, evenArray[index]),
+            equalTo(index));
+    }
+
+    /**
+     * Assert that binarySearch returns the correct index when searching
+     * for the element in the middle of a list of even length.
+     */
+    @Test
+    public void binarySearchFindsMiddleElementInEvenList() {
+        // Arrange
+        final int index = evenList.size() / 2;
+        Collections.sort(evenList);
+        // Act, Assert
+        assertThat(boxProcessor.binarySearch(evenList, evenList.get(index)),
+            equalTo(index));
+    }
+
+    /**
+     * Assert that binarySearch returns the correct index when searching
+     * for the last element of an array of even length.
+     */
+    @Test
+    public void binarySearchFindsLastElementInEvenArray() {
+        // Arrange
+        final int index = evenArray.length - 1;
+        Arrays.sort(evenArray);
+        // Act, Assert
+        assertThat(boxProcessor.binarySearch(evenArray, evenArray[index]),
+            equalTo(index));
+    }
+
+    /**
+     * Assert that binarySearch returns the correct index when searching
+     * for the last element of a list of even length.
+     */
+    @Test
+    public void binarySearchFindsLastElementInEvenList() {
+        // Arrange
+        final int index = evenList.size() - 1;
+        Collections.sort(evenList);
+        // Act, Assert
+        assertThat(boxProcessor.binarySearch(evenList, evenList.get(index)),
+            equalTo(index));
+    }
+
+    /**
+     * Assert that binarySearch returns the correct index when searching
+     * for the first element of an array of odd length.
+     */
+    @Test
+    public void binarySearchFindsFirstElementInOddArray() {
+        // Arrange
+        Arrays.sort(oddArray);
+        // Act, Assert
+        assertThat(boxProcessor.binarySearch(oddArray, oddArray[0]),
+            equalTo(0));
+    }
+
+    /**
+     * Assert that binarySearch returns the correct index when searching
+     * for the first element of a list of odd length.
+     */
+    @Test
+    public void binarySearchFindsFirstElementInOddList() {
+        // Arrange
+        Collections.sort(oddList);
+        // Act, Assert
+        assertThat(boxProcessor.binarySearch(oddList, oddList.get(0)),
+            equalTo(0));
+    }
+
+    /**
+     * Assert that binarySearch returns the correct index when searching
+     * for the element in the middle of an array of odd length.
+     */
+    @Test
+    public void binarySearchFindsMiddleElementInOddArray() {
+        fail("Not implemented");
+    }
+
+    /**
+     * Assert that binarySearch returns the correct index when searching
+     * for the element in the middle of a list of odd length.
+     */
+    @Test
+    public void binarySearchFindsMiddleElementInOddList() {
+        fail("Not implemented");
+    }
+
+    /**
+     * Assert that binarySearch returns the correct index when searching
+     * for the last element of an array of odd length.
+     */
+    @Test
+    public void binarySearchFindsLastElementInOddArray() {
+        // Arrange
+        final int index = oddArray.length - 1;
+        Arrays.sort(oddArray);
+        // Act, Assert
+        assertThat(boxProcessor.binarySearch(oddArray, oddArray[index]),
+            equalTo(index));
+    }
+
+    /**
+     * Assert that binarySearch returns the correct index when searching
+     * for the last element of a list of odd length.
+     */
+    @Test
+    public void binarySearchFindsLastElementInOddList() {
+        // Arrange
+        final int index = oddList.size() - 1;
+        Collections.sort(oddList);
+        // Act, Assert
+        assertThat(boxProcessor.binarySearch(oddList, oddList.get(index)),
+            equalTo(index));
+    }
+
+    /**
+     * Assert that binarySearch returns negative one as
+     * index when the element is not found in the array.
+     */
+    @Test
+    public void binarySearchInArrayReturnsNegativeOneOnNotFound() {
+        // Arrange
+        Box[] array = boxFactory.boxArray(0);
+        // Act, Assert
+        assertThat(boxProcessor.binarySearch(array, new Box(0, 0, 0)),
+            equalTo(-1));
+    }
+
+    /**
+     * Assert that binarySearch returns negative one as
+     * index when the element is not found in the list.
+     */
+    @Test
+    public void binarySearchInListReturnsNegativeOneOnNotFound() {
+        // Arrange
+        List<Box> list = boxFactory.boxList(0);
+        // Act, Assert
+        assertThat(boxProcessor.binarySearch(list, new Box(0, 0, 0)),
+            equalTo(-1));
+    }
+
+}
+
+/**
+ * A helper class to aid construction of collections of Box object.
+ */
+class BoxFactory {
+
+    /* The upper bound (exclusive) of the values submitted
+       to the box constructor */
+    private static final int BOX_MAX_DIMENSION = 50;
+    /* The random generator, seeded with to make test suit deterministic */
+    private final Random random;
+
+    /* Constructor for BoxFactory */
+    public BoxFactory() {
+        random = new Random(0);
+    }
+
+    /**
+     * Returns a boolean indicating whether the input array contains
+     * a duplicate of the element and a given index in the indices
+     * before the given index.
      *
-     * NOTE: If it is important that the list is unsorted, you have to verify
-     * this yourself. The shorter the length, the larger a chance of it being
-     * sorted.
-     *
-     * @param length Length of the generated List.
-     * @return An array of Box.
+     * @param  array an array of Box objects to search for duplicates in
+     * @param  index the index to search from
+     * @return       the boolean indicator value
      */
-    private List<Box> generateUniqueBoxList(int length) {
-        int[] dims = new int[]{1, 1, 1};
-        List<Box> boxes = new ArrayList<Box>(length);
-        for (int i = 0; i < length; i++) {
-            Box box = new Box(dims[0], dims[1], dims[2]);
-            boxes.add(box);
-            dims[i % dims.length]++;
+    private boolean prefixContains(Box[] array, int index) {
+        for (int i = 0; i < index; i++) {
+            if (array[i].compareTo(array[index]) == 0) {
+                return true;
+            }
         }
-        deterministicShuffle(boxes);
-        return boxes;
+        return false;
     }
 
     /**
-     * Deterministically shuffles a List of boxes.
+     * Returns an array of Box objects with random properties.
+     * The array is guaranteed to not contain duplicates.
      *
-     * @param boxes A List of boxes.
+     * @param  size  the number of elements in the array
+     * @return       the array of Box objects
      */
-    private void deterministicShuffle(List<Box> boxes) {
-        // Seeding the random generator ensures that the same sequence is
-        // always generated.
-        int arbitrarySeed = 1012039;
-        Random random = new Random(arbitrarySeed);
-        // Provide shuffle with the seeded Random to ensure deterministic shuffle
-        Collections.shuffle(boxes, random);
+    public Box[] boxArray(int size) {
+        Box[] array = new Box[size];
+        for (int i = 0; i < size; i++) {
+            do {
+                array[i] = new Box(random.nextInt(BOX_MAX_DIMENSION),
+                                   random.nextInt(BOX_MAX_DIMENSION),
+                                   random.nextInt(BOX_MAX_DIMENSION));
+            } while (prefixContains(array, i));
+        }
+        return array;
     }
+
+    /**
+     * Returns a list of Box objects with random properties.
+     * The list is guaranteed to not contain duplicates.
+     *
+     * @param  size  the number of elements in the list
+     * @return       the list of Box objects
+     */
+    public List<Box> boxList(int size) {
+        return Arrays.asList(boxArray(size));
+    }
+
 }
