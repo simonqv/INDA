@@ -1,10 +1,12 @@
 Welcome to the first assignment of DD1338!
 
 ### Read the course instructions
-Make sure to read the
-[DD1338-specific course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions/tree/master/DD1338/README.md)
-It may also be a goo idea to refresh your memory on the general course instructions.
-You can find them [**here!**](https://gits-15.sys.kth.se/inda-17/course-instructions)
+Before you start working on this assignment, make sure to read the
+[DD1338 specific course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions/tree/master/DD1338/README.md)
+thorougly.
+
+It may also be a good idea to refresh your memory on the
+[general course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions).
 
 ### Deadline
 This work should be completed before the exercise on **Friday 24th November**.
@@ -47,19 +49,19 @@ written answers to the [`docs`](docs) folder.
 Implement methods with the following headers:
 
 ```java
-public int[] filledArray(int from, int to)
+public int[] arraySequence(int from, int to)
 ```
 
 and
 
 ```java
-public List<Integer> filledList(int from, int to)`
+public List<Integer> listSequence(int from, int to)`
 ```
 
 These methods should return populated lists with integer values in the range
 from the lower bound `from` (inclusive) until the upper bound `to` (exclusive).
 
-e.g. `filledArray(0, 5);` should return the following array `[0,1,2,3,4]`
+e.g. `arraySequence(0, 5);` should return the following array `[0,1,2,3,4]`
 
 **Special cases:**
 1. If `from == to`, an empty list should be returned.
@@ -140,9 +142,9 @@ help depending on your strategy.
 
 ### Testing
 For this week's tests, you have been provided with a fully implemented test
-class at [`ListProcessorTest.java`](src/ListProcessorTest.java). It may look
-dauntingly large, but that is mostly due to the fact that the tests are very
-spaced out with _Arrange, Act, Assert_ comments, there are only 28 tests. This
+class at [`ListProcessorTest.java`](src/ListProcessorTest.java). This
 is the actual reference test class that the assistants use to verify your code,
 meaning that if your code passes the tests, it's considered good enough in
-terms of functionality!
+terms of functionality! For more information on how the unit tests are structured,
+refer to the [DD1338 specific course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions/tree/master/DD1338/README.md).
+
