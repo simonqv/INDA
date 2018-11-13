@@ -132,69 +132,20 @@ public class BoxProcessorTest {
     }
 
     /**
-     * Assert that sequentialSearch returns the correct index when searching
-     * for the first element of an array.
+     * Assert that sequentialSearch returns the correct index
+     * for all elements in an array with multiple elements.
      */
     @Test
-    public void sequentialSearchFindsFirstElementInArray() {
-        // Act, Assert
-        assertThat(boxProcessor.sequentialSearch(evenArray, evenArray[0]),
-            equalTo(0));
-    }
-
-    /**
-     * Assert that sequentialSearch returns the correct index when searching
-     * for the first element of a list.
-     */
-    @Test
-    public void sequentialSearchFindsFirstElementInList() {
-        // Act, Assert
-        assertThat(boxProcessor.sequentialSearch(evenList, evenList.get(0)),
-            equalTo(0));
-    }
-
-    /**
-     * Assert that sequentialSearch returns the correct index when searching
-     * for the element in the middle of an array.
-     */
-    @Test
-    public void sequentialSearchFindsMiddleElementInArray() {
-        // Arrange
-        final int index = evenArray.length / 2;
-        Box[] list = evenArray;
-        // Act, Assert
-        assertThat(boxProcessor.sequentialSearch(list, list[index]),
-            equalTo(index));
-    }
-
-    /**
-     * Assert that sequentialSearch returns the correct index when searching
-     * for the element in the middle of a list.
-     */
-    @Test
-    public void sequentialSearchFindsMiddleElementInList() {
-        // Arrange
-        final int index = evenList.size() / 2;
-        // Act, Assert
-        assertThat(boxProcessor.sequentialSearch(evenList, evenList.get(index)),
-            equalTo(index));
-    }
-
-    /**
-     * Assert that sequentialSearch returns the correct index when searching
-     * for the last element of an array.
-     */
-    @Test
-    public void sequentialSearchFindsLastElementInArray() {
+    public void sequentialSearchFindsAllElementsInArray() {
         fail("Not implemented");
     }
 
     /**
-     * Assert that sequentialSearch returns the correct index when searching
-     * for the last element of a list.
+     * Assert that sequentialSearch returns the correct index
+     * for all elements in a list with multiple elements.
      */
     @Test
-    public void sequentialSearchFindsLastElementInList() {
+    public void sequentialSearchFindsAllElementsInList() {
         fail("Not implemented");
     }
 
@@ -225,157 +176,51 @@ public class BoxProcessorTest {
     }
 
     /**
-     * Assert that binarySearch returns the correct index when searching
-     * for the first element of an array of even length.
+     * Assert that binarySearch returns the correct index
+     * for all elements in an even length array with multiple elements.
      */
     @Test
-    public void binarySearchFindsFirstElementInEvenArray() {
+    public void binarySearchFindsAllElementsInEvenArray() {
         // Arrange
         Arrays.sort(evenArray);
-        // Act, Assert
-        assertThat(boxProcessor.binarySearch(evenArray, evenArray[0]),
-            equalTo(0));
+        for (int i = 0; i < evenArray.length; i++) {
+            // Act, Assert
+            assertThat(boxProcessor.binarySearch(evenArray, evenArray[i]),
+                equalTo(i));
+        }
     }
 
     /**
-     * Assert that binarySearch returns the correct index when searching
-     * for the first element of a list of even length.
+     * Assert that binarySearch returns the correct index
+     * for all elements in an even length list with multiple elements.
      */
     @Test
-    public void binarySearchFindsFirstElementInEvenList() {
+    public void binarySearchFindsAllElementsInEvenList() {
         // Arrange
         Collections.sort(evenList);
-        // Act, Assert
-        assertThat(boxProcessor.binarySearch(evenList, evenList.get(0)),
-            equalTo(0));
+        for (int i = 0; i < evenList.size(); i++) {
+            // Act, Assert
+            assertThat(boxProcessor.binarySearch(evenList, evenList.get(i)),
+                equalTo(i));
+        }
     }
 
     /**
-     * Assert that binarySearch returns the correct index when searching
-     * for the element in the middle of an array of even length.
+     * Assert that binarySearch returns the correct index
+     * for all elements in an odd length array with multiple elements.
      */
     @Test
-    public void binarySearchFindsMiddleElementInEvenArray() {
-        // Arrange
-        final int index = evenArray.length / 2;
-        Arrays.sort(evenArray);
-        // Act, Assert
-        assertThat(boxProcessor.binarySearch(evenArray, evenArray[index]),
-            equalTo(index));
-    }
-
-    /**
-     * Assert that binarySearch returns the correct index when searching
-     * for the element in the middle of a list of even length.
-     */
-    @Test
-    public void binarySearchFindsMiddleElementInEvenList() {
-        // Arrange
-        final int index = evenList.size() / 2;
-        Collections.sort(evenList);
-        // Act, Assert
-        assertThat(boxProcessor.binarySearch(evenList, evenList.get(index)),
-            equalTo(index));
-    }
-
-    /**
-     * Assert that binarySearch returns the correct index when searching
-     * for the last element of an array of even length.
-     */
-    @Test
-    public void binarySearchFindsLastElementInEvenArray() {
-        // Arrange
-        final int index = evenArray.length - 1;
-        Arrays.sort(evenArray);
-        // Act, Assert
-        assertThat(boxProcessor.binarySearch(evenArray, evenArray[index]),
-            equalTo(index));
-    }
-
-    /**
-     * Assert that binarySearch returns the correct index when searching
-     * for the last element of a list of even length.
-     */
-    @Test
-    public void binarySearchFindsLastElementInEvenList() {
-        // Arrange
-        final int index = evenList.size() - 1;
-        Collections.sort(evenList);
-        // Act, Assert
-        assertThat(boxProcessor.binarySearch(evenList, evenList.get(index)),
-            equalTo(index));
-    }
-
-    /**
-     * Assert that binarySearch returns the correct index when searching
-     * for the first element of an array of odd length.
-     */
-    @Test
-    public void binarySearchFindsFirstElementInOddArray() {
-        // Arrange
-        Arrays.sort(oddArray);
-        // Act, Assert
-        assertThat(boxProcessor.binarySearch(oddArray, oddArray[0]),
-            equalTo(0));
-    }
-
-    /**
-     * Assert that binarySearch returns the correct index when searching
-     * for the first element of a list of odd length.
-     */
-    @Test
-    public void binarySearchFindsFirstElementInOddList() {
-        // Arrange
-        Collections.sort(oddList);
-        // Act, Assert
-        assertThat(boxProcessor.binarySearch(oddList, oddList.get(0)),
-            equalTo(0));
-    }
-
-    /**
-     * Assert that binarySearch returns the correct index when searching
-     * for the element in the middle of an array of odd length.
-     */
-    @Test
-    public void binarySearchFindsMiddleElementInOddArray() {
+    public void binarySearchFindsAllElementsInOddArray() {
         fail("Not implemented");
     }
 
     /**
-     * Assert that binarySearch returns the correct index when searching
-     * for the element in the middle of a list of odd length.
+     * Assert that binarySearch returns the correct index
+     * for all elements in an odd length list with multiple elements.
      */
     @Test
-    public void binarySearchFindsMiddleElementInOddList() {
+    public void binarySearchFindsAllElementsInOddList() {
         fail("Not implemented");
-    }
-
-    /**
-     * Assert that binarySearch returns the correct index when searching
-     * for the last element of an array of odd length.
-     */
-    @Test
-    public void binarySearchFindsLastElementInOddArray() {
-        // Arrange
-        final int index = oddArray.length - 1;
-        Arrays.sort(oddArray);
-        // Act, Assert
-        assertThat(boxProcessor.binarySearch(oddArray, oddArray[index]),
-            equalTo(index));
-    }
-
-    /**
-     * Assert that binarySearch returns the correct index when searching
-     * for the last element of a list of odd length.
-     */
-    @Test
-    public void binarySearchFindsLastElementInOddList() {
-        // Arrange
-        final int index = oddList.size() - 1;
-        Collections.sort(oddList);
-        // Act, Assert
-        assertThat(boxProcessor.binarySearch(oddList, oddList.get(index)),
-            equalTo(index));
     }
 
     /**
@@ -383,7 +228,7 @@ public class BoxProcessorTest {
      * index when the element is not found in the array.
      */
     @Test
-    public void binarySearchInArrayReturnsNegativeOneOnNotFound() {
+    public void binarySearchInArrayReturnsNegativeOneWhenNotFound() {
         // Arrange
         Box[] array = boxFactory.boxArray(0);
         // Act, Assert
@@ -396,7 +241,7 @@ public class BoxProcessorTest {
      * index when the element is not found in the list.
      */
     @Test
-    public void binarySearchInListReturnsNegativeOneOnNotFound() {
+    public void binarySearchInListReturnsNegativeOneWhenNotFound() {
         // Arrange
         List<Box> list = boxFactory.boxList(0);
         // Act, Assert
