@@ -2,18 +2,18 @@ Welcome to the first assignment of DD1338!
 
 ### Read the course instructions
 Before you start working on this assignment, make sure to read the
-[DD1338 specific course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions/tree/master/DD1338/README.md)
+[DD1338 specific course instructions](https://gits-15.sys.kth.se/inda-18/course-instructions/tree/master/DD1338/README.md)
 thorougly.
 
 It may also be a good idea to refresh your memory on the
-[general course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions).
+[general course instructions](https://gits-15.sys.kth.se/inda-18/course-instructions).
 
 ### Deadline
-This work should be completed before the exercise on **Friday 24th November**.
+This work should be completed before the exercise on **Friday 23rd November**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-18/course-instructions#assignments).
 
 ### Homework
 Study all the following pages from the [course text](http://www.nada.kth.se/~snilsson/algoritmer/) (online):
@@ -98,7 +98,7 @@ elements to randomise the ordering.
 > overload by _return type_, as overloading works only by looking at different
 > signatures. For the official definition (with examples), please see
 > [Overloading Methods section at the bottom of this page](https://docs.oracle.com/javase/tutorial/java/javaOO/methods.html#overloading-methods).
- 
+
 #### Exercise 3: Summing Lists Iteratively
 Implement methods with the following headers:
 
@@ -146,5 +146,7 @@ class at [`ListProcessorTest.java`](src/ListProcessorTest.java). This
 is the actual reference test class that the assistants use to verify your code,
 meaning that if your code passes the tests, it's considered good enough in
 terms of functionality! For more information on how the unit tests are structured,
-refer to the [DD1338 specific course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions/tree/master/DD1338/README.md).
+refer to the [DD1338 specific course instructions](https://gits-15.sys.kth.se/inda-18/course-instructions/tree/master/DD1338/README.md).
 
+### Grading Criteria
+Each week we will communicate grading criteria through the [issue tracker](../../issues/). Grading criteria set the basic standards for a pass, komp or fail, so it is essential you review them each week. These will change over time as your skills develop, so make sure you read the grading criteria issue carefully and tick off all the requirements.
