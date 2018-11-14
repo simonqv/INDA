@@ -1,10 +1,10 @@
 ### Deadline:
-This work should be completed before the exercise on **Friday 8th December**.
+This work should be completed before the exercise on **Friday 7th December**.
 Woohoo! Last assignment of the year :)
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-18/course-instructions#assignments).
 
 ### Homework
 Study all the following pages from the [course text](http://www.nada.kth.se/~snilsson/algoritmer):
@@ -85,7 +85,7 @@ from the 1 hour cell of `logn` if you want the actual symbol, or just write
 > is approximated by `n = e^W(x)`, where `W` is the
 > [Lambert W function](https://en.wikipedia.org/wiki/Lambert_W_function). For
 > the _less_ mathematically inclined (like this humble assistant), the
-> solution is given by typing `n*log2(n) = x, solve for n` into 
+> solution is given by typing `n*log2(n) = x, solve for n` into
 > [Wolfram Alpha](https://www.wolframalpha.com) :D.
 
 #### Exercise 3
@@ -197,10 +197,13 @@ the tests and make sure you understand what they do, and then implement
 all of the tests for `Reverse.reversed(List<Integer>)`. The test class
 is located in [`src/ReverseTest.java`](src/ReverseTest.java).
 As usual, all of the tests that you need to implement hava a _fail_ statement
-in them that looks like this: 
+in them that looks like this:
 
 ```java
 fail("Not implemented!");
 ```
 
 Remove these and implement the tests!
+
+### Grading Criteria
+Each week we will communicate grading criteria through the [issue tracker](../../issues/). Grading criteria set the basic standards for a pass, komp or fail, so it is essential you review them each week. These will change over time as your skills develop, so make sure you read the grading criteria issue carefully and tick off all the requirements.
