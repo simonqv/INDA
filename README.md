@@ -20,7 +20,8 @@ and
 
 ### Task 1 - Create a Stack Interface
 A stack is an abstract data type (in Java "collection") that usually supports
-at least the 5 methods outlined below.
+at least the 5 methods outlined below. Note that `T` is a generic type
+parameter.
 
 * `void push(T elem)` Adds the element to the top of the stack.
 
@@ -48,7 +49,7 @@ are `push` and `pop`. They constitute the basic _LIFO_ (Last In First Out)
 behavior of the stack, which is illustrated in the image below:
 ![push and pop](https://upload.wikimedia.org/wikipedia/commons/b/b4/Lifo_stack.png)
 
-**Your task** is to describe this abstract data type in Java using an
+**Your task** is to describe this abstract data type in Java by writing an
 interface named Stack, using the exact 5 headers given above. Don't forget the
 documentation, it's extra important in an interface, where there's no program
 code.
