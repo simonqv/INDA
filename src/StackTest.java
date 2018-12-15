@@ -1,5 +1,7 @@
 import org.junit.Test;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.Timeout;
 import static org.junit.Assert.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -15,9 +17,11 @@ import java.util.stream.IntStream;
  * method. Be careful not to override ANY other methods!
  *
  * @author Simon Larsén
- * @version 2017-08-20
+ * @version 2018-12-15
  */
 public abstract class StackTest {
+    @Rule public Timeout globalTimeout = Timeout.seconds(5);
+
     private Stack<Integer> stack;
     private int[] valuesInStack;
     private int initialStackSize;
@@ -26,11 +30,11 @@ public abstract class StackTest {
 
     @Before
     public void setUp() {
-        valuesInStack = new int[]{3, 4, 1, -123, 4, 1};
+        valuesInStack = new int[] {3, 4, 1, -123, 4, 1};
         initialStackSize = valuesInStack.length;
         stack = getIntegerStack();
         pushArrayToStack(valuesInStack, stack);
-        emptyStack = getIntegerStack();
+        emptyStack = new LinkedList<Integer>();
     }
 
     /**
@@ -46,10 +50,9 @@ public abstract class StackTest {
     }
 
     /**
-     * This is the only method that implementing classes need to override. It
-     * should return an empty instance of a Stack implementation.
-     * 
-     * @return An instance of a Stack implementation.
+     * This is the only method that implementing classes need to override.
+     *
+     * @return An instance of Stack.
      */
     protected abstract Stack<Integer> getIntegerStack();
 
@@ -70,27 +73,26 @@ public abstract class StackTest {
         assertThat(stackTop, equalTo(value));
     }
 
-    @Test(expected=EmptyStackException.class)
+    @Test(expected = EmptyStackException.class)
     public void topExceptionWhenStackIsEmpty() {
         fail("Not implemented");
     }
 
-    @Test(expected=EmptyStackException.class)
+    @Test(expected = EmptyStackException.class)
     public void popExceptionWhenStackIsEmpty() {
         fail("Not implemented");
     }
 
     @Test
-    public void popReturnsPushedValuesInLIFOOrder() {
+    public void popReturnsPushedValuesInReverseOrder() {
         // Arrange
         int lastIndex = valuesInStack.length - 1;
-        IntStream.range(0, initialStackSize)
+        IntStream
+            .range(0, initialStackSize)
             // Act
-            .mapToObj(i ->
-                new ResultPair<Integer>(stack.pop(), valuesInStack[lastIndex-i]))
+            .mapToObj(i -> new ResultPair<Integer>(stack.pop(), valuesInStack[lastIndex - i]))
             // Assert
-            .forEach(pair -> 
-                assertThat(pair.actual, equalTo(pair.expected)));
+            .forEach(pair -> assertThat(pair.actual, equalTo(pair.expected)));
     }
 
     @Test
@@ -98,10 +100,22 @@ public abstract class StackTest {
         fail("Not implemented");
     }
 
-
     @Test
     public void pushFiveTimesIncreasesSizeByFive() {
         fail("Not implemented");
+    }
+
+    @Test
+    public void stateIsValidWhenPushCalledOnce() {
+        // Arrange
+        int val = 2;
+
+        // Act
+        emptyStack.push(val);
+
+        // Assert
+        assertThat(emptyStack.size(), equalTo(1));
+        assertThat(emptyStack.top(), equalTo(val));
     }
 
     @Test

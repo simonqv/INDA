@@ -1,5 +1,7 @@
 import org.junit.Test;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.Timeout;
 import static org.junit.Assert.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -10,17 +12,22 @@ import java.util.Arrays;
  * Test class for Postfix
  *
  * @author Simon Larsén
- * @version 2017-08-20
+ * @version 2018-12-15
  */
 public class PostfixTest {
+    @Rule public Timeout globalTimeout = Timeout.seconds(5);
 
-    @Before
-    public void setUp() {
+    @Test
+    public void evaluateIsCorrectWhenExpressionContainsManyOperandsInARow() throws Exception {
+        String expression = "1 2 3 4 -0 + * - +";
+        int expected = -9;
+        int actual = Postfix.evaluate(expression);
+
+        assertThat(actual, equalTo(expected));
     }
 
     @Test
-    public void evaluateIsCorrectIntWhenExprContainsOnlyAPositiveInt()
-        throws Exception {
+    public void evaluateIsCorrectIntWhenExprContainsOnlyAPositiveInt() throws Exception {
         int evalZero = Postfix.evaluate("0");
         int largeValue = 1234567890;
         int evalLarge = Postfix.evaluate(Integer.toString(largeValue));
@@ -30,8 +37,7 @@ public class PostfixTest {
     }
 
     @Test
-    public void evaluateIsCorrectIntWhenExprContainsOnlyANegativeInt()
-        throws Exception {
+    public void evaluateIsCorrectIntWhenExprContainsOnlyANegativeInt() throws Exception {
         int evalMinusZero = Postfix.evaluate("-0");
         int smallValue = -1234567890;
         int evalSmall = Postfix.evaluate(Integer.toString(smallValue));
@@ -41,64 +47,56 @@ public class PostfixTest {
     }
 
     @Test
-    public void evaluateIsCorrectWhenExprIsAdditionOfPositiveInts()
-        throws Exception {
+    public void evaluateIsCorrectWhenExprIsAdditionOfPositiveInts() throws Exception {
         int expected = 1 + 23;
         int actual = Postfix.evaluate("1 23 +");
-        assertThat(expected, equalTo(actual));
+        assertThat(actual, equalTo(expected));
     }
 
     @Test
-    public void evaluateIsCorrectWhenExprIsAdditionOfMixedInts()
-        throws Exception {
+    public void evaluateIsCorrectWhenExprIsAdditionOfMixedInts() throws Exception {
         int expected = 1 + 23 + -432;
         int actual = Postfix.evaluate("1 23 + -432 +");
-        assertThat(expected, equalTo(actual));
+        assertThat(actual, equalTo(expected));
     }
 
     @Test
-    public void evaluateIsCorrectWhenExprWhitespaceIsTabs()
-        throws Exception {
+    public void evaluateIsCorrectWhenExprWhitespaceIsTabs() throws Exception {
         int expected = 1 + 23;
         int actual = Postfix.evaluate("1    23  +");
         assertThat(actual, equalTo(expected));
     }
 
     @Test
-    public void evaluateIsCorrectWhenExprWithespaceIsTabsAndSpaces()
-        throws Exception {
+    public void evaluateIsCorrectWhenExprWithespaceIsTabsAndSpaces() throws Exception {
         int expected = 1 + 23;
         int actual = Postfix.evaluate("         1   23   +");
         assertThat(actual, equalTo(expected));
     }
 
     @Test
-    public void evaluateIsCorrectWhenExprContainsLeadingAndTrailingWhitespace()
-        throws Exception {
+    public void evaluateIsCorrectWhenExprContainsLeadingAndTrailingWhitespace() throws Exception {
         int expected = 1 + 23;
         int actual = Postfix.evaluate(" 1 23 +    ");
         assertThat(actual, equalTo(expected));
     }
 
     @Test
-    public void evaluateIsCorrectWhenExprIsSubtractionOfPositiveInts()
-        throws Exception {
+    public void evaluateIsCorrectWhenExprIsSubtractionOfPositiveInts() throws Exception {
         int expected = 1 - 23;
         int actual = Postfix.evaluate("1 23 -");
         assertThat(actual, equalTo(expected));
     }
 
     @Test
-    public void evaluateIsCorrectWhenExprIsSubtractionOfMixedInts()
-        throws Exception {
+    public void evaluateIsCorrectWhenExprIsSubtractionOfMixedInts() throws Exception {
         int expected = 1 - -23;
         int actual = Postfix.evaluate("1 -23 -");
         assertThat(actual, equalTo(expected));
     }
 
     @Test
-    public void evaluateIsCorrectWhenExprIsMultiplication()
-        throws Exception {
+    public void evaluateIsCorrectWhenExprIsMultiplication() throws Exception {
         int expected = 34 * 123;
         int actual = Postfix.evaluate("34 123 *");
         assertThat(actual, equalTo(expected));
@@ -112,16 +110,14 @@ public class PostfixTest {
     }
 
     @Test
-    public void evaluateIsZeroWhenExprIsDivisionAndNumeratorIsZero()
-        throws Exception {
-        int expected = 0/1;
+    public void evaluateIsZeroWhenExprIsDivisionAndNumeratorIsZero() throws Exception {
+        int expected = 0 / 1;
         int actual = Postfix.evaluate("0 1 /");
         assertThat(actual, equalTo(expected));
     }
 
     @Test
-    public void evaluateIsCorrectWhenExprIsMixOfOperators()
-        throws Exception {
+    public void evaluateIsCorrectWhenExprIsMixOfOperators() throws Exception {
         int expectedMinusMultPlus = (12 - 34) * (56 + -78);
         String minusMultPlusExpr = "12 34 - 56 -78 + *";
         int expectedPlusDivMinus = (32 + 5) / 2 - 3;
@@ -138,14 +134,14 @@ public class PostfixTest {
         assertThat(actualAllOperators, equalTo(expectedAllOperators));
     }
 
-    @Test(expected=Postfix.ExpressionException.class)
+    @Test(expected = Postfix.ExpressionException.class)
     public void evaluateExceptionWhenExprIsEmptyString() throws Exception {
         Postfix.evaluate("");
     }
 
     @Test
     public void evaluateExceptionWhenExprContainsOnlyAnOperator() {
-        String[] expressions = {"+", "-", "/", "*" };
+        String[] expressions = {"+", "-", "/", "*"};
         assertExpressionExceptionOnAll(expressions);
     }
 
@@ -161,15 +157,14 @@ public class PostfixTest {
         assertExpressionExceptionOnAll(expressions);
     }
 
-    @Test(expected=Postfix.ExpressionException.class)
-    public void evaluateExceptionWhenExprContainsTooManyOperands()
-        throws Exception {
+    @Test(expected = Postfix.ExpressionException.class)
+    public void evaluateExceptionWhenExprContainsTooManyOperands() throws Exception {
         Postfix.evaluate("1 2 3 +");
     }
 
     @Test
     public void evaluateExceptionWhenExprContainsIncorrectlyPlacedOperators() {
-        String[] expressions = {"1 2+", "1 2 3 +*", "1 2+"};
+        String[] expressions = {"1 2+", "1 2) 3 +*", "1 2+"};
         assertExpressionExceptionOnAll(expressions);
     }
 
@@ -181,7 +176,7 @@ public class PostfixTest {
 
     @Test
     public void evaluateExceptionWhenExprContainsPositiveIntWithLeadingZero() {
-        String[] expressions = {"03, 017"};
+        String[] expressions = {"03", "017"};
         assertExpressionExceptionOnAll(expressions);
     }
 
@@ -191,7 +186,7 @@ public class PostfixTest {
         assertExpressionExceptionOnAll(expressions);
     }
 
-    @Test(expected=Postfix.ExpressionException.class)
+    @Test(expected = Postfix.ExpressionException.class)
     public void evaluateExceptionOnDivideByZero() throws Exception {
         Postfix.evaluate("1 0 /");
     }
