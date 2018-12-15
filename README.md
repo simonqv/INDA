@@ -22,7 +22,7 @@ and
 A stack is an abstract data type (in Java "collection") that usually supports
 at least the 5 methods outlined below.
 
-* `void push(T)` Adds the element to the top of the stack.
+* `void push(T elem)` Adds the element to the top of the stack.
 
 * `T pop()` Removes and returns the top element in the stack, that is the element
   that was last added to the stack. **Throws an
@@ -61,30 +61,41 @@ code.
 > in the method headers!
 
 ### Task 2 - Create an implementation of Stack
-Write a class that implements this interface. Make sure that all methods are
-O(1) in the worst case. Testing is crucial when implementing something like
-this, it may be a good idea to skip ahead to the [testing section](#testing)
-and implement the tests first!
+Write a class that implements the `Stack` interface. Testing is crucial when
+implementing something like this, it may be a good idea to skip ahead to the
+[testing section](#testing) and implement the tests first!
 
 As mentioned in [Task 1](#task-1---create-a-stack-interface), a stack is in
 terms of functionality essentially a simplified linked list. You should copy
-your `LinkedList` implementation from last week, and rewrite the class
-declaration to implement your `Stack` interface. Then implement the methods
-required by said interface. Note that `LinkedList`, if fully completed, should
-have _all_ of the required functionality already, so it is simply a matter of
-adding some new public methods that call other, already implemented methods.
-Having one concrete class implement several interfaces is a common pattern in
-Java. It has the upside that code duplication is much reduced, as many
-interfaces share a lot of functionality. The downside is, however, that the API
-of that single concrete class may become quite polluted.
+your `LinkedList` implementation from last week (i.e. copy the file
+`LinkedList.java`), and rewrite the class declaration to implement your `Stack`
+interface. Then implement the methods required by said interface. Note that
+`LinkedList`, if fully completed, should have _all_ of the required
+functionality already, so it is simply a matter of adding some new public
+methods that call other, already implemented methods.  Having one concrete
+class implement several interfaces is a common pattern in Java. It has the
+upside that code duplication is much reduced, as many interfaces share a lot of
+functionality. The downside is, however, that the API of that single concrete
+class may become quite polluted.
 
-### Task 3 - Evaluation of postfix-expressions
-A stack is a very useful data type that amongst other things is used to
-implement method-calls in programming languages. This weeks assignment is not
-to implement a whole language however.
+> **Assistant's requirement:** All methods defined by the `Stack` interface
+> must be O(1) in the worst case!
+
+> **Assistant's note:** The methods in `LinkedList` that need to work for the
+> `Stack` methods to work properly are `addFirst`, `removeFirst`, `getFirst`,
+> `size` and `isEmpty`. If you have yet to make these work well, it is strongly
+> recommended that you go back to the previous assignment and finish up before
+> starting to implement the `Stack` interface.
+
+### Task 3 - Evaluation of postfix expressions
+A stack is a very useful data type that, among other things, is used to
+implement method calls in programming languages. This week's assignment is not
+to implement a whole language however, but it does involve similar concepts.
+One of those concepts is _parsing_, which is the act of taking a sequence of
+symbols and figuring out what they mean.
 
 You will write a program that can calculate arithmetic expressions written in
-postfix-notation. It's a simple way to write arithmetic expressions that
+postfix notation. Postfix is simple way to write arithmetic expressions that
 doesn't require parentheses nor priority-rules. The valid digits are `0-9`, and
 operators are `-/*+`. Here are some examples of expressions written in the
 usual infix-notation and postfix respectively:
@@ -97,25 +108,36 @@ usual infix-notation and postfix respectively:
 |`((9 + 10) * 11 - 12) / 13`      |`9 10 + 11 * 12 - 13 /`
 |`14 * (15 - (16 + 17))`          |`14 15 16 17 + - *`
 
-You see that the operator is always placed directly following its operands.
 Postfix-expressions are easy to compute with a stack. The algorithm can be
 described as follows:
 
 1. Parse the expression symbol by symbol from left to right.
-
 2. As soon as you see an operand, push it to the stack.
+3. As soon as you see an operator, pop two operands from the stack, apply the
+   operator to them, and push the result of the computation to the stack.
 
-3. As soon as you see an operator, pop both operands from the stack and push
-   the result of the computation to the stack.
+If that did not immediately click with you, it may be a good idea to go back
+to the examples and try to calculate the postfix expressions with pen and paper
+(using the algorithm of course). Here is an example of calculating `2 -3 + 4 *`:
 
-Write a method in Java that takes a postfix-expression represented as a String
-of Integer-operands and arithmetic operators as input, and returns the value of
-the expression as an integer.
+| Symbol being parsed  | Result of operation   | Stack     |
+| -------------------- | --------------------- | -------   |
+| `2`                  | `2`                   | `{2}`     |
+| `-3`                 | `-3`                  | `{2, -3}` |
+| `+`                  | `2 + -3 = -1`         | `{-1}`    |
+| `4`                  | `4`                   | `{-1, 4}` |
+| `*`                  | `4 * -1 = -4`         | `{-4}`    |
 
-Use the Stack you implemented in the previous assignment. Work from the
-skeleton [src/Postfix.java](src/Postfix.java). The two helper-methods
-`isOperator` and `isInteger` should be implemented using regular expressions
-(regex).
+When the whole expression has been processed, there should be a single element
+left on the stack, which is the result.
+
+Work from the skeleton [src/Postfix.java](src/Postfix.java) and implement the
+methods. The two helper-methods `isOperator` and `isInteger` should be
+implemented using regular expressions (regex). You should also use the `Stack`
+that you implemented in the previous exercise!
+
+> **Assistant's requirement:** You must use regular expressions to determine
+> whether a symbol is an operator or an operand.
 
 > **Assistant's note:** [RegexOne](https://regexone.com/lesson/introduction_abcs)
 > is a fairly good interactive regex tutorial. You may also test your regex
@@ -138,14 +160,24 @@ it is potentially a bit difficult to wrap your head around.
   with the `fail("Not implemented")` statement!**
 * For each implementation of `Stack`, one may simply extend `StackTest` with an
   implementing test class. The only method that should be overridden is
-  `StackTest.getIntegerStack`, which should simply return an instance of
-  a class that implements `Stack`. See the `setUp` method in `StackTest` and
-  try to understand how this works.
-* In your case, you should implement `StackTest` with a test class called
-  `LinkedListTest`. **This is the test class that you want to run!**
+  `StackTest.getIntegerStack`, which should simply return an instance of a
+  class that implements `Stack<Integer>`. See the `setUp` method in
+  `StackTest` and try to understand how this works.
+* In your case, you should extend `StackTest` with a test class called
+  `LinkedListTest`.
+* **LinkedListTest** is the class that you should run with JUnit! If it
+  correctly extends `StackTest`, it will inherit the tests in it. This is why
+  we have an abstract test class for the `Stack` interface: for every
+  implementation of `Stack`, we can simply extend `StackTest` with another test
+  class, without having to reimplement the same tests!
 
 To summarize, you should implement the unimplemented tests in `StackTest`, and
-extend the class with your own test class.
+extend the class with your own test class `LinkedListTest`.
+
+> **Assistant's note:** If you copy `LinkedListTest.java` from last week (which
+> is totally reasonable), you _must_ add a call to `super.setUp();` as the
+> first line in `LinkedListTest.setUp`. Otherwise, `StackTest.setUp` won't run
+> (as `LinkedListTest.setUp` overrides it) and you will get strange failures.
 
 #### Postfix
 You have been given the whole test class for the `Postfix` class (found at
