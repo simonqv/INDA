@@ -86,7 +86,9 @@ class may become quite polluted.
 > `Stack` methods to work properly are `addFirst`, `removeFirst`, `getFirst`,
 > `size` and `isEmpty`. If you have yet to make these work well, it is strongly
 > recommended that you go back to the previous assignment and finish up before
-> starting to implement the `Stack` interface.
+> starting to implement the `Stack` interface. **You are of course allowed to
+> implement the `Stack` from scratch, but the class should still be called
+> `LinkedList`.**
 
 ### Task 3 - Evaluation of postfix expressions
 A stack is a very useful data type that, among other things, is used to
