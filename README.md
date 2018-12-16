@@ -37,7 +37,7 @@ parameter.
 
 * `int size()` Returns the number of elements in the stack.
 
-* `boolean isEmpty()` indicates whether the stack is empty.
+* `boolean isEmpty()` Returns true if the stack is empty.
 
 Notice how these methods form a subset of the `LinkedList` methods that you
 implemented last week? A stack is essentially just that: a linked list with
@@ -115,11 +115,14 @@ described as follows:
 1. Parse the expression symbol by symbol from left to right.
 2. As soon as you see an operand, push it to the stack.
 3. As soon as you see an operator, pop two operands from the stack, apply the
-   operator to them, and push the result of the computation to the stack.
+   operator to them, and push the result of the operation to the stack.
 
 If that did not immediately click with you, it may be a good idea to go back
 to the examples and try to calculate the postfix expressions with pen and paper
-(using the algorithm of course). Here is an example of calculating `2 -3 + 4 *`:
+(using the algorithm of course). Below is an example of calculating `2 -3 + 4
+*`. The leftmost column shows the symbol currently being parsed, the middle
+column the result (according to step 2 or 3 of the algorithm), and the rightmost
+column the stack (_after_ the result has been pushed).
 
 | Symbol being parsed  | Result of operation   | Stack     |
 | -------------------- | --------------------- | -------   |
@@ -144,7 +147,7 @@ that you implemented in the previous exercise!
 > is a fairly good interactive regex tutorial. You may also test your regex
 > expressions at [regex101](https://regex101.com/) (note however that the
 > specific flavor of regex used by Java is not available, but the default choice
-> `php` engine should work well anyway).
+> `php` engine should work well enough).
 
 ### Testing
 #### Stack
@@ -167,10 +170,10 @@ it is potentially a bit difficult to wrap your head around.
 * In your case, you should extend `StackTest` with a test class called
   `LinkedListTest`.
 * **LinkedListTest** is the class that you should run with JUnit! If it
-  correctly extends `StackTest`, it will inherit the tests in it. This is why
-  we have an abstract test class for the `Stack` interface: for every
-  implementation of `Stack`, we can simply extend `StackTest` with another test
-  class, without having to reimplement the same tests!
+  correctly extends `StackTest`, it will inherit its tests. This is why we have
+  an abstract test class for the `Stack` interface: for every implementation of
+  `Stack`, we can simply extend `StackTest` with another test class, without
+  having to reimplement the same tests!
 
 To summarize, you should implement the unimplemented tests in `StackTest`, and
 extend the class with your own test class `LinkedListTest`.
