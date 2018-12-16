@@ -124,11 +124,15 @@ Calculate the average and worst case time complexity for the operations (Find, I
 Let n be the number of elements and present the solution in a table as shown
 below. As usual you should **motivate your answers**.
 
-| Operation | Unsorted Array | Sorted Array | Unsorted SLL | Sorted SLL | Hash table (Average)| Hash table (Worst) |
-|-----------|----------------|--------------|--------------|------------|----------------|-------------------|
-| Find      |                |              |              |            |                |                   |
-| Insert    |                |              |              |            |                |                   |
-| Remove    |                |              |              |            |                |                   |
+| Operation   | Unsorted Array   | Sorted Array   | Unsorted SLL   | Sorted SLL   | Hash table (Average) | Hash table (Worst)  |
+| ----------- | ---------------- | -------------- | -------------- | ------------ | ----------------     | ------------------- |
+| Find        |                  |                |                |              |                      |                     |
+| Insert      |                  |                |                |              |                      |                     |
+| Remove      |                  |                |                |              |                      |                     |
+
+> **Assistant's note:** When it comes to arrays and linked lists, the average
+> and worst case time complexities for these operations are the same, so it is
+> not interesting to calculate both.
 
 ### Task 3 - Dynamic Tables
 The `ArrayList` in Java is a convenient wrapper to make the primitive arrays
@@ -160,25 +164,24 @@ Answer the following:
 6. What is the worst, average, and best-case time complexity of the `add(E e)`
    method of `Arraylist`?
 
-(hint: Reading the source code for
-[ArrayList](https://zgrepcode.com/java/openjdk/9/java.base/java/util/arraylist.java),
-or using BlueJ's built-in Object Inspector might help as you cannot easily
-access the internal array)
+To answer these questions, you should read the source code for
+[ArrayList](https://zgrepcode.com/java/openjdk/9/java.base/java/util/arraylist.java)
+and/or use a debugger (or perhaps BlueJ's built-in Object Inspector might help).
 
 ### Testing
 Just like in week 15, this week's testing makes use of inheritance to keep the
 tests neatly organized. This time around, the fact that a hash-based set bears
-some special traits in terms of hash collisions, the extending class also
+some special traits in terms of hash collisions, the extending test class also
 includes tests of its own. Notable about this week is:
 
 * The abstract test class [SetTest](src/SetTest.java) contains tests that assert
   the general behavior of a set. Remember that an abstract class cannot be
-  instantiated, and thus, `SetTest` cannot be run.
+  instantiated, and thus, `SetTest` cannot be run with JUnit.
 * A few of the tests make use of streams. You don't have to use streams if you
   don't want to, it is fine to write loops instead. The first test method in
   `SetTest` explains what the stream does, and how to write it as a loop.
 * The extending test class [HashSetTest](src/HashSetTest.java) (which _can_ be
-  run!) asserts some particular behavior of a hash-based set, namely that when
+  run!) asserts some particular behavior of a hash-based set, namely when
   there are hash collisions. There is a helper class included at the very bottom
   of the test class, which has the same hash for every instance, but instances
   equal only themselves. Running `HashSetTest` will result in both the tests in
@@ -190,6 +193,6 @@ includes tests of its own. Notable about this week is:
   used with an object or primitive), and is used because the author thought
   that `is(false)` sounded better than `equalTo(false)`.
 
-As usual, you are to implement the test methods with a `fail("Not implemented!")`
+As usual, you are to implement the test methods with a `fail("Not implemented")`
 statement! Note that **both `SetTest` and `HashSetTest` have unimplemented
 tests!**
