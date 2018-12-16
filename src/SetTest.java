@@ -1,6 +1,8 @@
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
+import org.junit.Rule;
+import org.junit.rules.Timeout;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.CoreMatchers.*;
@@ -14,9 +16,11 @@ import java.util.stream.IntStream;
  * Implementing test classes must override the getIntegerSet method.
  *
  * @author Simon Larsén
- * @version 2018-01-15
+ * @version 2018-12-16
  */
 public abstract class SetTest {
+    @Rule public Timeout globalTimeout = Timeout.seconds(5); // 5 seconds max per method tested
+
     private Set<Integer> set;
     private final int CAPACITY = 20;
     private int[] uniqueSetElements;
@@ -36,7 +40,8 @@ public abstract class SetTest {
     public void setUp() {
         // Arrange
         set = getIntegerSet(CAPACITY);
-        uniqueSetElements = new int[]{-234, 32, 443, Integer.MAX_VALUE, Integer.MIN_VALUE, 0, -231};
+        uniqueSetElements =
+            new int[] {-234, 32, 443, Integer.MAX_VALUE, Integer.MIN_VALUE, 0, -231};
         // Works because all elements in uniqueSetElements are more than 2 values apart
         // -2 as Integer.MIN_VALUE - 1 == Integer.MAX_VALUE because of underflow
         elementsNotInSet = Arrays.stream(uniqueSetElements).map(elem -> elem - 2).toArray();
@@ -49,7 +54,8 @@ public abstract class SetTest {
     @Test
     public void containsIsTrueWhenElementIsInSet() {
         // Arrange
-        Arrays.stream(uniqueSetElements)
+        Arrays
+            .stream(uniqueSetElements)
             // Act
             .mapToObj(elem -> set.contains(elem))
             // Assert
@@ -82,7 +88,7 @@ public abstract class SetTest {
 
     @Test
     public void containsIsFalseWhenElementIsNotInSet() {
-        fail("Not implemented!");
+        fail("Not implemented");
     }
 
     @Test
@@ -126,7 +132,7 @@ public abstract class SetTest {
 
     @Test
     public void removeElementsInSetDecrementsSize() {
-        fail("Not implemented!");
+        fail("Not implemented");
     }
 
     @Test
@@ -143,15 +149,15 @@ public abstract class SetTest {
 
     @Test
     public void removeElementsDoesNotDecrementSizeWhenSetIsEmpty() {
-        // use getIntegerSet to initialize an empty set
-        fail("Not implemented!");
+        fail("Not implemented");
     }
 
     @Test
     public void addIsTrueWhenElementNotInSet() {
         // Arrange
         Set<Integer> set = getIntegerSet(CAPACITY);
-        Arrays.stream(uniqueSetElements)
+        Arrays
+            .stream(uniqueSetElements)
             // Act
             .mapToObj(elem -> set.add(elem))
             // Assert
@@ -161,7 +167,8 @@ public abstract class SetTest {
     @Test
     public void addIsFalseForDuplicates() {
         // Arrange
-        Arrays.stream(uniqueSetElements)
+        Arrays
+            .stream(uniqueSetElements)
             // Act
             .mapToObj(elem -> set.add(elem))
             // Assert
@@ -170,19 +177,26 @@ public abstract class SetTest {
 
     @Test
     public void removeIsTrueWhenElementIsInSet() {
-        fail("Not implemented!");
+        // Arrange
+        Arrays
+            .stream(uniqueSetElements)
+            // Act
+            .mapToObj(elem -> set.remove(elem))
+            // Assert
+            .forEach(wasRemoved -> assertThat(wasRemoved, is(true)));
     }
 
     @Test
     public void removeIsFalseWhenElementIsNotInSet() {
-        fail("Not implemented!");
+        fail("Not implemented");
     }
 
     @Test
     public void removeIsFalseWhenSetIsEmpty() {
         // Arrange
         Set<Integer> emptySet = getIntegerSet(CAPACITY);
-        Arrays.stream(uniqueSetElements)
+        Arrays
+            .stream(uniqueSetElements)
             // Act
             .mapToObj(elem -> emptySet.remove(elem))
             // Assert

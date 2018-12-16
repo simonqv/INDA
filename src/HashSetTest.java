@@ -11,11 +11,13 @@ import java.util.Arrays;
  * Test for the HashSet implementation of the Set interface. Runs both the
  * SetTest tests, as well as tests specific to hashing.
  *
+ * This test class mostly contains only hash collision tests.
+ *
  * @author Simon Larsén
- * @version 2018-01-15
+ * @version 2018-02-13
  */
 public class HashSetTest extends SetTest {
-    private Set<SingleHashUnequal> uniqueObjsEqualHashesSet;
+    private Set<SingleHashUnequal> set;
     private SingleHashUnequal[] uniqueObjsWithEqualHashes;
 
     /**
@@ -39,30 +41,45 @@ public class HashSetTest extends SetTest {
 
         int numDummies = 10;
         uniqueObjsWithEqualHashes = new SingleHashUnequal[numDummies];
-        uniqueObjsEqualHashesSet = new HashSet<SingleHashUnequal>(numDummies*2);
+        set = new HashSet<SingleHashUnequal>(numDummies * 2);
         for (int i = 0; i < numDummies; i++) {
             SingleHashUnequal dummy = new SingleHashUnequal();
-            uniqueObjsEqualHashesSet.add(dummy);
+            set.add(dummy);
             uniqueObjsWithEqualHashes[i] = dummy;
         }
     }
 
     @Test
+    public void containsIsFalseWhenElementIsNotInSetAndHashCollides() {
+        // Test that contains is false when the set contains some other element
+        // with the same hash
+
+        // Arrange
+        SingleHashUnequal elem = new SingleHashUnequal();
+        // Act
+        boolean contained = set.contains(elem);
+        // Assert
+        assertThat(contained, is(false));
+    }
+
+    @Test
     public void containsIsTrueForAddedElementsWithEqualHashes() {
         // Arrange
-        Arrays.stream(uniqueObjsWithEqualHashes)
+        Arrays
+            .stream(uniqueObjsWithEqualHashes)
             // Act
-            .map(elem -> uniqueObjsEqualHashesSet.contains(elem))
+            .map(elem -> set.contains(elem))
             // Assert
             .forEach(contained -> assertThat(contained, is(true)));
     }
-    
+
     @Test
     public void addIsTrueForUniqueElementsWithEqualHashes() {
         // Arrange
-        int safeCapacity = 2*uniqueObjsWithEqualHashes.length;
-        Set<SingleHashUnequal> set = new HashSet<SingleHashUnequal>(safeCapacity);
-        Arrays.stream(uniqueObjsWithEqualHashes)
+        int capacity = uniqueObjsWithEqualHashes.length;
+        Set<SingleHashUnequal> set = new HashSet<SingleHashUnequal>(capacity);
+        Arrays
+            .stream(uniqueObjsWithEqualHashes)
             // Act
             .map(elem -> set.add(elem))
             // Assert
@@ -72,8 +89,8 @@ public class HashSetTest extends SetTest {
     @Test
     public void addUniqueElementsWithEqualHashesIncrementsSize() {
         // Arrange
-        int safeCapacity = 2*uniqueObjsWithEqualHashes.length; 
-        Set<SingleHashUnequal> set = new HashSet<SingleHashUnequal>(safeCapacity);
+        int capacity = uniqueObjsWithEqualHashes.length;
+        Set<SingleHashUnequal> set = new HashSet<SingleHashUnequal>(capacity);
         int expectedSize = 0;
         for (SingleHashUnequal elem : uniqueObjsWithEqualHashes) {
             expectedSize++;
@@ -86,7 +103,30 @@ public class HashSetTest extends SetTest {
 
     @Test
     public void removeUniqueElementsWithEqualHashesDecrementsSize() {
-        fail("Not implemented!");
+        fail("Not implemented");
+    }
+
+    @Test
+    public void removeElementNotInSetWithCollidingHashDoesNotDecreaseSize() {
+        // Test that removing an element that is not in the set, but has the
+        // same hash as some other element in the set, does not decrement size
+
+        fail("Not implemented");
+    }
+
+    @Test
+    public void removeIsFalseWhenElementNotInSetButEqualHashIs() {
+        // Test that removing an element that is not in the set, but has the
+        // same hash as some other element in the set, returns false
+
+        // Arrange
+        SingleHashUnequal elem = new SingleHashUnequal();
+
+        // Act
+        boolean removed = set.remove(elem);
+
+        // Assert
+        assertThat(removed, is(false));
     }
 
     /**
