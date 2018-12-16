@@ -161,7 +161,7 @@ Answer the following:
    method of `Arraylist`?
 
 (hint: Reading the source code for
-[ArrayList](http://grepcode.com/file/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/util/ArrayList.java),
+[ArrayList](https://zgrepcode.com/java/openjdk/9/java.base/java/util/arraylist.java),
 or using BlueJ's built-in Object Inspector might help as you cannot easily
 access the internal array)
 
