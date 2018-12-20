@@ -29,22 +29,19 @@ import java.util.NoSuchElementException;
  */
 public class LinkedListTest {
 
+    /* A sequence of integers */
     private int[] elements;
 
+    /* An empty linked list */
     private LinkedList<Integer> list;
-    private LinkedList<Integer> emptyList;
 
     @Before
     public void setUp() {
-        emptyList = new LinkedList<Integer>();
         list = new LinkedList<Integer>();
         elements = new int[]{-919,  388,   67, -248, -309, -725,  904,   53,
                                90, -469, -559,  256,  612,  366, -412, -221,
                               347, -921, -978,  324, -858,  480, -443,  891,
                               329,   -5,  878, -538,  445, -366,  760,   52};
-        for (int element : elements) {
-            list.addLast(element);
-        }
     }
 
     /**
@@ -71,9 +68,9 @@ public class LinkedListTest {
     public void addFirstIncrementsSizeByOne() {
         for (int i = 0; i < elements.length; i++) {
             // Act
-            emptyList.addFirst(elements[i]);
+            list.addFirst(elements[i]);
             // Assert
-            assertThat(emptyList.size(), equalTo(i + 1));
+            assertThat(list.size(), equalTo(i + 1));
         }
     }
 
@@ -100,7 +97,7 @@ public class LinkedListTest {
      */
     @Test (expected=NoSuchElementException.class)
     public void removeFirstThrowsExceptionWhenListIsEmpty() {
-        emptyList.removeFirst();
+        list.removeFirst();
     }
 
     /**
@@ -109,6 +106,10 @@ public class LinkedListTest {
      */
     @Test
     public void removeFirstDecrementsSizeByOne() {
+        // Arrange
+        for (int element : elements) {
+            list.addLast(element);
+        }
         for (int i = 0; i < elements.length; i++) {
             // Act
             list.removeFirst();
@@ -137,11 +138,11 @@ public class LinkedListTest {
      */
     @Test
     public void getFirstIsCorrectAfterAddFirst() {
-        for (int i = 0; i < elements.length; i++) {
+        for (int element : elements) {
             // Arrange
-            emptyList.addFirst(elements[i]);
+            list.addFirst(element);
             // Act, Assert
-            assertThat(emptyList.getFirst(), equalTo(elements[i]));
+            assertThat(list.getFirst(), equalTo(element));
         }
     }
 
@@ -152,11 +153,11 @@ public class LinkedListTest {
      */
     @Test
     public void getFirstIsCorrectAfterAddLast() {
-        for (int i = 0; i < elements.length; i++) {
+        for (int element : elements) {
             // Arrange
-            emptyList.addLast(elements[i]);
+            list.addLast(element);
             // Act, Assert
-            assertThat(emptyList.getFirst(), equalTo(elements[0]));
+            assertThat(list.getFirst(), equalTo(elements[0]));
         }
     }
 
@@ -171,7 +172,7 @@ public class LinkedListTest {
     @Test (expected=NoSuchElementException.class)
     public void getLastThrowsExceptionWhenListIsEmpty() {
         // Act
-        emptyList.getLast();
+        list.getLast();
     }
 
     /**
@@ -181,11 +182,11 @@ public class LinkedListTest {
      */
     @Test
     public void getLastIsCorrectAfterAddFirst() {
-        for (int i = 0; i < elements.length; i++) {
+        for (int element : elements) {
             // Arrange
-            emptyList.addFirst(elements[i]);
+            list.addFirst(element);
             // Act, Assert
-            assertThat(emptyList.getLast(), equalTo(elements[0]));
+            assertThat(list.getLast(), equalTo(elements[0]));
         }
     }
 
@@ -196,11 +197,11 @@ public class LinkedListTest {
      */
     @Test
     public void getLastIsCorrectAfterAddLast() {
-        for (int i = 0; i < elements.length; i++) {
+        for (int element : elements) {
             // Arrange
-            emptyList.addLast(elements[i]);
+            list.addLast(element);
             // Act, Assert
-            assertThat(emptyList.getLast(), equalTo(elements[i]));
+            assertThat(list.getLast(), equalTo(element));
         }
     }
 
@@ -215,7 +216,7 @@ public class LinkedListTest {
     @Test (expected=IndexOutOfBoundsException.class)
     public void getThrowsExceptionWhenListIsEmpty() {
         // Act
-        emptyList.get(0);
+        list.get(0);
     }
 
     /**
@@ -227,10 +228,10 @@ public class LinkedListTest {
     public void getIsCorrectAfterAddLast() {
         for (int i = 0; i < elements.length; i++) {
             // Arrange
-            emptyList.addLast(elements[i]);
+            list.addLast(elements[i]);
             // Act, Assert
             for (int j = 0; j < i + 1; j++) {
-                assertThat(emptyList.get(j), equalTo(elements[j]));
+                assertThat(list.get(j), equalTo(elements[j]));
             }
         }
     }
@@ -244,38 +245,70 @@ public class LinkedListTest {
     public void getIsCorrectAfterAddFirst() {
         for (int i = 0; i < elements.length; i++) {
             // Arrange
-            emptyList.addFirst(elements[i]);
+            list.addFirst(elements[i]);
             // Act, Assert
             for (int j = 0; j < i + 1; j++) {
-                assertThat(emptyList.get(j), equalTo(elements[i-j]));
+                assertThat(list.get(j), equalTo(elements[i-j]));
             }
         }
     }
 
     /**
-     * Assert that getting an index outside the bounds
-     * of a list throws an exception.
+     * Assert that getting the non existent element
+     * with index -1 throws an exception.
      */
-    @Test
-    public void getThrowsExceptionWhenIndexIsOutOfBounds() {
+    @Test (expected=IndexOutOfBoundsException.class)
+    public void getThrowsExceptionWhenIndexIsMinusOne() {
         // Arrange
-        int length = elements.length;
-        int[] outOfBoundsIndices = new int[]{-100, -1, length, length + 100};
-
-        // Act
-        for (int index : outOfBoundsIndices) {
-            // Assert
-            try {
-                /* Exception expected here */
-                list.get(index);
-            } catch(IndexOutOfBoundsException e) {
-                continue;
-            }
-            fail(String.format(
-                "Expected IndexOutOfBoundsException for index %d", index));
+        for (int element : elements) {
+            list.addLast(element);
         }
+        // Act
+        list.get(-1);
     }
-    
+
+    /**
+     * Assert that getting the non existent element
+     * with index equal to the length of the list
+     * throws an exception.
+     */
+    @Test (expected=IndexOutOfBoundsException.class)
+    public void getThrowsExceptionWhenIndexIsLength() {
+        // Arrange
+        for (int element : elements) {
+            list.addLast(element);
+        }
+        list.get(elements.length);
+    }
+
+    /**
+     * Assert that getting the non existent element
+     * with index Integer.MIN_VALUE throws an exception.
+     */
+    @Test (expected=IndexOutOfBoundsException.class)
+    public void getThrowsExceptionWhenIndexIsIntegerMinValue() {
+        // Arrange
+        for (int element : elements) {
+            list.addLast(element);
+        }
+        // Act
+        list.get(Integer.MIN_VALUE);
+    }
+
+    /**
+     * Assert that getting the non existent element
+     * with index Integer.MAX_VALUE throws an exception.
+     */
+    @Test (expected=IndexOutOfBoundsException.class)
+    public void getThrowsExceptionWhenIndexIsIntegerMaxValue() {
+        // Arrange
+        for (int element : elements) {
+            list.addLast(element);
+        }
+        // Act
+        list.get(Integer.MAX_VALUE);
+    }
+
     /**
      * Tests for isEmpty
      */
@@ -287,7 +320,7 @@ public class LinkedListTest {
     @Test
     public void isEmptyIsTrueForEmptyList() {
         // Act, Assert
-        assertTrue(emptyList.isEmpty());
+        assertTrue(list.isEmpty());
     }
 
     /**
@@ -298,9 +331,9 @@ public class LinkedListTest {
     @Test
     public void isEmptyIsFalseAfterAddFirst() {
         // Arrange
-        emptyList.addFirst(elements[0]);
+        list.addFirst(elements[0]);
         // Act, Assert
-        assertFalse(emptyList.isEmpty());
+        assertFalse(list.isEmpty());
     }
 
     /**
@@ -311,9 +344,9 @@ public class LinkedListTest {
     @Test
     public void isEmptyIsFalseAfterAddLast() {
         // Arrange
-        emptyList.addLast(elements[0]);
+        list.addLast(elements[0]);
         // Act, Assert
-        assertFalse(emptyList.isEmpty());
+        assertFalse(list.isEmpty());
     }
 
     /**
@@ -333,9 +366,12 @@ public class LinkedListTest {
      */
     @Test
     public void isEmptyIsTrueWhenAllElementsHasBeenRemovedByClear() {
+        // Arrange
+        for (int element : elements) {
+            list.addLast(element);
+        }
         // Act
         list.clear();
-
         // Assert
         assertTrue(list.isEmpty());
     }
@@ -360,11 +396,10 @@ public class LinkedListTest {
     @Test
     public void clearDoesNothingWhenListIsEmpty() {
         // Act
-        emptyList.clear();
-
+        list.clear();
         // Assert
-        assertThat(emptyList.size(), equalTo(0));
-        assertTrue(emptyList.isEmpty());
+        assertThat(list.size(), equalTo(0));
+        assertTrue(list.isEmpty());
     }
 
     /**
@@ -378,7 +413,7 @@ public class LinkedListTest {
     @Test
     public void toStringIsCorrectWhenListIsEmpty() {
         // Act, Assert
-        assertThat(emptyList.toString(), equalTo("[]"));
+        assertThat(list.toString(), equalTo("[]"));
     }
 
     /**
@@ -387,6 +422,10 @@ public class LinkedListTest {
      */
     @Test
     public void toStringIsCorrectWhenListIsNonEmpty() {
+        // Arrange
+        for (int element : elements) {
+            list.addLast(element);
+        }
         // Act, Assert
         assertThat(list.toString(),
             equalTo(Arrays.toString(elements)));
@@ -405,7 +444,7 @@ public class LinkedListTest {
     public void addFirstTenThousandTimesIsReasonablyFast() {
         for (int i = 0; i < 10000; i++) {
             // Act
-            emptyList.addFirst(i);
+            list.addFirst(i);
         }
     }
 
@@ -416,7 +455,7 @@ public class LinkedListTest {
     public void addLastTenThousandTimesIsReasonablyFast() {
         for (int i = 0; i < 10000; i++) {
             // Act
-            emptyList.addLast(i);
+            list.addLast(i);
         }
     }
 
