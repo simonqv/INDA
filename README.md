@@ -160,7 +160,3 @@ A 5th invariant, that is difficult to test without exposing too much of the
 data structure, can be good to have in mind:
 
 5. last.next == null
-
-Use the `removeElements` helper method for the tests that require removal of
-elements (except if it is explicitly stated that clear should be used!). As
-usual, you are to implement all tests with a `fail` statement.
