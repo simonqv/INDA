@@ -72,7 +72,31 @@ project (every lab class can have many students and a single instructor). Use
 inheritance to avoid code duplication between students and instructors (both
 have a name, contact details, etc.).
 
-#### Exercise 8.XX
+### Induction Exercises
+
+#### Exercise I.1
+
+Using proof by induction, prove the following statements (assume _n_ is a natural number).
+
+(1) ![induction ex 1](img/induction_ex1.png)
+
+(2) ![induction ex 2](img/induction_ex2.png)
+
+(3) ![induction ex 3](img/induction_ex3.png)
+
+(4) ![induction ex 4](img/induction_ex4.png)
+
+> **Assistant's note:** You may wish to solve these exercises by using paper (then taking a picture of your proof, or by practicing using LaTeX to generate more complex math equations. The following sourcecode may help)
+
+```latex
+(1) $$\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}$$
+(2) $$\sum_{i=1}^{n} i^3 = \frac{n^2(n+1)^2}{4}$$
+(3) $$\sum_{j=1}^{n} 2^{j-1} = 2^n-1$$
+(4) $$\sum_{j=1}^{n} (2j-1) = n^2$$
+
+```
+
+#### Exercise I.2
 Below are two algorithms that calculate x<sup>n</sup>, where x is a real number
 and n is a non-negative integer. You are to:
 
