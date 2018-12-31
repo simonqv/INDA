@@ -1,9 +1,9 @@
 ### Deadline:
-This work should be completed before the exercise on **Friday 19th January**.
+This work should be completed before the exercise on **Friday 18th January**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-18/course-instructions#assignments).
 
 ### Homework
 Study all the following course literature:
