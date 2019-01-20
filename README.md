@@ -30,9 +30,9 @@ references, one to the left and one to the right sub-tree. Methods with the
 following headers must be implemented. Pay careful attention to the instructions
 here!
 
-* `public boolean search(T)` -- test for presence of a value.
+* `public boolean search(T elem)` -- test for presence of a value.
     - Should be implemented iteratively!
-* `public boolean insert(T)` -- add value to tree; duplicates are not allowed.
+* `public boolean insert(T elem)` -- add value to tree; duplicates are not allowed.
   Return true if the element is not already present (and is thus inserted),
   false otherwise.
     - Should be implemented iteratively!
