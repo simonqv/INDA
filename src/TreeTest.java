@@ -1,5 +1,7 @@
 import org.junit.Test;
 import org.junit.Before;
+import org.junit.Rule;
+import org.junit.rules.Timeout;
 import static org.junit.Assert.*;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -12,9 +14,11 @@ import java.util.stream.IntStream;
  * Test class for a tree.
  *
  * @author Simon Larsén (PUT YOUR NAME HERE)
- * @version 2017-01-15 (UPDATE THIS)
+ * @version 2019-01-20 (UPDATE THIS)
  */
 public class TreeTest {
+    @Rule public Timeout globalTimeout = Timeout.seconds(5);
+
     Tree<Integer> tree;
     int[] elementsInTree;
     int[] elementsNotInTree;
@@ -33,11 +37,11 @@ public class TreeTest {
          *            4   7 13
          */
         tree = new Tree<>();
-        elementsInTree = new int[]{8, 10, 14, 13, 3, 1, 6, 4, 7};
+        elementsInTree = new int[] {8, 10, 14, 13, 3, 1, 6, 4, 7};
         for (int elem : elementsInTree) {
             tree.insert(elem);
         }
-        elementsNotInTree = new int[]{34, -3, -10, 12, 74, 5};
+        elementsNotInTree = new int[] {34, -3, -10, 12, 74, 5};
     }
 
     // Tests for insert
@@ -59,7 +63,8 @@ public class TreeTest {
         tree.insert(elem);
         int numDuplicates = 100;
 
-        IntStream.range(0, numDuplicates)
+        IntStream
+            .range(0, numDuplicates)
             // Act
             .mapToObj(i -> tree.insert(elem))
             // Assert
@@ -145,7 +150,7 @@ public class TreeTest {
         for (int i = 0; i < numDuplicates; i++) {
             tree.insert(elem);
         }
-        
+
         // Assert
         assertThat(tree.size(), equalTo(1));
     }
@@ -189,8 +194,8 @@ public class TreeTest {
         //                        (1338)
         //                        /    \
         //                    (1337)  (1396)
-        //
-        // You have to construct your own tree here, with n >= 4!
+
+        // You have to construct your own tree here, with n >= 4
         fail("Not implemented!");
     }
 
@@ -203,7 +208,7 @@ public class TreeTest {
         for (int i = 0; i < numElements; i++) {
             tree.insert(i);
         }
-        
+
         // Act
         int numLeaves = tree.leaves();
         // Assert
@@ -233,12 +238,14 @@ public class TreeTest {
     }
 
     @Test
-    public void heightIsLogOfNumLeavesWhenDepestLevelIsFilled() {
+    public void heightIsLogOfNumLeavesTreeIsPerfect() {
+        // For a perfect tree, tree.height() == log2(tree.leaves()
+
         // Arrange
         Tree<Integer> tree = new Tree<>();
-        int[] elements = new int[]{8, 3, 10, 1, 6, 9, 14};
+        int[] elements = new int[] {8, 3, 10, 1, 6, 9, 14};
         int numLeaves = 4;
-        int logNumLeaves = (int) Math.round(Math.log(numLeaves)/Math.log(2));
+        int logNumLeaves = (int) Math.round(Math.log(numLeaves) / Math.log(2));
         for (int elem : elements) {
             tree.insert(elem);
         }
