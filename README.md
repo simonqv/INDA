@@ -42,7 +42,7 @@ here!
   with only the root node both have height 0.
     - Should be implemented recursively!
     - The height of the empty tree is 
-      [often undefined](https://xlinux.nist.gov/dads/HTML/height.html),
+      [often undefined](https://web.archive.org/web/20181013022358/https://xlinux.nist.gov/dads/HTML/height.html),
       but we decide that it is 0 (because we need it to be something). Another
       common choice is -1, to differentiate between the empty tree and the
       root-only tree.
