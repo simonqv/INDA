@@ -10,6 +10,7 @@ Study the following course literature:
 
 * [Java packages](https://gits-15.sys.kth.se/inda-17/extra-reading-material/blob/master/java-packages/README.md)
 * [Graphs](http://www.nada.kth.se/~snilsson/algoritmer/grafer/)
+* [Executing without BlueJ - The Java main method (includes part on command line arguments)](https://gits-15.sys.kth.se/inda-17/extra-reading-material/blob/master/main-method/README.md)
 
 ### Task 1 - Implement HashGraph
 Review the code that has been provided in the Graph project. Start by reading
@@ -38,7 +39,13 @@ Write a program called `RandomGraphGenerator` that:
 2. Calculates the number of components in the graph using DFS
 3. Calculates the largest component
 
-As sample trace of output is given below:
+You may use what is given in
+[`GraphAlgorithms.java`](src/se/kth/graph/GraphAlgorithms.java) to implement the
+functionality. Study the `printComponents()` method carefully, what you need to
+implement for points 2 and 3 is not much different from that.
+
+`n` should be taken as a command line argument. A sample trace of output is
+given below:
 
 ```bash
 $ java se.kth.graph.RandomGraphGenerator 1000
@@ -49,19 +56,33 @@ For a graph with 1000 nodes and 1000 randomly assigned edges:
 ```
 
 To handle command line arguments (e.g. n being 1000 in my trace), the following
-literature will help:
+literature may help:
 
-* [Executing without BlueJ - The Java main method](https://gits-15.sys.kth.se/inda-17/extra-reading-material/blob/master/main-method/README.md)
+* [Executing without BlueJ - The Java main method (includes part on command line arguments)](https://gits-15.sys.kth.se/inda-17/extra-reading-material/blob/master/main-method/README.md)
 * [Command Line Arguments (Oracle documentation)](https://docs.oracle.com/javase/tutorial/essential/environment/cmdLineArgs.html)
 
 IDEs usually provide command line arguments with run configurations. To find
-out how to do it for you specific IDE, googling '<IDE_NAME> command line
-arguments' should be sufficient to set you on the right track.
+out how to do it for your specific IDE, googling _"<IDE\_NAME> command line
+arguments"_ should be sufficient to set you on the right track.
+
+> **Assistant's requirement:** Note that the application should _not_ be
+> interactive. That is to say, you should not prompt the user for the arguments
+> and read them with something like the `Scanner` class, but rather take the
+> arguments directly when the program starts. See the linked reading material
+> above.
 
 ### Task 3 - Time Cost Analysis
 Modify the program in `Task 2` to measure the running time of `MatrixGraph` and
-`HashGraph` for different sizes of `n`. A sample trace of output is given
-below:
+`HashGraph` for different sizes of `n`. The program should be called with up to
+2 command line arguments in the following way:
+
+```
+$ java se.kth.graph.RandomGraphGenerator <n> <graph_type>
+```
+Where `n` is a positive integer and `graph_type` is either `matrix` or `hash`.
+It is up to you to decide if the program can be called with fewer arguments (and
+then use default values) as well, but providing these two must work. A sample
+trace of output is given below:
 
 ```bash
 $ java se.kth.graph.RandomGraphGenerator 1000 matrix
