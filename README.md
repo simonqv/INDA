@@ -17,9 +17,9 @@ Study the following course literature:
 Implement a Binary Search Tree (BST) in Java. As usual, all public methods
 should be well-documented.
 
-The keys are Objects that implement the interface `java.lang.Comparable`. A
-generic class with a type-parameter that matches classes that implement
-`Comparable` can be written as follows:
+The keys are Objects that implement the interface `java.lang.Comparable`
+(recall the `Box` class froom week-11?). A generic class with a type-parameter
+that matches classes that implement `Comparable` can be written as follows:
 
 ```java
 class Tree<T extends Comparable<T>>
