@@ -1,9 +1,9 @@
 ### Deadline:
-This work should be completed before the exercise **Friday 16th Feburary**.
+This work should be completed before the exercise **Friday 15th Feburary**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-18/course-instructions#assignments).
 
 ### Homework
 Study the following course literature:
@@ -41,7 +41,7 @@ here!
 * `public int height()` -- the height of the tree. The empty tree and the tree
   with only the root node both have height 0.
     - Should be implemented recursively!
-    - The height of the empty tree is 
+    - The height of the empty tree is
       [often undefined](https://web.archive.org/web/20181013022358/https://xlinux.nist.gov/dads/HTML/height.html),
       but we decide that it is 0 (because we need it to be something). Another
       common choice is -1, to differentiate between the empty tree and the
