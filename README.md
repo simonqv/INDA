@@ -1,22 +1,22 @@
 ### Deadline:
 This is a two week assignment with two deadlines:
 
-* Implementation: **Friday 2nd March**
-* Evaluation: **Friday 9th March**
+* Implementation: **Friday 1st March**
+* Evaluation: **Friday 15th March**
 
 Work for both weeks will be stored in this repository.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-18/course-instructions#assignments).
 
 ### Homework
 Study the following course literature:
 
 * [Quicksort](http://www.nada.kth.se/~snilsson/algoritmer/qsort/)
     - **IMPORTANT:** The pseudo code in the above text may be a bit difficult
-      to interpret if you have not programmed in Go. Please se 
-      [this supplement](https://gits-15.sys.kth.se/inda-17/extra-reading-material/blob/master/quicksort/README.md)
+      to interpret if you have not programmed in Go. Please se
+      [this supplement](https://gits-15.sys.kth.se/inda-18/extra-reading-material/blob/master/quicksort/README.md)
       that contains rewritten pseudocode along with some practical tips.
 
 ### Overview
@@ -58,7 +58,7 @@ versions of your algorithms during the empirical evaluation.
 
 ##### Warmup
 Create an insertion sort implementation of `IntSorter` called `InsertionSort`
-as a warmup. If you have already implement insertion sort, you may reuse your
+as a warmup. If you have already implemented insertion sort, you may reuse your
 earlier implementation.  If you have not, this is the algorithm:
 
 ```python
@@ -100,8 +100,8 @@ Implement four variations of the Quicksort algorithm:
 
 #### Testing
 For the testing this week, you are left to stand pretty much on your own legs.
-Draw inspiration from the previous weeks' test suites 
-([you can find all of them here](https://gits-15.sys.kth.se/inda-17/testing)) if
+Draw inspiration from the previous weeks' test suites
+([you can find all of them here](https://gits-15.sys.kth.se/inda-18/testing)) if
 you find that you have trouble getting started. The important thing here is to
 make a good attempt at creating a manageable test suite, it is more important
 that you structure it well than that you cover every single corner case
@@ -127,7 +127,7 @@ imaginable.
     - Sorted in descending order (reversed)
     - Random
     - All elements equal
-    - Very large arrays (you may want to exclude insertino sort from some of
+    - Very large arrays (you may want to exclude insertion sort from some of
       these)
     - Use the provided [Data](src/Data.java) class to generate these arrays!
       The main method in said class has some examples of how to use it.
@@ -141,10 +141,10 @@ imaginable.
 In addition to the unit tests you write yourself, you should also submit _at
 least one_ of your implementations to Kattis. Kattis will test both that your
 implementations are correct, and how fast they run (_...perhaps you can become
-the champion of inda-17..._). _Note that the run times on Kattis can differ
+the champion of inda-18..._). _Note that the run times on Kattis can differ
 quite between different runs on the same code!_ You can read more about Kattis
 [here](https://www.kattis.com/universities.php). Information on the Quicksort
-task will appear [here](https://kth.kattis.com/courses/DD1338/alginda17) soon.
+task will appear [here](https://kth.kattis.com/courses/DD1338/alginda18) soon.
 
 **Once you have a successful run, please copy the submission ID and put it in
 the [docs/submission.txt](docs/submission.txt) file.**
@@ -202,15 +202,15 @@ sizes (produce one table per test):
 > **Assistant's other note:** That's _one column per quicksort variation_, not
 > one aggregated column for all of them.
 
-† [Arrays.sort(int[] a)](http://grepcode.com/file_/repository.grepcode.com/java/root/jdk/openjdk/8u40-b25/java/util/Arrays.java/?v=source)
+† [Arrays.sort(int[] a)](https://zgrepcode.com/java/openjdk/10.0.2/java.base/java/util/arrays.java#L-144)
 is from the Java standard library, and for your interest, it also uses
-Quicksort, but with a dual-pivot variation :-)
+Quicksort, but with a dual-pivot variation with lots of optimisations :-)
 
 #### Report
 Finally, you should prepare a short report. The report will contain the
 following sections (a template can be found in `docs`):
 
-1. Characteristics and complexity of Quicksort algorithm
+1. Origins, characteristics and complexity of Quicksort algorithm
 2. Explanation of each Quicksort variation you implemented
 3. Explanation of each test you performed and how you ensured accurate results
 4. Presentation of results using tables and appropriate charts for all tests
