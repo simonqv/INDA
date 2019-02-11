@@ -15,7 +15,7 @@ Study the following course literature:
 
 * [Quicksort](http://www.nada.kth.se/~snilsson/algoritmer/qsort/)
     - **IMPORTANT:** The pseudo code in the above text may be a bit difficult
-      to interpret if you have not programmed in Go. Please se
+      to interpret if you have not programmed in Go. Please see
       [this supplement](https://gits-15.sys.kth.se/inda-18/extra-reading-material/blob/master/quicksort/README.md)
       that contains rewritten pseudocode along with some practical tips.
 
@@ -143,7 +143,7 @@ least one_ of your implementations to Kattis. Kattis will test both that your
 implementations are correct, and how fast they run (_...perhaps you can become
 the champion of inda-18..._). _Note that the run times on Kattis can differ
 quite between different runs on the same code!_ You can read more about Kattis
-[here](https://www.kattis.com/universities.php). Information on the Quicksort
+[here](https://www.kattis.com/universities). Information on the Quicksort
 task will appear [here](https://kth.kattis.com/courses/DD1338/alginda18) soon.
 
 **Once you have a successful run, please copy the submission ID and put it in
