@@ -30,9 +30,13 @@ read through the tutorial. You are expected to submit solutions for the
 following exercises:
 
 - [Loops and Functions](http://tour.golang.org/flowcontrol/8)
+    - Submit your solution in [src/gotour_exercises/loops.go](src/gotour_exercises/loops.go)
 - [Slices](http://tour.golang.org/moretypes/18)
+    - Submit your solution in [src/gotour_exercises/slices.go](src/gotour_exercises/slices.go)
 - [Maps](http://tour.golang.org/moretypes/23)
-- [Fibbonacci Closure](http://tour.golang.org/moretypes/26)
+    - Submit your solution in [src/gotour_exercises/maps.go](src/gotour_exercises/maps.go)
+- [Fibonacci Closure](http://tour.golang.org/moretypes/26)
+    - Submit your solution in [src/gotour_exercises/fibo.go](src/gotour_exercises/fibo.go)
 
 Remember to format your code. Go has a unapologetic tool built-in that will
 reformat your code according to a set of style rules made by the designers of
@@ -40,6 +44,13 @@ the language. To run the format utility, use the following command for all
 submissions:
 
     $ go fmt
+
+> **Assistant's requirement:** All Go code you submit should be formatted with
+> `go fmt`. Code formatted in any other way is not acceptable.
+
+> **Assistant's note:** `go fmt` uses tabs for indentation. You don't really
+> need to worry about it as long as you make sure to run `go fmt` before
+> committing, but it may be good to know.
 
 ### Task 3 - Alarm Clock
 
