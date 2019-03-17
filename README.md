@@ -54,34 +54,45 @@ submissions:
 
 ### Task 3 - Alarm Clock
 
-In this task you will explore time functions using Go.  Write a function
-`Remind(text string, delay time.Duration)` that will print the following
-output:
+In this task you will explore time functions using Go. Create a file called
+`alarmclock.go` and write a function `Remind(text string, delay time.Duration)`
+that prints output on the following form:
 
-    Klockan är XX.XX: + <text>
+    The time is hh.mm.ss: <text>
 
-The output will repeatedly print the output after the given delay, and `XX.XX`
-should be replaced with the current time, and `<text>` should be replaced by
-the contents of `text`.
+Where `hh.mm.ss` should be replaced by the current hour, minute and second, and
+`<text>` should be replaced by the `text` argument. **The output should be
+printed forever**, separated by `delay` time units. So, for example, the call
+`Remind("Hello, world!", 2*time.Second)` should print out `Hello, world!` every
+two seconds, forever.
 
-Now, write a complete program that runs indefinitely and prints the following
-reminders:
+Now, write a complete program (i.e. a `main` function in `alarmclock.go`) that
+runs indefinitely and prints the following reminders:
 
-* every 3rd hour: `Klockan är XX.XX: Dags att äta`
-* every 8th hour: `Klockan är XX.XX: Dags att arbeta`
-* every 24th hour: `Klockan är XX.XX: Dags att sova`
+* every 10 seconds: `The time is hh.mm.ss: Time to eat`
+* every 30 seconds: `The time is hh.mm.ss: Time to work`
+* every 60 seconds: `The time is hh.mm.ss: Time to sleep`
 
 To prevent the main program from exiting early, the following statement can be
 used:
 
 ```Go
-select { }
+select {}
 ```
+
+Another solution is to simply run the last call to `Remind` in the main
+Goroutine, instead of starting a new Goroutine for it (yes, this is a hint as
+to how you should approach writing the program, you need Goroutines).
 
 In order to access time related functions, you should investigate the
 [time package](https://golang.org/pkg/time/), and discover how to get the
-current time in Go and also how you can format it neatly for human users to
-understand. Remember to format your code.
+current time, delay program execution and format time strings. Remember to
+format your code.
+
+> **Assistant's note:** Formatting time strings in Go is easy (as in it's a
+> single function call), but it's not obvious how to do it. Look at
+> [`time.Format`](https://golang.org/pkg/time/#Time.Format), read it's
+> documentation, and look through the example carefully.
 
 ### Task 4 - Two Part Sum
 
