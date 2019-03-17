@@ -1,9 +1,9 @@
 ### Deadline:
-This work should be completed before the exercise on **Thursday 29th March**.
+This work should be completed before the exercise on **Thursday 22nd March**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-18/course-instructions#assignments).
 
 ### Homework
 Study the following course literature:
@@ -112,11 +112,11 @@ the examples, but you don't need to submit them.
 > **Assistant's note:** There are a few non-obvious subtleties in the Go
 > `testing` framework.
 >
-> * Test files must end with `_test.go`. 
+> * Test files must end with `_test.go`.
 > * Test functions must be named on the form `TestFunc`, where you replace
 >   `Func` with whatever is appropriate. _Note that the capitalization is
 >   important, for example `Testfunc` and `testFunc` won't work!_
->   - You can read more 
+>   - You can read more
 >     [in the `testing` package docs](./twopartsum.go:23:6: main redeclared in this block)
 > * For basic usage, you just type `go test`, with no other arguments. It will
 >   find all of the `*_test.go` files in the current directory.
@@ -139,7 +139,7 @@ FAIL	_/path/to/palinda-1/src/twopartsum	0.001s
 
 Now, **write at least two additional tests** in
 [`src/twopartsum/twopartsum_test.go`](src/twopartsum/twopartsum_test.go) and
-make sure that they fail properly before moving on to task 4.2. 
+make sure that they fail properly before moving on to task 4.2.
 
 ### Task 4.2 - Implementing the concurrent sum function
 Now that the testing is out of the way, you can get down to implementing the
@@ -177,4 +177,3 @@ Implement your solution in
 Please commit any written answers or diagrams to the "docs" folder as a PDF (or
 Markdown) document, and commit any code developed to the "src" folder of your
 KTH Github repo. Remember to push to KTH Github before your exercise.
-
