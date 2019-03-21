@@ -1,8 +1,11 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
-// This program should go to 11, but sometimes it only prints 1 to 10.
+// This program should go to 11, but it seemingly only prints 1 to 10.
 func main() {
 	ch := make(chan int)
 	go Print(ch)
@@ -16,6 +19,7 @@ func main() {
 // The function returns when the channel is closed.
 func Print(ch <-chan int) {
 	for n := range ch { // reads from channel until it's closed
+		time.Sleep(10 * time.Millisecond) // simulate processing time
 		fmt.Println(n)
 	}
 }

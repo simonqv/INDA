@@ -30,6 +30,11 @@ you should:
 #### Buggy program 2
 [src/bug02.go](src/bug02.go)
 
+> **Assistant's requirement:** You are not allowed to remove the
+> `time.Sleep(10 * time.Millisecond)` statement in the `Print`
+> function. It is there to make the bug appear more readily,
+> but removing it is not a fix for the bug.
+
 ### Task 2 - Many Senders; Many Receivers
 The program [many2many.go](code/many2many.go) contains four
 producers that together send 32 strings over a channel. At the
