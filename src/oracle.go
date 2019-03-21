@@ -54,7 +54,7 @@ func Oracle() chan<- string {
 func prophecy(question string, answer chan<- string) {
 	// Keep them waiting. Pythia, the original oracle at Delphi,
 	// only gave prophecies on the seventh day of each month.
-	time.Sleep(time.Duration(20+rand.Intn(10)) * time.Second)
+	time.Sleep(time.Duration(2+rand.Intn(3)) * time.Second)
 
 	// Find the longest word.
 	longestWord := ""
