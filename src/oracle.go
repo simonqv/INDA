@@ -22,7 +22,7 @@ func main() {
 	fmt.Printf("Welcome to %s, the oracle at %s.\n", star, venue)
 	fmt.Println("Your questions will be answered in due time.")
 
-	oracle := Oracle()
+	questions := Oracle()
 	reader := bufio.NewReader(os.Stdin)
 	for {
 		fmt.Print(prompt)
@@ -32,7 +32,7 @@ func main() {
 			continue
 		}
 		fmt.Printf("%s heard: %s\n", star, line)
-		oracle <- line // The channel doesn't block.
+		questions <- line // The channel doesn't block.
 	}
 }
 
