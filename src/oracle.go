@@ -22,7 +22,7 @@ func main() {
 	fmt.Printf("Welcome to %s, the oracle at %s.\n", star, venue)
 	fmt.Println("Your questions will be answered in due time.")
 
-	oracle := Oracle()
+	questions := Oracle()
 	reader := bufio.NewReader(os.Stdin)
 	for {
 		fmt.Print(prompt)
@@ -32,7 +32,7 @@ func main() {
 			continue
 		}
 		fmt.Printf("%s heard: %s\n", star, line)
-		oracle <- line // The channel doesn't block.
+		questions <- line // The channel doesn't block.
 	}
 }
 
@@ -54,7 +54,7 @@ func Oracle() chan<- string {
 func prophecy(question string, answer chan<- string) {
 	// Keep them waiting. Pythia, the original oracle at Delphi,
 	// only gave prophecies on the seventh day of each month.
-	time.Sleep(time.Duration(20+rand.Intn(10)) * time.Second)
+	time.Sleep(time.Duration(2+rand.Intn(3)) * time.Second)
 
 	// Find the longest word.
 	longestWord := ""
