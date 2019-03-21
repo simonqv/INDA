@@ -17,58 +17,25 @@ Study the following course literature:
   - [Deadlock](http://yourbasic.org/golang/detect-deadlock/)
 
 ### Task 1 - Debugging Concurrent Programs
+In this task, you will be provided with two buggy programs. For each program,
+you should:
 
-Explain what is wrong in the code below, and then fix the code so
-that all data really passes through the channel and gets printed.
+1. Explain what is wrong with the code.
+2. Fix the bug.
+3. Explain why your solution fixes the bug.
 
-#### Bug 1
-```Go
-package main
+#### Buggy program 1
+[src/bug01.go](src/bug01.go)
 
-import "fmt"
-
-// I want this program to print "Hello world!", but it doesn't work.
-func main() {
-    ch := make(chan string)
-    ch <- "Hello world!"
-    fmt.Println(<-ch)
-}
-```
-See: [bug01.go](code/bug01.go) for source code to modify.
-
-#### Bug 2
-```Go
-package main
-
-import "fmt"
-
-// This program should go to 11, but sometimes it only prints 1 to 10.
-func main() {
-    ch := make(chan int)
-    go Print(ch)
-    for i := 1; i <= 11; i++ {
-        ch <- i
-    }
-    close(ch)
-}
-
-// Print prints all numbers sent on the channel.
-// The function returns when the channel is closed.
-func Print(ch <-chan int) {
-    for n := range ch { // reads from channel until it's closed
-        fmt.Println(n)
-    }
-}
-```
-See: [bug02.go](code/bug02.go) for source code to modify.
+#### Buggy program 2
+[src/bug02.go](src/bug02.go)
 
 ### Task 2 - Many Senders; Many Receivers
-
 The program [many2many.go](code/many2many.go) contains four
-producers that together send 32 strings over a channel.  At the
+producers that together send 32 strings over a channel. At the
 other end there are two consumers that receive the strings.
 Describe what happens, and explain why it happens, if you make the
-following changes in the program.  Try first to reason your way
+following changes in the program. Try first to reason your way
 through, and then test your hypothesis by changing and running the
 program.
 
