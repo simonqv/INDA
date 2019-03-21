@@ -36,7 +36,7 @@ you should:
 > but removing it is not a fix for the bug.
 
 ### Task 2 - Many Senders; Many Receivers
-The program [many2many.go](code/many2many.go) contains four
+The program [many2many.go](src/many2many.go) contains four
 producers that together send 32 strings over a channel. At the
 other end there are two consumers that receive the strings.
 Describe what happens, and explain why it happens, if you make the
@@ -59,7 +59,7 @@ all consumers to finish.
 
 ### Task 3 - Pythia, the Oracle of Delphi
 
-The code in [oracle.go](code/oracle.go) contains the outline for a
+The code in [oracle.go](src/oracle.go) contains the outline for a
 program that will answer 'questions'.  Complete the `Oracle`
 function.  You should not modify the `main` function or other
 function signatures. Note that answers should not appear
@@ -93,5 +93,5 @@ assignment, you may also want to improve the answer-algorithm.
 
 Please commit any written answers or diagrams to the "docs" folder
 as a PDF (or Markdown) document, and commit any code developed to
-the "code" folder of your KTH Github repo. Remember to push to KTH
+the "src" folder of your KTH Github repo. Remember to push to KTH
 Github before your exercise.
