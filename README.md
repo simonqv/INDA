@@ -1,9 +1,9 @@
 ### Deadline:
-This work should be completed before the exercise on **Friday 20th April**.
+This work should be completed before the exercise on **Friday 5th April**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-17/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-18/course-instructions#assignments).
 
 ### Homework
 Study the following course literature:
@@ -14,7 +14,7 @@ Study the following course literature:
 
 ### Task 1 - Matching Behaviour
 
-Take a look at the program [matching.go](code/matching.go). Explain what happens and why it happens if you make the following changes. Try first to reason about it, and then test your hypothesis by changing and running the program.
+Take a look at the program [matching.go](src/matching.go). Explain what happens and why it happens if you make the following changes. Try first to reason about it, and then test your hypothesis by changing and running the program.
 
   * What happens if you remove the `go-command` from the `Seek` call in the `main` function?
   * What happens if you switch the declaration `wg := new(sync.WaitGroup`) to `var wg sync.WaitGroup` and the parameter `wg *sync.WaitGroup` to `wg sync.WaitGroup`?
@@ -25,7 +25,7 @@ Hint: Think about the order of the instructions and what happens with arrays of 
 
 ### Task 2 - Fractal Images
 
-The file [julia.go](code/julia.go) contains a program that creates images and writes them to file. The program is pretty slow. Your assignment is to divide the computations so that they run in parallel on all available CPUs. Use the ideas from the example in the [efficient parallel computation](http://yourbasic.org/golang/efficient-parallel-computation/) section of the course literature.
+The file [julia.go](src/julia.go) contains a program that creates images and writes them to file. The program is pretty slow. Your assignment is to divide the computations so that they run in parallel on all available CPUs. Use the ideas from the example in the [efficient parallel computation](http://yourbasic.org/golang/efficient-parallel-computation/) section of the course literature.
 
 You can also make changes to the program, such as using different functions and other colourings.
 
@@ -33,21 +33,41 @@ How many CPUs does you program use? How much faster is your parallel version?
 
 > **Assistant's note:** In more recent versions of Golang (since 1.5), the runtime will default to use as many operating system threads as it is allowed. To see differences in behaviour, refer to the [GOMAXPROCS](https://golang.org/pkg/runtime/#GOMAXPROCS) function and vary the value.
 
-### Task 3 - Weather station
+### Task 3 - MapReduce
 
-The file [server.go](code/server.go) contains a program that simulates three independent weather stations that show the temperature at KTH. The results are published at the following addresses once the serves are operational:
+In the final task, you will be applying the MapReduce model for improving a word frequency program.
 
-  * `http://localhost:8080`
-  * `http://localhost:8081`
-  * `http://localhost:8082`
+> **Assistant's note:** We actually struggled to find a nice introductory explanation beyond our own example below, as the full model has several more layers that we are skipping. If you are curious, check out the original Google research article and see how you get on! https://ai.google/research/pubs/pub62
 
-Start the program and try to visit the three addresses in your browser. You'll soon find that the three services aren't very reliable; they're pretty slow and sometimes you get no response at all. You might also get the error message "Service unavailable".
+A word frequency analysis of a document will return a summary of the word counts for all unique words in the document. Whilst this can be solved efficiently using a map data structure in a sequential program, the performance can be improved by parallelising the program.
 
-Your assignment is to write a client that simultaneously asks all servers and terminates the search as soon as one has responded with a correct temperature. The request should also terminate if no-one has answered within a given time. The file [client.go](code/client.go) contains a template from which you should build on.
+> **Assistant's note:** Typically we ignore case when counting the frequency so 'Hello', 'HELLO' and 'hello' are all counted as 'hello', so remember to convert all strings to lower case.
 
-  * Read through the code and start the client whilst the weather stations are operational
-  * Implement the function `MultiGet`
+By splitting the document into sub-documents and conducting a partial count in parallel (_Map_ task), we can arrive at the solution by combining all the partial results into a final result (_Reduce_ task).
+
+Read the code in [singleworker/words.go](src/singleworker/words.go) and complete the missing parts:
+
+- Implementation for the `WordCount` function
+- Reading a text file into a string in the `main` function
+- Check that the unittest passes
+- Log the runtime performance in the table below
+
+Once you are satisfied with the singleworker, move into [mapreduce/words.go](src/mapreduce/words.go) and parallelise the program in order to improve the performance.
+
+- Update the `WordCount` function with the Map and Reduce tasks, using goroutines to parallelise and a channel to gather partial results
+- Check that the unittest passes
+- Find the optimal amount of gorountines before you encounter diminishing returns in performance improvements
+- Log the runtime performance in the table below
+
+
+|Variant       | Runtime (ms) |
+| ------------ | ------------:|
+| singleworker |          xxx |
+| mapreduce    |          yyy |
+
+And with that, you are on your way to Google-scale problems ;-)
+
 
 ---
 
-Please commit any written answers or diagrams to the "docs" folder as a PDF (or Markdown) document, and commit any code developed to the "code" folder of your KTH Github repo. Remember to push to KTH Github.
+Please commit any written answers or diagrams to the "docs" folder as a PDF (or Markdown) document, and commit any code developed to the "src" folder of your KTH Github repo. Remember to push to KTH Github.
