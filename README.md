@@ -92,6 +92,8 @@ insertion sort:
 
 ![Insertion sort gif](https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif)
 
+> [Image by Swfung8](https://commons.wikimedia.org/wiki/File:Insertion-sort-example-300px.gif)
+
 ```python
 Selection Sort (A)
 ------------------
@@ -110,6 +112,8 @@ To help you understand how it works, here is a (pretty neat, thank
 selection sort:
 
 ![Selection sort gif](https://upload.wikimedia.org/wikipedia/commons/9/94/Selection-Sort-Animation.gif)
+
+> [Image by Joestape89](https://commons.wikimedia.org/wiki/File:Selection-Sort-Animation.gif)
 
 #### Exercise 3: Sequential Search
 Now you will create an iterative sequential search algorithm that **searches
