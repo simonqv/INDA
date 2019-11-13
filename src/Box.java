@@ -95,4 +95,12 @@ public class Box {
         result = 31 * result + depth;
         return result;
     }
+
+    /**
+     * @return a String representation of this Box.
+     */
+    @Override
+    public String toString() {
+        return "Box(" + height + ", " + width + ", " + depth + ")";
+    }
 }
