@@ -86,9 +86,7 @@ Insertion Sort (A)
 6           A[j-1] = temp
 7           j = j - 1
 ```
-To help you understand how it works, here is a (horribly slow, blame
-[Wikipedia](https://en.wikipedia.org/wiki/Insertion_sort)) visualization of
-insertion sort:
+To help you understand how it works, here is a visualization of insertion sort:
 
 ![Insertion sort gif](https://upload.wikimedia.org/wikipedia/commons/0/0f/Insertion-sort-example-300px.gif)
 
@@ -107,9 +105,7 @@ Selection Sort (A)
 8       A[i] = A[min]
 9       A[min] = temp
 ```
-To help you understand how it works, here is a (pretty neat, thank
-[Wikipedia](https://en.wikipedia.org/wiki/Selection_sort)) visualization of
-selection sort:
+To help you understand how it works, here is a visualization of selection sort:
 
 ![Selection sort gif](https://upload.wikimedia.org/wikipedia/commons/9/94/Selection-Sort-Animation.gif)
 
