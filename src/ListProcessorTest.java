@@ -157,7 +157,7 @@ public class ListProcessorTest {
     @Test
     public void iterativeSumOfEmptyListIsZero() {
         // Act, Assert
-        assertThat(listProcessor.sumIterative(new ArrayList()),
+        assertThat(listProcessor.sumIterative(new ArrayList<Integer>()),
             equalTo(0));
     }
 
@@ -178,7 +178,7 @@ public class ListProcessorTest {
     @Test
     public void recursiveSumOfEmptyListIsZero() {
         // Act, Assert
-        assertThat(listProcessor.sumRecursive(new ArrayList()),
+        assertThat(listProcessor.sumRecursive(new ArrayList<Integer>()),
             equalTo(0));
     }
 
