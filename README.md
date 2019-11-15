@@ -1,16 +1,16 @@
 ### Deadline:
-This work should be completed before the exercise on **Friday 7th December**.
+This work should be completed before the exercise on **Friday 6th December**.
 Woohoo! Last assignment of the year :)
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-18/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
 
 ### Homework
-Study all the following pages from the [course text](http://www.nada.kth.se/~snilsson/algoritmer):
+Study the following from the [course text](https://yourbasic.org/algorithms):
 
-- [Tidskomplexitet](http://www.nada.kth.se/~snilsson/algoritmer/tidskomplexitet/)
-- [Asymptotisk notation](http://www.nada.kth.se/~snilsson/algoritmer/ordo-notation/)
+- [How to analyze time complexity: Count your steps](https://yourbasic.org/algorithms/time-complexity-explained/)
+- [Big O notation: definition and examples](https://yourbasic.org/algorithms/big-o-notation-explained/)
 
 ### Github Task: Time Complexity
 Complete all the exercises and do the testing!
