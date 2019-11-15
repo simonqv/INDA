@@ -1,3 +1,4 @@
+import java.util.Objects;
 /**
  * The Box class models a three-dimensional box
  */
@@ -67,8 +68,7 @@ public class Box {
      * @return true if the given object has equal volume to this Box
      */
     @Override
-    public boolean equals(Object o)
-    {
+    public boolean equals(Object o) {
         if (!(o instanceof Box)) {
             return false;
         }
@@ -80,20 +80,26 @@ public class Box {
      * Defines the hash code of this Box.
      *
      * This is required by the contract of hashCode, which states that if for
-     * two objects x and y, x.equals(y) is true, 
-     * then x.hashCode() == y.hashCode() must also be true. So, as we override
-     * the Object.equals(Object o), we must also override Object.hashCode().
+     * two objects x and y, x.equals(y) is true,
+     * then x.hashCode() == y.hashCode() must also be true. Note that the
+     * converse is not necessary, equal hash codes does not imply equality.
+     *
+     * So, as we override the Object.equals(Object o), we must also override
+     * Object.hashCode(). If we do not abide by the contract, data structures
+     * that rely on hashes (such as HashMap) will simply not work correctly.
+     *
+     * Ideally, a small change in an object's state should result in a large
+     * change in the hash. Therefore, instead of just returning the volume
+     * (which would trivially fulfill the contract), we run the volume through
+     * an existing hash function. Of course, just returning the volume directly
+     * would also work, just not as well.
      *
      * For a good explanation, see Effective Java Recipe Item 9
      * @return the hash code of this Box
      */
     @Override
-    public int hashCode(){
-        int result = 13;
-        result = 31 * result + height;
-        result = 31 * result + width;
-        result = 31 * result + depth;
-        return result;
+    public int hashCode() {
+        return Objects.hashCode(volume());
     }
 
     /**
