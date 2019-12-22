@@ -117,6 +117,24 @@ public class LinkedListTest {
             assertThat(list.size(), equalTo(elements.length - i - 1));
         }
     }
+    
+     /**
+     * Assert that the correct element is returned when
+     * removing the first element.
+     */
+    @Test
+    public void removeFirstReturnsCorrectElement() {
+        // Arrange
+        for (int element : elements) {
+            list.addLast(element);
+        }
+        for (int i = 0; i < elements.length; i++) {
+            // Act
+            int value = list.removeFirst();
+            // Assert
+            assertThat(value, equalTo(elements[i]));
+        }
+    }
 
     /**
      * Tests for getFirst()
