@@ -55,6 +55,9 @@ and why or why not?
 s1 = p1;
 s1 = p2;
 p1 = s1;
+t1 = s1;
+s1 = phd1;
+phd1 = s1;
 ```
 
 #### Exercise 8.14 (10.14)
