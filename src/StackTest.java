@@ -34,7 +34,7 @@ public abstract class StackTest {
         initialStackSize = valuesInStack.length;
         stack = getIntegerStack();
         pushArrayToStack(valuesInStack, stack);
-        emptyStack = new LinkedList<Integer>();
+        emptyStack = getIntegerStack();
     }
 
     /**
