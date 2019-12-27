@@ -1,5 +1,5 @@
 ### Deadline:
-This work should be completed before the exercise on **Friday 21st January**.
+This work should be completed before the exercise on **Tuesday 21st January**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
