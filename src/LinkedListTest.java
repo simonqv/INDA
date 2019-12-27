@@ -13,7 +13,7 @@ import java.util.NoSuchElementException;
  *
  * The following invariants are checked for several different states and for
  * each of the methods that mutate the list.
- * 
+ *
  *   1. size equals the number of list elements,
  *   2. if size == 0, first == null and last == null,
  *   3. if size > 0, first != null and last != null,
@@ -49,7 +49,7 @@ public class LinkedListTest {
      */
 
     /**
-     * Assert that the size of an empty list is exactly 0. 
+     * Assert that the size of an empty list is exactly 0.
      */
     @Test
     public void sizeIsZeroWhenListIsEmpty() {
@@ -59,7 +59,7 @@ public class LinkedListTest {
     /**
      * Tests for addFirst(T)
      */
-    
+
     /**
      * Assert that adding an element to the beginning
      * of the list increments the size of the list by 1.
@@ -117,7 +117,7 @@ public class LinkedListTest {
             assertThat(list.size(), equalTo(elements.length - i - 1));
         }
     }
-    
+
      /**
      * Assert that the correct element is returned when
      * removing the first element.
@@ -229,7 +229,7 @@ public class LinkedListTest {
 
     /**
      * Assert that getting an element of an empty list
-     * throws an exception. 
+     * throws an exception.
      */
     @Test (expected=IndexOutOfBoundsException.class)
     public void getThrowsExceptionWhenListIsEmpty() {
@@ -300,34 +300,6 @@ public class LinkedListTest {
     }
 
     /**
-     * Assert that getting the non existent element
-     * with index Integer.MIN_VALUE throws an exception.
-     */
-    @Test (expected=IndexOutOfBoundsException.class)
-    public void getThrowsExceptionWhenIndexIsIntegerMinValue() {
-        // Arrange
-        for (int element : elements) {
-            list.addLast(element);
-        }
-        // Act
-        list.get(Integer.MIN_VALUE);
-    }
-
-    /**
-     * Assert that getting the non existent element
-     * with index Integer.MAX_VALUE throws an exception.
-     */
-    @Test (expected=IndexOutOfBoundsException.class)
-    public void getThrowsExceptionWhenIndexIsIntegerMaxValue() {
-        // Arrange
-        for (int element : elements) {
-            list.addLast(element);
-        }
-        // Act
-        list.get(Integer.MAX_VALUE);
-    }
-
-    /**
      * Tests for isEmpty
      */
 
@@ -342,7 +314,7 @@ public class LinkedListTest {
     }
 
     /**
-     * Assert that isEmpty returns false 
+     * Assert that isEmpty returns false
      * after adding an element to the beginning
      * of the list.
      */
@@ -355,7 +327,7 @@ public class LinkedListTest {
     }
 
     /**
-     * Assert that isEmpty returns false 
+     * Assert that isEmpty returns false
      * after adding an element to the end
      * of the list.
      */
