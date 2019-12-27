@@ -12,9 +12,9 @@ Study all the following course literature:
   Structure with Inheritance
   - Parenthesized chapter/exercise numbers are for the 6th edition, while those
   without are for the 5th.
-* [Loop Invariants](http://www.nada.kth.se/~snilsson/algoritmer/loopinvariant/)
-* [Induction and Recursive Functions](http://www.nada.kth.se/~snilsson/algoritmer/induktion/)
-* [Time Complexity for Recursion](http://www.nada.kth.se/~snilsson/algoritmer/rekursion/)
+* [Loop Invariants Explained](https://yourbasic.org/algorithms/loop-invariants-explained/)
+* [Induction and Recursive Functions](https://yourbasic.org/algorithms/induction-recursive-functions/)
+* [Time Complexity for Recursive Functions](https://yourbasic.org/algorithms/time-complexity-recursive-functions/)
 
 ### Github Task
 * Complete exercises 8.12 and 8.14 -- 8.16 (10.12 and 10.14 -- 10.16)
