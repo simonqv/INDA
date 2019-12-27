@@ -1,9 +1,9 @@
 ### Deadline:
-This work should be completed before the exercise on **Friday 18th January**.
+This work should be completed before the exercise on **Friday 21st January**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-18/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
 
 ### Homework
 Study all the following course literature:
@@ -64,11 +64,6 @@ phd1 = s1;
 What has to change in the `NewsFeed` class when another `Post` subclass (for
 example, a class `EventPost`) is added? Why?
 
-#### Exercise 8.15 (10.15)
-Exercise 8.15 Use the documentation of the Java standard class libraries to
-find out about the inheritance hierarchy of the collection classes. Draw a
-diagram showing the hierarchy.
-
 #### Exercise 8.16 (10.16)
 Go back to the lab-classes project from Chapter 1. Add instructors to the
 project (every lab class can have many students and a single instructor). Use
@@ -85,17 +80,11 @@ Using proof by induction, prove the following statements (assume _n_ is a natura
 
 (2) ![induction ex 2](img/induction_ex2.png)
 
-(3) ![induction ex 3](img/induction_ex3.png)
-
-(4) ![induction ex 4](img/induction_ex4.png)
-
 > **Assistant's note:** You may wish to solve these exercises by using paper (then taking a picture of your proof, or by practicing using LaTeX to generate more complex math equations. The following sourcecode may help)
 
 ```latex
 (1) $$\sum_{i=1}^{n} i^2 = \frac{n(n+1)(2n+1)}{6}$$
-(2) $$\sum_{i=1}^{n} i^3 = \frac{n^2(n+1)^2}{4}$$
-(3) $$\sum_{j=1}^{n} 2^{j-1} = 2^n-1$$
-(4) $$\sum_{j=1}^{n} (2j-1) = n^2$$
+(2) $$\sum_{j=1}^{n} (2j-1) = n^2$$
 
 ```
 
