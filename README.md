@@ -1,14 +1,14 @@
 ### Deadline:
-This work should be completed before the exercise on **Friday 8th February**.
+This work should be completed before the exercise on **Friday 7th February**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-18/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
 
 ### Homework
 Study the following course literature:
 
-* [Hash Tables](http://www.nada.kth.se/~snilsson/algoritmer/hashtabell/)
+* [Hash Tables explained](https://yourbasic.org/algorithms/hash-tables-explained/)
 
 ### Task 1 - Implement a hash table
 Hash tables are built into Java in the form of the classes `HashMap`,
