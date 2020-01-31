@@ -154,19 +154,15 @@ for(int i = 0; i<20; i++) {
 }
 ```
 
-Answer the following:
+Answer the following referring to this reference [source code for ArrayList](http://hg.openjdk.java.net/jdk8/jdk8/jdk/file/tip/src/share/classes/java/util/ArrayList.java) (hint: use text search):
 
 1. What is the initial capacity of an `ArrayList`'s internal array?
-2. At what size does the internal array grow, and by how much?
-3. Explain what really happens by the term "grow" in this context?
-4. What is the capacity of the internal array once 20 elements have been added?
-5. If objects were removed, would the size of the internal array change also?
+2. Starting with the `add(E e)` method (ln:442), find the line number for the conditional statement used to determine that the internal array needs to grow.
+3. Looking at the `grow(int minCapacity)` method (ln:237), which operator is used to decide the new size of the internal array?
+4. What is the scaling factor for growth of the internal array?
+5. If 20 elements had been added to an empty ArrayList, what would the size of the internal array be?
 6. What is the worst, average, and best-case time complexity of the `add(E e)`
    method of `Arraylist`?
-
-To answer these questions, you should read the source code for
-[ArrayList](https://zgrepcode.com/java/openjdk/9/java.base/java/util/arraylist.java)
-and/or use a debugger (or perhaps BlueJ's built-in Object Inspector might help).
 
 ### Testing
 Just like in week 15, this week's testing makes use of inheritance to keep the
