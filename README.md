@@ -1,16 +1,16 @@
 ### Deadline:
-This work should be completed before the exercise **Friday 22nd Feburary**.
+This work should be completed before the exercise **Friday 21st Feburary**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-18/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
 
 ### Homework
 Study the following course literature:
 
-* [Java packages](https://gits-15.sys.kth.se/inda-18/extra-reading-material/blob/master/java-packages/README.md)
-* [Graphs](http://www.nada.kth.se/~snilsson/algoritmer/grafer/)
-* [Executing without BlueJ - The Java main method (includes part on command line arguments)](https://gits-15.sys.kth.se/inda-18/extra-reading-material/blob/master/main-method/README.md)
+* [Java packages](https://gits-15.sys.kth.se/inda-19/extra-reading-material/blob/master/java-packages/README.md)
+* [Introduction to graph algorithms: definitions and examples](https://yourbasic.org/algorithms/graph/)
+* [Executing without BlueJ - The Java main method (includes part on command line arguments)](https://gits-15.sys.kth.se/inda-19/extra-reading-material/blob/master/main-method/README.md)
 
 ### Task 1 - Implement HashGraph
 Review the code that has been provided in the Graph project. Start by reading
@@ -58,7 +58,7 @@ For a graph with 1000 nodes and 1000 randomly assigned edges:
 To handle command line arguments (e.g. n being 1000 in my trace), the following
 literature may help:
 
-* [Executing without BlueJ - The Java main method (includes part on command line arguments)](https://gits-15.sys.kth.se/inda-18/extra-reading-material/blob/master/main-method/README.md)
+* [Executing without BlueJ - The Java main method (includes part on command line arguments)](https://gits-15.sys.kth.se/inda-19/extra-reading-material/blob/master/main-method/README.md)
 * [Command Line Arguments (Oracle documentation)](https://docs.oracle.com/javase/tutorial/essential/environment/cmdLineArgs.html)
 
 IDEs usually provide command line arguments with run configurations. To find
