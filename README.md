@@ -1,14 +1,14 @@
 ### Deadline:
-This work should be completed before the exercise **Friday 15th Feburary**.
+This work should be completed before the exercise **Friday 14th Feburary**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-18/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
 
 ### Homework
 Study the following course literature:
 
-* [Träd](http://www.nada.kth.se/~snilsson/algoritmer/trad/)
+* [Binary Search Trees Explained](https://yourbasic.org/algorithms/binary-search-tree/)
     - **Note:** This text refers to the _depth of a tree_. This is more commonly
       referred to as the _height_ of the tree, and we will use the latter
       terminology in this assignment.
