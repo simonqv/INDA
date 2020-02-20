@@ -13,7 +13,7 @@ For instructions on how to do and submit the assignment, please see the
 ### Homework
 Study the following course literature:
 
-* [Quicksort Optimizations]https://yourbasic.org/golang/quicksort-optimizations/)
+* [Quicksort Optimizations](https://yourbasic.org/golang/quicksort-optimizations/)
     - **IMPORTANT:** The pseudo code in the above text may be a bit difficult
       to interpret if you have not programmed in Go. Please see
       [this supplement](https://gits-15.sys.kth.se/inda-19/extra-reading-material/blob/master/quicksort/README.md)
@@ -139,14 +139,14 @@ imaginable.
 
 #### Kattis Test
 In addition to the unit tests you write yourself, you should also submit _at
-least one_ of your implementations to Kattis. You *absolutely* have to register for the DD1339 course and then submit your solution. Failure to do so will result in instant kompleterring.
+least one_ of your implementations to Kattis. You **absolutely have to register for the DD1338 course** and then submit your solution. Failure to do so will result in instant kompleterring.
 
 Kattis will test both that your
 implementations are correct, and how fast they run (_...perhaps you can become
 the champion of inda-19..._). _Note that the run times on Kattis can differ
 quite between different runs on the same code, especially if you have randomisation!_
 
-One of the main problems we have with Java is that the *default I/O will be slow*. To make this faster, we can use the [Kattio](src/Kattio.java) class provided to significantly speed things up. Here is a skeleton `QuickSort` class to give you an idea how to use it:
+One of the main problems we have with Java is that the **default I/O will be slow**. To make this faster, we can use the [Kattio](src/Kattio.java) class provided to significantly speed things up. Here is a skeleton `QuickSort` class to give you an idea how to use it:
 
 ```java
 import java.io.IOException;
@@ -187,7 +187,7 @@ If you prepare your constructor this way, it will use Kattio to read/write test 
 10 45 65 31 75 98 62 83 78 63 19
 ```
 
-If you sav this as problem.in then in the command line you can test it works as follows:
+If you save this as problem.in then in the command line you can test it works as follows:
 
 ```
 $ java QuickSort < problem.in
