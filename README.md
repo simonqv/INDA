@@ -1,22 +1,22 @@
 ### Deadline:
 This is a two week assignment with two deadlines:
 
-* Implementation: **Friday 1st March**
-* Evaluation: **Friday 15th March**
+* Implementation: **Friday 28th February**
+* Evaluation: **Friday 13th March**
 
 Work for both weeks will be stored in this repository.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-18/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
 
 ### Homework
 Study the following course literature:
 
-* [Quicksort](http://www.nada.kth.se/~snilsson/algoritmer/qsort/)
+* [Quicksort Optimizations]https://yourbasic.org/golang/quicksort-optimizations/)
     - **IMPORTANT:** The pseudo code in the above text may be a bit difficult
       to interpret if you have not programmed in Go. Please see
-      [this supplement](https://gits-15.sys.kth.se/inda-18/extra-reading-material/blob/master/quicksort/README.md)
+      [this supplement](https://gits-15.sys.kth.se/inda-19/extra-reading-material/blob/master/quicksort/README.md)
       that contains rewritten pseudocode along with some practical tips.
 
 ### Overview
@@ -101,7 +101,7 @@ Implement four variations of the Quicksort algorithm:
 #### Testing
 For the testing this week, you are left to stand pretty much on your own legs.
 Draw inspiration from the previous weeks' test suites
-([you can find all of them here](https://gits-15.sys.kth.se/inda-18/testing)) if
+([you can find all of them here](https://gits-15.sys.kth.se/inda-19/testing)) if
 you find that you have trouble getting started. The important thing here is to
 make a good attempt at creating a manageable test suite, it is more important
 that you structure it well than that you cover every single corner case
@@ -139,12 +139,65 @@ imaginable.
 
 #### Kattis Test
 In addition to the unit tests you write yourself, you should also submit _at
-least one_ of your implementations to Kattis. Kattis will test both that your
+least one_ of your implementations to Kattis. You *absolutely* have to register for the DD1339 course and then submit your solution. Failure to do so will result in instant kompleterring.
+
+Kattis will test both that your
 implementations are correct, and how fast they run (_...perhaps you can become
-the champion of inda-18..._). _Note that the run times on Kattis can differ
-quite between different runs on the same code!_ You can read more about Kattis
+the champion of inda-19..._). _Note that the run times on Kattis can differ
+quite between different runs on the same code, especially if you have randomisation!_
+
+One of the main problems we have with Java is that the *default I/O will be slow*. To make this faster, we can use the [Kattio](src/Kattio.java) class provided to significantly speed things up. Here is a skeleton `QuickSort` class to give you an idea how to use it:
+
+```java
+import java.io.IOException;
+
+class QuickSort implements IntSorter {
+
+    public QuickSort() throws IOException {
+        Kattio io = new Kattio(System.in, System.out);
+        int n = io.getInt(); // number of elements to sort
+        int[] v = new int[n];
+        int i = 0;
+        // read in problem array
+        while (io.hasMoreTokens()) {
+            v[i++] = io.getInt();
+        }
+        sort(v);
+        // output sorted array as solution
+        for (int k : v) {
+            io.println(k);
+        }
+        io.close();
+        System.exit(0);
+    }
+
+    public void sort(int[] v) {
+        // implement this!
+    }
+
+    public static void main(String[] args) {
+        QuickSort qs = new QuickSort();
+    }
+}
+```
+
+If you prepare your constructor this way, it will use Kattio to read/write test cases faster. To make sense of it, the following is a possible test case, where the first integer is the number of elements in the test case, and the remaining elements are the values to be sorted:
+
+```
+10 45 65 31 75 98 62 83 78 63 19
+```
+
+If you sav this as problem.in then in the command line you can test it works as follows:
+
+```
+$ java QuickSort < problem.in
+```
+
+Note, you must submit the Kattio.java file along with your best QuickSort.java file when submitting, otherwise an error will occur.
+
+You can read more about Kattis
 [here](https://www.kattis.com/universities). Information on the Quicksort
-task will appear [here](https://kth.kattis.com/courses/DD1338/alginda18) soon.
+task will appear [here](https://kth.kattis.com/courses/DD1338/alginda19) soon.
 
 **Once you have a successful run, please copy the submission ID and put it in
 the [docs/submission.txt](docs/submission.txt) file.**
