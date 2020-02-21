@@ -139,14 +139,18 @@ imaginable.
 
 #### Kattis Test
 In addition to the unit tests you write yourself, you should also submit _at
-least one_ of your implementations to Kattis. You **absolutely have to register for the DD1338 course** and then submit your solution. Failure to do so will result in instant kompleterring.
+least one_ of your implementations to Kattis. You **absolutely have to register for the DD1338 course** and then submit your solution. Failure to do so will result in kompleterring.
 
 Kattis will test both that your
 implementations are correct, and how fast they run (_...perhaps you can become
 the champion of inda-19..._). _Note that the run times on Kattis can differ
 quite between different runs on the same code, especially if you have randomisation!_
 
-One of the main problems we have with Java is that the **default I/O will be slow**. To make this faster, we can use the [Kattio](src/Kattio.java) class provided to significantly speed things up. Here is a skeleton `QuickSort` class to give you an idea how to use it:
+One of the main problems we have with Java is that the **default I/O will be slow**. To make this faster, we can use the [Kattio](src/Kattio.java) class provided to significantly speed things up.
+
+> **Assistant's note:** It is really important to realise that we are abusing the constructor here just to overcome the slow I/O used by default on this task. You can still submit your Quicksort submission without using Kattio, but you will incur a time cost of about 2 seconds for I/O. Note, you must submit the Kattio.java file along with your QuickSort.java file when submitting, otherwise an error will occur.
+
+Here is a skeleton `QuickSort` class to give you an idea how to use Kattio:
 
 ```java
 import java.io.IOException;
@@ -174,30 +178,12 @@ class QuickSort implements IntSorter {
     public void sort(int[] v) {
         // implement this!
     }
-
-    public static void main(String[] args) {
-        QuickSort qs = new QuickSort();
-    }
 }
 ```
 
-If you prepare your constructor this way, it will use Kattio to read/write test cases faster. To make sense of it, the following is a possible test case, where the first integer is the number of elements in the test case, and the remaining elements are the values to be sorted:
-
-```
-10 45 65 31 75 98 62 83 78 63 19
-```
-
-If you save this as problem.in then in the command line you can test it works as follows:
-
-```
-$ java QuickSort < problem.in
-```
-
-Note, you must submit the Kattio.java file along with your best QuickSort.java file when submitting, otherwise an error will occur.
-
 You can read more about Kattis
 [here](https://www.kattis.com/universities). Information on the Quicksort
-task will appear [here](https://kth.kattis.com/courses/DD1338/alginda19) soon.
+task will appear [here](https://kth.kattis.com/courses/DD1338/alginda19) soon and you will be able to submit your implementation.
 
 **Once you have a successful run, please copy the submission ID and put it in
 the [docs/submission.txt](docs/submission.txt) file.**
