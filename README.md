@@ -146,11 +146,11 @@ implementations are correct, and how fast they run (_...perhaps you can become
 the champion of inda-19..._). _Note that the run times on Kattis can differ
 quite between different runs on the same code, especially if you have randomisation!_
 
-One of the main problems we have with Java is that the **default I/O will be slow**. To make this faster, we can use the [Kattio](src/Kattio.java) class provided to significantly speed things up.
+One of the main problems we have with Java is that the **default I/O will be slow**. To make this faster, we can use the [`Kattio`](src/Kattio.java) class provided to significantly speed things up.
 
 > **Assistant's note:** It is really important to realise that we are abusing the constructor here just to overcome the slow I/O used by default on this task. You can still submit your Quicksort submission without using Kattio, but you will incur a time cost of about 2 seconds for I/O. Note, you must submit the Kattio.java file along with your QuickSort.java file when submitting, otherwise an error will occur.
 
-Here is a skeleton `QuickSort` class to give you an idea how to use Kattio:
+Here is a skeleton `QuickSort` class to give you an idea how to use `Kattio`:
 
 ```java
 import java.io.IOException;
@@ -181,12 +181,11 @@ class QuickSort implements IntSorter {
 }
 ```
 
-You can read more about Kattis
-[here](https://www.kattis.com/universities). Information on the Quicksort
-task will appear [here](https://kth.kattis.com/courses/DD1338/alginda19) soon and you will be able to submit your implementation.
+#### Kattis Submission
 
-**Once you have a successful run, please copy the submission ID and put it in
-the [docs/submission.txt](docs/submission.txt) file.**
+**Submit your implementation [here](https://kth.kattis.com/courses/DD1338/algdat19)**. Please note this link may not yet be active, but just check back later. Remember to register for DD1338 in order for your submission to be valid.
+
+**Once you have a successful run, please copy the submission ID and put it in the [docs/submission.txt](docs/submission.txt) file.** There are no limits on the number of submissions, so you can try out your different variations of Quicksort.
 
 ### Week 2 - Empirical Evaluation
 In the second week, you will perform an empirical evaluation of your
