@@ -1,10 +1,10 @@
 ### Deadline:
-This work should be completed before the exercise on **Friday 29th March**.
+This work should be completed before the exercise on **Friday 27th March**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see
 the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-18/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
 
 ### Homework
 Study the following course literature:
@@ -30,10 +30,10 @@ you should:
 #### Buggy program 2
 [src/bug02.go](src/bug02.go)
 
-> **Assistant's requirement:** You are not allowed to remove the
-> `time.Sleep(10 * time.Millisecond)` statement in the `Print`
-> function. It is there to make the bug appear more readily,
-> but removing it is not a fix for the bug.
+> **Assistant's requirement:** You are not allowed to move or remove the
+> time.Sleep(10 * time.Millisecond) statement in the Print function. A
+> deterministic solution (e.g. using a channel or WaitGroup) is required and
+> removing the sleep is only a quick fix.
 
 ### Task 2 - Many Senders; Many Receivers
 The program [many2many.go](src/many2many.go) contains four

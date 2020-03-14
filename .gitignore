@@ -193,6 +193,9 @@ Temporary Items
 .apdisk
 
 ### WINDOWS ###
+# Windows executables
+*.exe
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
