@@ -17,6 +17,7 @@ import java.util.Random;
  *
  * @author Simon Larsén
  * @author Anton Lyxell
+ * @author Tobias Hansson
  * @version 2018-11-11
  */
 public class BoxProcessorTest {
