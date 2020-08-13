@@ -12,7 +12,8 @@ import java.util.stream.Collectors;
 /**
  * Test class for Reverse.
  *
- * @author Simon Larsén (replace with your name)
+ * @author Simon Larsén
+ * @author Tobias Hansson
  * @version 2017-08-08
  */
 public class ReverseTest {
@@ -110,6 +111,7 @@ public class ReverseTest {
     @Test
     public void reversedListIsEmptyWhenOriginalIsEmpty() {
         fail("Not implemented");
+        
     }
 
     @Test
