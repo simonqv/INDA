@@ -24,6 +24,7 @@ import java.util.NoSuchElementException;
  *
  * @author Simon Larsén
  * @author Anton Lyxell
+ * @author Tobias Hansson
  * @author (PUT YOUR NAME HERE)
  * @version 2018-12-20
  */
@@ -54,6 +55,7 @@ public class LinkedListTest {
     @Test
     public void sizeIsZeroWhenListIsEmpty() {
         fail("Not implemented");
+        
     }
 
     /**
