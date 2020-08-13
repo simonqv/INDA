@@ -55,7 +55,6 @@ public class LinkedListTest {
     @Test
     public void sizeIsZeroWhenListIsEmpty() {
         fail("Not implemented");
-        
     }
 
     /**
