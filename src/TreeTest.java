@@ -52,7 +52,7 @@ public class TreeTest {
         // If you are feeling adventurous, look at insertIsFalseForDuplicates
         // and try to implement this is as a stream!
         fail("Not implemented!");
-}
+    }
 
     @Test
     public void insertIsFalseForDuplicates() {
