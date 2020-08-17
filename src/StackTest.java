@@ -17,6 +17,7 @@ import java.util.stream.IntStream;
  * method. Be careful not to override ANY other methods!
  *
  * @author Simon Larsén
+ * @author Tobias Hansson
  * @version 2018-12-15
  */
 public abstract class StackTest {
