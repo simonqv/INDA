@@ -16,6 +16,7 @@ import java.util.stream.IntStream;
  * Implementing test classes must override the getIntegerSet method.
  *
  * @author Simon Larsén
+ * @author Tobias Hansson
  * @version 2018-12-16
  */
 public abstract class SetTest {
