@@ -2,23 +2,27 @@ Welcome to the first assignment of DD1338!
 
 ### Read the course instructions
 Before you start working on this assignment, make sure to read the
-[DD1338 specific course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions/tree/master/DD1338/README.md)
+[DD1338 specific course instructions](https://gits-15.sys.kth.se/inda-20/course-instructions/tree/master/DD1338/README.md)
 thorougly.
 
 It may also be a good idea to refresh your memory on the
-[general course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions).
+[general course instructions](https://gits-15.sys.kth.se/inda-20/course-instructions).
 
 ### Deadline
-This work should be completed before the exercise on **Friday 22th November**.
+This work should be completed before the exercise on **Friday 20th November**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-20/course-instructions#assignments).
 
-### Homework
-Study the following from the [course text](https://yourbasic.org/algorithms/) (online):
+### Preparation
+You must read and answer the questions in the OLI material:
 
-[Algorithms: What's the problem?](https://yourbasic.org/algorithms/algorithms/)
+- If you have not done so, goto https://kth.oli.cmu.edu/, signup and register for the course key `dd1338-ht20`
+- Note the course will be Available from Mon 16th November
+- Read Module 1: Algorithms
+
+You may wish to also read from our previous concise course text: [Algorithms: What's the problem?](https://yourbasic.org/algorithms/algorithms/)
 
 ### Github Task: List Processor
 In this assignment, you will perform basic list processing tasks using both the
@@ -144,7 +148,12 @@ class at [`ListProcessorTest.java`](src/ListProcessorTest.java). This
 is the actual reference test class that the assistants use to verify your code,
 meaning that if your code passes the tests, it's considered good enough in
 terms of functionality! For more information on how the unit tests are structured,
-refer to the [DD1338 specific course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions/tree/master/DD1338/README.md).
+refer to the [DD1338 specific course instructions](https://gits-15.sys.kth.se/inda-20/course-instructions/tree/master/DD1338/README.md).
+
+> **Assistant's note:** We have commented out two test cases as they deal with
+> fairness in shuffle algorithms. We talk about this next week, but if you are
+> curious you can uncomment them and try them, but do not worry if they do not
+> pass.
 
 ### Grading Criteria
 Each week we will communicate grading criteria through the [issue tracker](../../issues/). Grading criteria set the basic standards for a pass, komp or fail, so it is essential you review them each week. These will change over time as your skills develop, so make sure you read the grading criteria issue carefully and tick off all the requirements.
