@@ -1,14 +1,15 @@
 ### Deadline
-This work should be completed before the exercise on **Friday 29th November**.
+This work should be completed before the exercise on **Friday 27th November**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-20/course-instructions#assignments).
 
-### Homework
-Study the following:
+### Preparation
+You must read and answer the questions in the OLI material:
 
-- [The Danger of Naïveté](https://blog.codinghorror.com/the-danger-of-naivete/)
+- Read [Module 2: Sorting and Searching](https://kth.oli.cmu.edu/jcourse/webui/syllabus/module.do?context=d6b30f00ac1f08886fdb6f09d49d308b)
+  - If you have not done so, goto https://kth.oli.cmu.edu/, signup and register for the course key `dd1338-ht20`
 
 ### Github Task: Search & Sort
 In this assignment, you will investigate how to compare objects, implement a
@@ -157,6 +158,10 @@ fail("Not implemented");
 > the tests, you can be confident that you will not get komplettering on the
 > functionality of your code (style issues may still be cause for
 > komplettering).
+
+If you need a reminder of running unittests in Java, follow these guides:
+- [Running JUnit4 from the command line](https://gits-15.sys.kth.se/inda-20/course-instructions/blob/master/junit4_12_command_line.md)
+- [Using IntelliJ with JUnit4](https://www.youtube.com/watch?v=HU0Ittkjx4Y)
 
 ### Grading Criteria
 Each week we will communicate grading criteria through the [issue tracker](../../issues/). Grading criteria set the basic standards for a pass, komp or fail, so it is essential you review them each week. These will change over time as your skills develop, so make sure you read the grading criteria issue carefully and tick off all the requirements.
