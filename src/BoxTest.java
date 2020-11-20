@@ -1,3 +1,5 @@
+import java.lang.reflect.Method;
+
 import org.junit.Test;
 import org.junit.Before;
 import static org.junit.Assert.*;
@@ -72,5 +74,15 @@ public class BoxTest {
         assertThat(compareSmallToSmall, equalTo(0));
         assertThat(compareMediumToMedium, equalTo(0));
         assertThat(compareLargeToLarge, equalTo(0));
+    }
+
+    @Test
+    public void volumeHasCorrectReturnType() throws NoSuchMethodException {
+        // Arrange
+        Class<Box> c = Box.class;
+        Method m = c.getMethod("volume");
+        
+        // Act and Assert
+        assertTrue(m.getReturnType().equals(int.class));
     }
 }

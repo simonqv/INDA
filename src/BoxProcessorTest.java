@@ -251,7 +251,6 @@ public class BoxProcessorTest {
         assertThat(boxProcessor.binarySearch(list, new Box(0, 0, 0)),
             equalTo(-1));
     }
-
 }
 
 /**
