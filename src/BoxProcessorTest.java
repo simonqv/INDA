@@ -37,11 +37,15 @@ public class BoxProcessorTest {
     private Box[] evenArray;
     /* An array of odd length */
     private Box[] oddArray;
+    /* An array of length 1 */
+    private Box[] oneElArray;
 
     /* A list of even length */
     private List<Box> evenList;
     /* A list of odd length */
     private List<Box> oddList;
+    /* A list of length 1*/
+    private List<Box> oneElList;
 
     /**
      * Set up variables to be available for each test case.
@@ -56,8 +60,10 @@ public class BoxProcessorTest {
         boxFactory   = new BoxFactory();
         oddList      = boxFactory.boxList(ODD_LIST_LENGTH);
         evenList     = boxFactory.boxList(EVEN_LIST_LENGTH);
+        oneElList    = boxFactory.boxList(1);
         oddArray     = boxFactory.boxArray(ODD_LIST_LENGTH);
         evenArray    = boxFactory.boxArray(EVEN_LIST_LENGTH);
+        oneElArray   = boxFactory.boxArray(1);
     }
 
     /**
@@ -91,7 +97,13 @@ public class BoxProcessorTest {
      */
     @Test
     public void sortHasNoEffectWhenArrayHasSingleElement() {
-        fail("Not implemented");
+        // Arrange
+        Box[] actual = oneElArray;
+        Box[] expected = actual.clone();
+        // Act
+        boxProcessor.sort(actual);
+        // Assert
+        assertThat(actual, equalTo(expected));
     }
 
     /**
@@ -99,7 +111,13 @@ public class BoxProcessorTest {
      */
     @Test
     public void sortHasNoEffectWhenListHasSingleElement() {
-        fail("Not implemented");
+        // Arrange
+        List<Box> actual = oneElList;
+        List<Box> expected = new ArrayList<>(actual);
+        // Act
+        boxProcessor.sort(actual);
+        // Assert
+        assertThat(actual, equalTo(expected));
     }
 
     /**
@@ -140,7 +158,15 @@ public class BoxProcessorTest {
      */
     @Test
     public void sequentialSearchFindsAllElementsInArray() {
-        fail("Not implemented");
+        // Arrange
+        for (int i = 0; i < evenArray.length; i++) {
+            // Act, Assert
+            assertThat(boxProcessor.sequentialSearch(evenArray, evenArray[i]), equalTo(i));
+        }
+        for (int i = 0; i < oddArray.length; i++) {
+            // Act, Assert
+            assertThat(boxProcessor.sequentialSearch(oddArray, oddArray[i]), equalTo(i));
+        }
     }
 
     /**
@@ -149,7 +175,14 @@ public class BoxProcessorTest {
      */
     @Test
     public void sequentialSearchFindsAllElementsInList() {
-        fail("Not implemented");
+        for (int i = 0; i < evenList.size(); i++) {
+            // Act, Assert
+            assertThat(boxProcessor.sequentialSearch(evenList, evenList.get(i)), equalTo(i));
+        }
+        for (int i = 0; i < oddList.size(); i++) {
+            // Act, Assert
+            assertThat(boxProcessor.sequentialSearch(oddList, oddList.get(i)), equalTo(i));
+        }
     }
 
     /**
@@ -175,7 +208,7 @@ public class BoxProcessorTest {
         List<Box> list = boxFactory.boxList(0);
         // Act, Assert
         assertThat(boxProcessor.sequentialSearch(list, new Box(0, 0, 0)),
-            equalTo(-1));
+           equalTo(-1));
     }
 
     /**
@@ -184,7 +217,7 @@ public class BoxProcessorTest {
      */
     @Test
     public void binarySearchFindsAllElementsInEvenArray() {
-        // Arrange
+       // Arrange
         Arrays.sort(evenArray);
         for (int i = 0; i < evenArray.length; i++) {
             // Act, Assert
@@ -214,7 +247,12 @@ public class BoxProcessorTest {
      */
     @Test
     public void binarySearchFindsAllElementsInOddArray() {
-        fail("Not implemented");
+        // Arrange
+        Arrays.sort(oddArray);
+        for (int i = 0; i < oddArray.length; i++) {
+            // Act, Assert
+            assertThat(boxProcessor.binarySearch(oddArray, oddArray[i]), equalTo(i));
+        }
     }
 
     /**
@@ -223,7 +261,12 @@ public class BoxProcessorTest {
      */
     @Test
     public void binarySearchFindsAllElementsInOddList() {
-        fail("Not implemented");
+        // Arrange
+        Collections.sort(oddList);
+        for (int i = 0; i < oddList.size(); i++) {
+            // Act, Assert
+            assertThat(boxProcessor.binarySearch(oddList, oddList.get(i)), equalTo(i));
+        }
     }
 
     /**
@@ -306,14 +349,7 @@ class BoxFactory {
         return array;
     }
 
-    /**
-     * Returns a list of Box objects with random properties.
-     * The list is guaranteed to not contain duplicates.
-     *
-     * @param  size  the number of elements in the list
-     * @return       the list of Box objects
-     */
-    public List<Box> boxList(int size) {
+       public List<Box> boxList(int size) {
         return Arrays.asList(boxArray(size));
     }
 

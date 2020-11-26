@@ -2,7 +2,7 @@ import java.util.Objects;
 /**
  * The Box class models a three-dimensional box
  */
-public class Box {
+public class Box implements Comparable<Box>{
     private final int height;
     private final int width;
     private final int depth;
@@ -74,6 +74,16 @@ public class Box {
         }
         Box other = (Box) o;
         return this.volume() == other.volume();
+    }
+
+    @Override
+    public int compareTo(Box o) {
+        if (this.volume() > o.volume()) {
+            return 1;
+        } else if (this.volume() < o.volume()) {
+            return -1;
+        }
+        return 0;
     }
 
     /**
