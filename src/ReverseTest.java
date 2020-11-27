@@ -111,7 +111,6 @@ public class ReverseTest {
     @Test
     public void reversedListIsEmptyWhenOriginalIsEmpty() {
         fail("Not implemented");
-        
     }
 
     @Test

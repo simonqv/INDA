@@ -1,13 +1,18 @@
 ### Deadline:
-This work should be completed before the exercise on **Friday 6th December**.
+This work should be completed before the exercise on **Friday 4th December**.
 Woohoo! Last assignment of the year :)
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-20/course-instructions#assignments).
 
-### Homework
-Study the following from the [course text](https://yourbasic.org/algorithms):
+### Preparation
+You must read and answer the questions in the OLI material:
+
+- Read [Module 3: Complexity](https://kth.oli.cmu.edu/jcourse/webui/syllabus/module.do?context=d6b30f08ac1f0888332317c8ded52f20)
+  - If you have not done so, goto https://kth.oli.cmu.edu/, signup and register for the course key `dd1338-ht20`
+
+You may also want to read the former course text:
 
 - [How to analyze time complexity: Count your steps](https://yourbasic.org/algorithms/time-complexity-explained/)
 - [Big O notation: definition and examples](https://yourbasic.org/algorithms/big-o-notation-explained/)
@@ -18,7 +23,7 @@ Complete all the exercises and do the testing!
 Please commit any Java code developed to the [`src`](src) folder and any
 written answers to the [`docs`](docs) folder.
 
-#### Exercise 1
+### Exercise 1
 To develop a sense of the relationship between problem size and an algorithm's
 order of growth, complete the table of running times below (we shall
 presume that time is the amount of nanoseconds).
@@ -33,7 +38,9 @@ presume that time is the amount of nanoseconds).
 
 Assume that logarithms are base 2 when you see log n. Give n with 1-2
 significant digits. Also assume that the computer performs **1 operation per
-nanosecond**. The middle row has been given to act as guidance!
+nanosecond**. The middle row has been given to act as guidance! For example a
+problem size of 1000 and an algorithm with complexity n (linear growth) will
+take 1000 nanoseconds to complete.
 
 Use [e-notation](https://en.wikipedia.org/wiki/Scientific_notation#E-notation)
 for large values (e.g. `3e9` instead of `3*10^9` or `3000000000`)
@@ -57,11 +64,15 @@ example, `factorial(100)` will calculate `100!`, and `log2(1000)` will
 calculate the base `n` logarithm of 1000 (e.g. replace `n` with `2` for
 base 2).
 
-#### Exercise 2
-Let T(n) be the time in nanoseconds (1e-9 seconds) to solve a given
-problem of size n with a certain algorithm. For each function T(n) and for each
-time t in the table, give the largest value of n, for which the algorithm can
-solve the problem in time t.
+### Exercise 2
+Let T(n) be the time in nanoseconds (1e-9 seconds) to solve a given problem of
+size n with a certain algorithm. As before in [Exercise 1](#exercise-1), assume
+that the computer performs **1 operation per nanosecond**.
+
+For each function T(n) and for each time t in the table, give the largest value
+of n, for which the algorithm can solve the problem in time t. For example, if
+we have an algorithm with linear complexity n, and one hour of time, then we can
+simply count the number of nanoseconds to discover the problem size: 60 minutes * 60 seconds * 1e9 nanoseconds = 3.6e12.
 
 Use [e-notation](https://en.wikipedia.org/wiki/Scientific_notation#E-notation)
 for large values (e.g. `3e9` instead of `3*10^9` or `3000000000`)
@@ -88,7 +99,7 @@ from the 1 hour cell of `logn` if you want the actual symbol, or just write
 > solution is given by typing `n*log2(n) = x, solve for n` into
 > [Wolfram Alpha](https://www.wolframalpha.com) :D.
 
-#### Exercise 3
+### Exercise 3
 Arrange the functions in the following list in ascending order based on their
 rate of growth. That is, the function f(n) should come before the function g(n)
 in the list if f(n) is O(g(n)).
@@ -113,7 +124,7 @@ n (n + 1) / 2 = Θ(n<sup>3</sup>)
 
 n (n + 1) / 2 = Ω(n)
 
-#### Exercise 4
+### Exercise 4
 Give a tight O-estimation, as a function of n, of the worst case time
 complexity of the following five loops:
 
@@ -151,7 +162,7 @@ Explain why (n+1)<sup>3</sup> is O(n<sup>3</sup>). Use the following
 definition: f(n) is O(g(n)) if there exists positive constants c and
 n<sub>0</sub> such that f(n) &le; c &times; g(n) for all n &ge; n<sub>0</sub>.
 
-#### Exercise 6
+### Exercise 6.1
 The following algorithm reverses a collection.  Answer the following:
 
 - What is the basic operation for this algorithm?
@@ -159,30 +170,32 @@ The following algorithm reverses a collection.  Answer the following:
 
 ```python
 Reverse (A):
-   # Input: an array A storing n elements.
-   # Output: the same array with the elements in reversed order.
-   for i = 1 to n-1
+    # Input: an array A storing n elements.
+    # Output: the same array with the elements in reversed order.
+    for i = 1 to n-1
        x = A[i]
        for j = i down to 1
            A[j] = A[j-1]
        A[0] = x
 ```
 
+### Exercise 6.2
 Design a linear time O(n) algorithm to reverse a collection and implement two
 versions in Java, the first with arrays and the second with lists.  
 
 Your implementation should count the number of basic operations to ensure that
-the complexity is O(n) for a given collection of size n. Please implement
-the two methods in the code skeleton in [`src/Reverse.java`](src/Reverse.java)
-(and don't forget to remove the exceptions that are currently thrown!).
-See the [Testing](#testing) section for instructions on how to test your
-implementations.
+the complexity is O(n) for a given collection of size n.
+
+Please implement the two methods in the code skeleton in
+[`src/Reverse.java`](src/Reverse.java) (and don't forget to remove the
+exceptions that are currently thrown!). See the [Testing](#testing) section for
+instructions on how to test your implementations.
 
 > **Assistant's requirement:** Both versions of `reversed` should return a
 > reversed _copy_ of the argument, and are _not_ allowed to mutate the
 > argument.
 
-#### Exercise 7
+### Exercise 7
 Insertion Sort and Selection Sort have similar worst case runtime complexity
 O(n<sup>2</sup>).  Explain:
 
@@ -206,4 +219,8 @@ fail("Not implemented!");
 Remove these and implement the tests!
 
 ### Grading Criteria
-Each week we will communicate grading criteria through the [issue tracker](../../issues/). Grading criteria set the basic standards for a pass, komp or fail, so it is essential you review them each week. These will change over time as your skills develop, so make sure you read the grading criteria issue carefully and tick off all the requirements.
+Each week we will communicate grading criteria through the [issue
+tracker](../../issues/). Grading criteria set the basic standards for a pass,
+komp or fail, so it is essential you review them each week. These will change
+over time as your skills develop, so make sure you read the grading criteria
+issue carefully and tick off all the requirements.
