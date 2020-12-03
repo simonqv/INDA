@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 /**
  * A class for reversing List and array types.
@@ -15,8 +16,14 @@ public class Reverse {
      * @return A reversed copy of array.
      */
     public int[] reversed(int[] array) {
-        // Remove this exception and implement your algorithm
-        throw new UnsupportedOperationException("Method not implemented!");
+        int[] reversed = new int[array.length];
+        int counter = 0;
+        for (int i = 0; i < array.length; i++) {
+            reversed[i] = array[array.length-1-i];
+            counter ++;
+        }
+        System.out.println(counter);
+        return reversed;
     }
 
     /**
@@ -27,7 +34,13 @@ public class Reverse {
      * @return A reversed copy of list.
      */
     public List<Integer> reversed(List<Integer> list) {
-        // Remove this exception and implement your algorithm
-        throw new UnsupportedOperationException("Method not implemented!");
+        List<Integer> reversed = new ArrayList<>(list);
+        int counter = 0;
+        for (int i = 0; i < list.size(); i++) {
+            reversed.set(i, list.get(list.size()-1-i));
+            counter ++;
+        }
+        System.out.println("Antal loopar" + counter);
+        return reversed;
     }
 }

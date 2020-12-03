@@ -110,30 +110,66 @@ public class ReverseTest {
 
     @Test
     public void reversedListIsEmptyWhenOriginalIsEmpty() {
-        fail("Not implemented");
+        // Arrange
+        List<Integer> emptyList = new ArrayList<>();
+
+        // Act
+        List<Integer> reversedEmptyList = reverse.reversed(emptyList);
+
+        // Assert
+        assertThat(reversedEmptyList.size(), equalTo(0));
     }
 
     @Test
     public void reversedListIsSameLengthAsOriginalWhenNonEmpty() {
-        fail("Not implemented");
+        // Act
+        List<Integer> reversedOddList = reverse.reversed(oddLengthList);
+        List<Integer> reversedEvenList = reverse.reversed(evenLengthList);
+
+        // Assert
+        assertThat(reversedOddList.size(), equalTo(oddLengthSequenceLength));
+        assertThat(reversedEvenList.size(), equalTo(evenLengthSequenceLength));
     }
 
     @Test
     public void reversedListDoesNotMutateOriginalWhenNonEmpty() {
-        fail("Not implemented");
+        // Arrange
+        List<Integer> oddListCopy = new ArrayList<>(oddLengthList);
+        List<Integer> evenListCopy = new ArrayList<>(evenLengthList);
+
+        // Act
+        reverse.reversed(oddLengthList);
+        reverse.reversed(evenLengthList);
+
+        // Assert
+        assertThat(oddListCopy, equalTo(oddLengthList));
+        assertThat(evenListCopy, equalTo(evenLengthList));
     }
 
     @Test
     public void reversedListIsReverseOfOriginalWhenNonEmpty() {
-        fail("Not implemented");
+        // Act
+        List<Integer> reversedOddList = reverse.reversed(oddLengthList);
+        List<Integer> reversedEvenList = reverse.reversed(evenLengthList);
+
+        // Assert
+        assertReversed(oddLengthList, reversedOddList);
+        assertReversed(evenLengthList, reversedEvenList);
     }
 
     @Test
     public void reversedListIsEqualToOriginalWhenLengthIsOne() {
-        fail("Not implemented");
+        // Arrange
+        List<Integer> singleElementList = new ArrayList<>(1338);
+
+        // Act
+        List<Integer> reversedSingleElementList = reverse.reversed(singleElementList);
+
+        // Assert
+        assertThat(singleElementList, equalTo(reversedSingleElementList));
     }
 
-    /**
+    /*
      * Helper methods.
      */
 
@@ -156,7 +192,7 @@ public class ReverseTest {
         return list.stream().mapToInt(Integer::valueOf).toArray();
     }
 
-    /**
+    /*
      * Helper assert methods.
      */
 
