@@ -102,16 +102,16 @@ Then your task is to:
 #### Exercise Inh.3
 Answer these questions about the newsfeed project in [`docs`](docs):
 
-- What behaviour happens if you remove the `extends` keyword from the class definition of `EventPost` then call `NewsFeed.addPost`?
-- What behaviour happens if you remove `super()` from the constructor of `EventPost` then call `NewsFeed.show`?
-- What behaviour happens if you remove `super.display()` from the display methods `EventPost`? then call `NewsFeed.show`?
+- What behaviour happens if you remove the `extends Post` from the class definition of `EventPost` then call `NewsFeed.addPost`? Explain why you think this happens.
+- What behaviour happens if you remove `super()` from the constructor of `EventPost` then call `NewsFeed.show`? Explain why you think this happens.
+- What behaviour happens if you remove `super.display()` from the display methods `EventPost`? then call `NewsFeed.show`? Explain why you think this happens.
 - When we have two classes with an inheritance relationship and they have a method with the same signature, what is this called?
 
 > **Assistant's note:** Don't forget to revert these changes so that newsfeed works on submission :)
 
 ### Induction Exercises
 
-#### Exercise I.1
+#### Exercise Ind.1
 
 Using proof by induction, prove the following statements (assume _n_ is a natural number).
 
@@ -127,7 +127,7 @@ Using proof by induction, prove the following statements (assume _n_ is a natura
 
 ```
 
-#### Exercise I.2
+#### Exercise Ind.2
 Below are two algorithms that calculate x<sup>n</sup>, where x is a real number
 and n is a non-negative integer. You are to:
 
