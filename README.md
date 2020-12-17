@@ -102,12 +102,12 @@ Then your task is to:
 #### Exercise Inh.3
 Answer these questions about the newsfeed project in [`docs`](docs):
 
-- What behaviour happens if you remove the `extends Post` from the class definition of `EventPost` then call `NewsFeed.addPost`? Explain why you think this happens.
-- What behaviour happens if you remove `super()` from the constructor of `EventPost` then call `NewsFeed.show`? Explain why you think this happens.
-- What behaviour happens if you remove `super.display()` from the display methods `EventPost`? then call `NewsFeed.show`? Explain why you think this happens.
+- What behaviour happens if you removed the `extends Post` from the class definition of `EventPost` then call `NewsFeed.addPost`? Explain why you think this happens.
+- What behaviour happens if you removed `super()` from the constructor of `EventPost` then call `NewsFeed.show`? Explain why you think this happens.
+- What behaviour happens if you removed `super.display()` from the display methods `EventPost`? then call `NewsFeed.show`? Explain why you think this happens.
 - When we have two classes with an inheritance relationship and they have a method with the same signature, what is this called?
 
-> **Assistant's note:** Don't forget to revert these changes so that newsfeed works on submission :)
+> **Assistant's note:** Don't forget to revert these changes so that newsfeed works on submission - in fact you have to revert each one to see a difference between each question! :)
 
 ### Induction Exercises
 
