@@ -1,29 +1,30 @@
 ### Deadline:
-This work should be completed before the exercise on **Tuesday 21st January**.
+This work should be completed before the exercise on **Friday 22nd January**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-20/course-instructions#assignments).
 
-### Homework
-Study all the following course literature:
+### Preparation
+You must read and answer the questions in the OLI material:
 
-* _Objects first with Java 5th ed (6th ed)_: Chapter 8 (Chapter 10) Improving
-  Structure with Inheritance
-  - Parenthesized chapter/exercise numbers are for the 6th edition, while those
-  without are for the 5th.
+- Read [Module 4: Correctness](https://kth.oli.cmu.edu/jcourse/webui/syllabus/module.do?context=d6b30f27ac1f0888043b83b2275e963e) note: OLI material is underdevelopment this module will appear in Jan 2021
+  - If you have not done so, goto https://kth.oli.cmu.edu/, signup and register for the course key `dd1338-ht20`
+
+You may also want to read the former course text:
+
 * [Loop Invariants Explained](https://yourbasic.org/algorithms/loop-invariants-explained/)
 * [Induction and Recursive Functions](https://yourbasic.org/algorithms/induction-recursive-functions/)
 * [Time Complexity for Recursive Functions](https://yourbasic.org/algorithms/time-complexity-recursive-functions/)
 
-### Github Task
-* Complete exercises 8.12 and 8.14 -- 8.16 (10.12 and 10.14 -- 10.16)
-* Complete exercise 8.XX
 
 Please commit any Java code developed to the [`src`](src) folder and any
 written answers to the [`docs`](docs) folder.
 
-#### Exercise 8.12 (10.12)
+### Inheritance Exercises
+
+#### Exercise Inh.1
+
 Assume that we have four classes: `Person`, `Teacher`, `Student`, and
 `PhDStudent`. `Teacher` and `Student` are both subclasses of `Person`.
 `PhDStudent` is a subclass of `Student`.
@@ -60,15 +61,53 @@ s1 = phd1;
 phd1 = s1;
 ```
 
-#### Exercise 8.14 (10.14)
-What has to change in the `NewsFeed` class when another `Post` subclass (for
-example, a class `EventPost`) is added? Why?
+#### Exercise Inh.2 (src - use `newsfeed`)
 
-#### Exercise 8.16 (10.16)
-Go back to the lab-classes project from Chapter 1. Add instructors to the
-project (every lab class can have many students and a single instructor). Use
-inheritance to avoid code duplication between students and instructors (both
-have a name, contact details, etc.).
+The newsfeed project simulates a social media application and uses inheritance to reduce code duplication and improve its software architecture. Review the source code in [`src/newsfeed`](src/newsfeed) and make sure the application works as expected. You can either create your own `main` method in `NewsFeed` to simulate using the newsfeed application, or use an interactive tool like BlueJ instead, e.g.
+
+```Java
+public class NewsFeed {
+
+    // ...
+
+    public static void main(String[] args) {
+        NewsFeed app = new NewsFeed();
+        app.addPost(new PhotoPost("Alice", "photo.jpg", "sunset over the sea"));
+        // add more posts
+        app.show();
+
+    }
+}
+```
+
+Then your task is to:
+
+- Create a new type of post, `EventPost`, that _inherits_ from `Post`.
+- `EventPost` should have additional fields: `String title`, `String location` and `LocalDate date` to model where and when the event occurs.
+- Make sure you follow the example in `PhotoPost` and include `super()` in the constructor method for `EventPost`.
+- The `display` method of `EventPost` should print out the above fields in a nice format.
+- The `display` method also needs to call `Post.display()` to work correctly. Include `super.display();` as the final line in your `display` method.
+- Confirm you can add instances of `EventPost` to the newsfeed application and display it's fields, and its inherited fields.
+
+> **Assistant's note:** LocalDate can be found in the java.time package. To use:
+> ```java
+> import java.time.*;
+> ...
+> LocalDate date = LocalDate.of(2021, 1, 1);
+> System.out.println(date.toString());
+> ```
+>
+> Note the use of a class method `of` to return an instance.
+
+#### Exercise Inh.3
+Answer these questions about the newsfeed project in [`docs`](docs):
+
+- What behaviour happens if you remove the `extends` keyword from the class definition of `EventPost` then call `NewsFeed.addPost`?
+- What behaviour happens if you remove `super()` from the constructor of `EventPost` then call `NewsFeed.show`?
+- What behaviour happens if you remove `super.display()` from the display methods `EventPost`? then call `NewsFeed.show`?
+- When we have two classes with an inheritance relationship and they have a method with the same signature, what is this called?
+
+> **Assistant's note:** Don't forget to revert these changes so that newsfeed works on submission :)
 
 ### Induction Exercises
 
