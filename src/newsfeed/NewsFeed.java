@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -42,5 +43,14 @@ public class NewsFeed {
             post.display();
             System.out.println();
         }
+    }
+
+    public static void main(String[] args) {
+        NewsFeed app = new NewsFeed();
+        app.addPost(new PhotoPost("Simon", "cat.jpg", "meow!"));
+        app.addPost(new MessagePost("Hanna", "I'm hungry"));
+        app.addPost(new EventPost("Pelle", "Birthday Party", "Gamla Stan", LocalDate.of(2021, 1, 3)));
+
+        app.show();
     }
 }
