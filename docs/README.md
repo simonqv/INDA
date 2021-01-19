@@ -77,7 +77,6 @@ Student can't be assigned to a PhDStudent.
 
 
 #### Exercise Inh.3
-Answer these questions about the newsfeed project in [`docs`](docs):
 
 - What behaviour happens if you removed the `extends Post` from the class definition of `EventPost` then call `NewsFeed.addPost`? Explain why you think this happens.
 - What behaviour happens if you removed `super()` from the constructor of `EventPost` then call `NewsFeed.show`? Explain why you think this happens.
