@@ -86,7 +86,78 @@ Student can't be assigned to a PhDStudent.
 > **Assistant's note:** Don't forget to revert these changes so that newsfeed works on submission - in fact you have to revert each one to see a difference between each question! :)
 
 Answers:    
-- EventPost would then not inherit anything from Post and would lose username, author, and you would not be able to access the methods from Post.
+- EventPost would then not inherit anything from Post and would lose username, author, and you would not be able to access the methods from Post. 
 - It won't compile because it is trying to access a constructor in Post that doesn't need an author, and no such constructor exists. If a constructor without parameters is added to `Post` it will compile and replace author and username with null. It would then print out something like "null went to ____".
 - It won't access the display method in post, which results in it not printing out user, when it was posted and the comments. You need `super` to access that method from the superclass/parent. 
 - Override. The sub class overrides the parent class with its new method.
+
+
+#### Exercise Ind.2
+Below are two algorithms that calculate x<sup>n</sup>, where x is a real number
+and n is a non-negative integer. You are to:
+
+**a.** Argue the correctness of the algorithms using a loop invariant or proof
+by induction.
+
+**b.** Calculate the time-complexity as a function of n for both algorithms.
+Give the result using Big-O notation.
+
+```java
+double expIterative(double x, int n) {
+    double res = 1.0;
+
+    for (int i = 0; i < n; i++) {
+        res *= x;
+    }
+    return res;
+}
+```
+> **Assistant's note:** Try to find a correlation between the loop counter `i`
+> and the `res` variable. A loop invariant is most appropriate for this
+> algorithm.
+
+```java
+double expRecursive(double x, int n) {
+    if (n <= 4) {
+        return expIterativ(x, n);
+    }
+
+    return expRecursive(x, n/2) *
+           expRecursive(x, (n + 1)/2);
+}
+```
+> **Assistant's note:** Even if you haven't managed to complete the previous
+> proof, assume that `expIterative(x, n)` has been proven to be correct for any
+> x &#8712; **R** and `n >= 0`. Furthermore, remember that integer divison
+> always rounds off toward 0, and consider the two cases when `n` is odd and
+> when `n` is even.  A proof by induction is most appropriate for this
+> algorithm.
+
+
+**Answers:**    
+**a.**  
+**for expIterative:**   
+The loop invariant could be ``res = 1.0 * X ^ (i + 1)``. After execution this would become `res = 1.0 * X ^ n` which is what we want.
+During the loop res will be reassigned to new values, X to the power of the number of iterations. And before the loop it will hold because res will be equal to 1, (X^0)    
+
+**for expRecursive:**   
+Base Case: n = 4: expRecursive(x,4) = expIterative(x,4) = x^4.  
+Inductive Step: Assume that it holds for n=k>4: expRecursive(x,k) = expRecursive(x,k/2) * expRecursive(x, (k+1)/2) = x^k    
+Now show this for k+1.  
+expRecursive(x,k+1) = [Assumption] = x^(k+1) = (x^k) * (x^1) = expRecursive(x,k) * expRecursive(x,1) = expRecursive(x,k) * expIterative(x,1)    
+Q.E.D
+
+**b.**  
+**Iterative one:**  
+T(n) = O(n) 
+It is linear, there's only one loop that it iterates through. You can count each iteration. 
+
+**Recursive one:**  
+Using Master Theorem: T(n) = aT(n/b)+n^c, if n > 1 and = d if n = 1.    
+a = 2 (number of recursive branches)    
+b = 2 (fraction size of sub problems)   
+c = 1 (exponent of additional work to be done)  
+
+T(n) = O(n^c log(n)) (if a = b^c. 2 = 2^1)
+
+The time-complexity is O(n log(n)) 
