@@ -1,21 +1,18 @@
 ### Deadline:
-This work should be completed before the exercise on **Monday 27th January**.
+This work should be completed before the exercise on **Monday 29th January**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-20/course-instructions#assignments).
 
-### Homework
-Study the following course literature:
+### Preparation
+You must read and answer the questions in the OLI material:
 
-* _Objects first with Java 5th ed (6th ed)_: Chapter 9 (Chapter 11) Improving
-  Structure with Inheritance
-  - Parenthesized chapter/exercise numbers are for the 6th edition, while those
-  without are for the 5th.
+- Read [Module 5: Lists](https://kth.oli.cmu.edu/jcourse/webui/syllabus/module.do?context=d6b30f2aac1f088857bec8a305dd8829) note: OLI material is underdevelopment through period 3!
+  - If you have not done so, goto https://kth.oli.cmu.edu/, signup and register for the course key `dd1338-ht20`
 
-### Github Task
-* Complete exercises 9.11 -- 9.16 (11.11 - 11.16) ([Task 1](#task-1---inheritance))
-* Complete the exercises on the linked list ([Task 2](#task-2---linked-lists)).
+You may also want to read the former course text:
+- Objects first with Java 5th ed (or 6th ed): Chapter 9 (or Chapter 11) Improving Structure with Inheritance
 
 Please commit any Java code developed to the [`src`](src) folder and any
 written answers to the [`docs`](docs) folder.
