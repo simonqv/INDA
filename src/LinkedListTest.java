@@ -54,7 +54,8 @@ public class LinkedListTest {
      */
     @Test
     public void sizeIsZeroWhenListIsEmpty() {
-        fail("Not implemented");
+        // Act, Assert
+        assertThat(list.size(), equalTo(0));
     }
 
     /**
@@ -85,7 +86,12 @@ public class LinkedListTest {
      */
     @Test
     public void addLastIncrementsSizeByOne() {
-        fail("Not implemented");
+        for (int i = 0; i < elements.length; i++) {
+            // Act
+            list.addLast(elements[i]);
+            // Assert
+            assertThat(list.size(), equalTo(i+ 1 ));
+        }
     }
 
     /**
@@ -98,6 +104,7 @@ public class LinkedListTest {
      */
     @Test (expected=NoSuchElementException.class)
     public void removeFirstThrowsExceptionWhenListIsEmpty() {
+        // Act
         list.removeFirst();
     }
 
@@ -147,8 +154,10 @@ public class LinkedListTest {
      */
     @Test (expected=NoSuchElementException.class)
     public void getFirstThrowsExceptionWhenListIsEmpty() {
-        fail("Not implemented");
+        // Act
+        list.getFirst();
     }
+
 
     /**
      * Assert that getting the first element of a list
@@ -347,7 +356,17 @@ public class LinkedListTest {
      */
     @Test
     public void isEmptyIsTrueWhenAllElementsHaveBeenRemovedByRemoveFirst() {
-        fail("Not implemented");
+        // Arrange
+        for (int element : elements) {
+            list.addLast(element);
+        }
+        // Act
+        int size = list.size();
+        for (int i = 0; i < size; i++) {
+            list.removeFirst();
+        }
+        // Assert
+        assertTrue(list.isEmpty());
     }
 
     /**
@@ -377,7 +396,15 @@ public class LinkedListTest {
      */
     @Test
     public void clearSetsSizeToZero() {
-        fail("Not implemented");
+        // Arrange
+        for (int element : elements) {
+            list.addLast(element);
+        }
+        // Act
+        list.clear();
+        // Assert
+        assertThat(list.size(), equalTo(0));
+        assertTrue(list.isEmpty());
     }
 
     /**

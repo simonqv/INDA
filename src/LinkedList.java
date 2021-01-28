@@ -1,8 +1,12 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.NoSuchElementException;
+
 /**
  * A singly linked list.
  * 
- * @author (NAME HERE PLZ)
- * @version (DATE HERE PLZ)
+ * @author (Simon Larspers Qvist)
+ * @version (28/01/21)
  */
 public class LinkedList<T> { 
     private ListElement<T> first;   // First element in list.
@@ -20,13 +24,20 @@ public class LinkedList<T> {
             this.data = data;
             this.next = null;
         }
+
+        public ListElement(T data, ListElement<T> next) {
+            this.data = data;
+            this.next = next;
+        }
     }
     
     /**
      * Creates an empty list.
      */
     public LinkedList() {
-        // TODO
+        size = 0;
+        first = null;
+        last = null;
     }
 
     /**
@@ -35,7 +46,13 @@ public class LinkedList<T> {
      * @param element An element to insert into the list.
      */
     public void addFirst(T element) {
-        // TODO
+        ListElement<T> prevFirst = first;
+        ListElement<T> newFirst = new ListElement<>(element, prevFirst);
+        first = newFirst;
+        if (size == 0 && last == null) {
+            last = newFirst;
+        }
+        size++;
     }
 
     /**
@@ -44,7 +61,15 @@ public class LinkedList<T> {
      * @param element An element to insert into the list.
      */
     public void addLast(T element) {
-        // TODO
+        ListElement<T> prevLast = last;
+        ListElement<T> newLast = new ListElement<>(element);
+        last = newLast;
+        if (size == 0) {
+            first = last;
+        } else {
+            prevLast.next = last;
+        }
+        size ++;
     }
 
     /**
@@ -52,8 +77,9 @@ public class LinkedList<T> {
      * @throws NoSuchElementException if the list is empty.
      */
     public T getFirst() {
-        // TODO
-        return null;
+        if (size == 0) throw new NoSuchElementException();
+
+        return first.data;
     }
 
     /**
@@ -61,8 +87,9 @@ public class LinkedList<T> {
      * @throws NoSuchElementException if the list is empty.
      */
     public T getLast() {
-        // TODO
-        return null;
+        if (size == 0) throw new NoSuchElementException();
+
+        return last.data;
     }
 
     /**
@@ -73,8 +100,16 @@ public class LinkedList<T> {
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
     public T get(int index) {
-        // TODO
-        return null;
+        if (index < 0 || index >= size) {
+            throw new IndexOutOfBoundsException();
+        }
+        ListElement<T> temp = first;
+
+        for (int i = 0; i < index; i++) {
+            temp = temp.next;
+        }
+
+        return temp.data;
     }
 
     /**
@@ -84,23 +119,34 @@ public class LinkedList<T> {
      * @throws NoSuchElementException if the list is empty.
      */
     public T removeFirst() {
-        // TODO
-        return null;
+        if (first == null) {
+            throw new NoSuchElementException();
+        }
+        T removedFirst = first.data;
+        ListElement<T> newFirst = first.next;
+        first = newFirst;
+        if (newFirst == null) {
+            last = null;
+        }
+        size --;
+
+        return removedFirst;
     }
 
     /**
      * Removes all of the elements from the list.
      */
     public void clear() {
-        // TODO
+        first = null;
+        last = null;
+        size = 0;
     }
 
     /**
      * @return The number of elements in the list.
      */
     public int size() {
-        // TODO
-        return 0;
+        return size;
     }
 
     /**
@@ -128,7 +174,15 @@ public class LinkedList<T> {
      * @return A string representing the list.
      */
     public String toString() {
-        // TODO
-        return null;
+        List<T> elemList = new ArrayList<>();
+        ListElement<T> elem = first;
+        if (elem != null) {
+            while (elem != null) {
+                elemList.add(elem.data);
+                elem = elem.next;
+            }
+        }
+
+        return elemList.toString();
     }
 }
