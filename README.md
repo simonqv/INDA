@@ -1,22 +1,24 @@
 ### Deadline:
-This work should be completed before the exercise on **Friday 31st January**.
+This work should be completed before the exercise on **Friday 5th February**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-20/course-instructions#assignments).
 
-### Homework
-Study the following course literature:
+### Preparation
+You must read and answer the questions in the OLI material:
 
-* _Objects First with Java, 5th ed:_ Chapter 10: Further Abstraction Techniques
+- Read [Module 5: Stacks](https://kth.oli.cmu.edu/jcourse/webui/syllabus/module.do?context=d6b30f2eac1f088848253b52b0125955) note: OLI material is underdevelopment through period 3!
+  - If you have not done so, goto https://kth.oli.cmu.edu/, signup and register for the course key `dd1338-ht20`
 
-or
+Self-study regular expressions:
+- Follow this [Tutorial on Regular Expressions](http://www.vogella.com/tutorials/JavaRegularExpressions/article.html)
 
-* _Objects First with Java, 6th ed:_ Chapter 12 Further Abstraction Techniques
+You may also want to read the former course text:
+- Objects first with Java 5th ed (or 6th ed): Chapter 10 (or Chapter 12) Further Abstraction Techniques
 
-and
-
-* [Tutorial on Regular Expressions](http://www.vogella.com/tutorials/JavaRegularExpressions/article.html), Lars Vogel
+Please commit any Java code developed to the [`src`](src) folder and any
+written answers to the [`docs`](docs) folder.
 
 ### Task 1 - Create a Stack Interface
 A stack is an abstract data type (in Java "collection") that usually supports
@@ -50,11 +52,13 @@ behavior of the stack, which is illustrated in the image below:
 ![push and pop](https://upload.wikimedia.org/wikipedia/commons/b/b4/Lifo_stack.png)
 
 **Your task** is to describe this abstract data type in Java by writing an
-interface named Stack, using the exact 5 headers given above. Don't forget the
+interface named `Stack`, using the exact 5 method headers given above. Don't forget the
 documentation, it's extra important in an interface, where there's no program
 code.
 
 > **Assistant's requirement:** The interface must use generics!
+
+> **Assistant's requirement:** The interface must be called Stack, not StackInterface!
 
 > **Assistant's note:** All members of an interface in Java are implicitly
 > `public` (unless explicitly declared otherwise). It is therefore standard
@@ -73,11 +77,12 @@ your `LinkedList` implementation from last week (i.e. copy the file
 interface. Then implement the methods required by said interface. Note that
 `LinkedList`, if fully completed, should have _all_ of the required
 functionality already, so it is simply a matter of adding some new public
-methods that call other, already implemented methods.  Having one concrete
-class implement several interfaces is a common pattern in Java. It has the
-upside that code duplication is much reduced, as many interfaces share a lot of
-functionality. The downside is, however, that the API of that single concrete
-class may become quite polluted.
+methods that call other, already implemented methods.  
+
+Having one concrete class implement several interfaces is a common pattern in
+Java. It has the upside that code duplication is much reduced, as many
+interfaces share a lot of functionality. The downside is, however, that the API
+of that single concrete class may become quite polluted.
 
 > **Assistant's requirement:** All methods defined by the `Stack` interface
 > must be O(1) in the worst case!
@@ -93,9 +98,10 @@ class may become quite polluted.
 ### Task 3 - Evaluation of postfix expressions
 A stack is a very useful data type that, among other things, is used to
 implement method calls in programming languages. This week's assignment is not
-to implement a whole language however, but it does involve similar concepts.
-One of those concepts is _parsing_, which is the act of taking a sequence of
-symbols and figuring out what they mean.
+to implement a whole language however, but it does involve similar concepts. One
+of those concepts is expression evaluation, which is the act of parsing a
+sequence of operators (e.g. + - / *) and operands (e.g. 1 2 3) and figuring out
+what the correct result of the expression is.
 
 You will write a program that can calculate arithmetic expressions written in
 postfix notation. Postfix is simple way to write arithmetic expressions that
@@ -132,7 +138,7 @@ column the stack (_after_ the result has been pushed).
 | `-3`                 | `-3`                  | `{2, -3}` |
 | `+`                  | `2 + -3 = -1`         | `{-1}`    |
 | `4`                  | `4`                   | `{-1, 4}` |
-| `*`                  | `4 * -1 = -4`         | `{-4}`    |
+| `*`                  | `-1 * 4 = -4`         | `{-4}`    |
 
 When the whole expression has been processed, there should be a single element
 left on the stack, which is the result.
