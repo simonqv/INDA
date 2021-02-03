@@ -76,12 +76,14 @@ public abstract class StackTest {
 
     @Test(expected = EmptyStackException.class)
     public void topExceptionWhenStackIsEmpty() {
-        fail("Not implemented");
+        // Act
+        emptyStack.top();
     }
 
     @Test(expected = EmptyStackException.class)
     public void popExceptionWhenStackIsEmpty() {
-        fail("Not implemented");
+        // Act
+        emptyStack.pop();
     }
 
     @Test
@@ -98,12 +100,23 @@ public abstract class StackTest {
 
     @Test
     public void popFiveTimesDecreasesSizeByFive() {
-        fail("Not implemented");
+        // Arrange
+        int originalSize = stack.size();
+        // Act, Assert
+        popElements(stack, 5);
+        assertThat(stack.size(), equalTo(originalSize - 5));
+
     }
 
     @Test
     public void pushFiveTimesIncreasesSizeByFive() {
-        fail("Not implemented");
+        // Arrange
+        int originalSize = stack.size();
+        // Act, Assert
+        for (int i = 0; i < 5; i++) {
+            stack.push(i);
+        }
+        assertThat(stack.size(), equalTo(originalSize + 5));
     }
 
     @Test
@@ -146,12 +159,16 @@ public abstract class StackTest {
 
     @Test
     public void sizeIs0WhenStackIsEmpty() {
-        fail("Not implemented");
+        // Act, Assert
+        assertThat(emptyStack.size(), equalTo(0));
     }
 
     @Test
     public void sizeIs0WhenAllElementsHaveBeenPopped() {
-        fail("Not implemented");
+        // Act
+        popElements(stack, initialStackSize);
+        // Assert
+        assertThat(stack.size(), equalTo(0));
     }
 
     // HELPERS
