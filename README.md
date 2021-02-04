@@ -1,14 +1,21 @@
 ### Deadline:
-This work should be completed before the exercise on **Friday 7th February**.
+This work should be completed before the exercise on **Friday 12th February**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-20/course-instructions#assignments).
 
-### Homework
-Study the following course literature:
+### Preparation
+You must read and answer the questions in the OLI material:
 
+- Read [Module 7: Hashtable](https://kth.oli.cmu.edu/jcourse/webui/syllabus/module.do?context=d6b30f33ac1f08881563b3b8605483fa) note: OLI material is underdevelopment through period 3!
+  - If you have not done so, goto https://kth.oli.cmu.edu/, signup and register for the course key `dd1338-ht20`
+
+You may also want to read the former course text:
 * [Hash Tables explained](https://yourbasic.org/algorithms/hash-tables-explained/)
+
+Please commit any Java code developed to the [`src`](src) folder and any
+written answers to the [`docs`](docs) folder.
 
 ### Task 1 - Implement a hash table
 Hash tables are built into Java in the form of the classes `HashMap`,
@@ -87,7 +94,7 @@ implementation**:
   possible to store two objects that are not equal, but have the same hash.
 * Your implementation **does not** have to resize dynamically (i.e. the amount
   of buckets may be constant).
-* **Work from the code skeleton in [src/HashSet.java](src/HashSet.java).**
+* **Work from the code skeleton in** [src/HashSet.java](src/HashSet.java).
 
 ##### Option 1
 Option 1 is to avoid arrays and use an `ArrayList` instead. Then
@@ -110,25 +117,27 @@ doesn't work. [HashSet.java](src/HashSet.java) is a skeleton that shows how you
 can get around this.
 
 ### Task 2 - Time Complexities for Data Structures
-Calculate the worst-case time complexity for the operations (Find, Insert and Remove) in the following:
+Estimate the _worst-case_ time complexity for a series of operations on the following:
 
-* Unsorted Array
 * Sorted Array
 * Unsorted Singly Linked List
-* Sorted Singly Linked List
 
-Calculate the average and worst case time complexity for the operations (Find, Insert and Remove):
+Calculate the _average and worst case_ time complexity for the same operations:
 
 * Hash Table (You can assume that the number of elements is equal to the size of the table)
 
 Let n be the number of elements and present the solution in a table as shown
 below. As usual you should **motivate your answers**.
 
-| Operation   | Unsorted Array   | Sorted Array   | Unsorted SLL   | Sorted SLL   | Hash table (Average) | Hash table (Worst)  |
-| ----------- | ---------------- | -------------- | -------------- | ------------ | ----------------     | ------------------- |
-| Find        |                  |                |                |              |                      |                     |
-| Insert      |                  |                |                |              |                      |                     |
-| Remove      |                  |                |                |              |                      |                     |
+| Operation         | Sorted Array | Unsorted Singly Linked List | Hashtable (average) | Hashtable (worst) |
+| :-----------------| :------------| :---------------------------| :-------------------| :-----------------|
+| Search for key X  |              |              O(n)           |                     |                   |
+| Insert X at start |              |                             |                     |                   |
+| Remove X from end |              |                             |                     |                   |
+
+Example Motivation:
+- Unsorted Singly Linked List
+  - Search for key X is O(n) as X might be the last element and we have to traverse all elements to find it
 
 > **Assistant's note:** When it comes to arrays and linked lists, the average
 > and worst case time complexities for these operations are the same, so it is
