@@ -8,8 +8,8 @@
  * operands and the four operators +, -, *, and /. Operators and operands must
  * be separated by whitespace.
  *
- * @author  NN // TODO
- * @version 2017-12-12
+ * @author  Simon Larspers Qvist
+ * @version 2021-02-04
  */
 public class Postfix {
     public static class ExpressionException extends Exception {
@@ -26,8 +26,38 @@ public class Postfix {
      * @throws      ExpressionException if the expression is wrong
      */
     public static int evaluate(String expr) throws ExpressionException {
-        // TODO
-        return 0;
+        Stack<Integer> integerStack = new LinkedList<>();
+        String[] splitExpr = expr.trim().split("\\s+");
+
+        for (String s : splitExpr) {
+            if (isInteger(s)) {
+                integerStack.push(Integer.parseInt(s));
+
+            } else if (isOperator(s) && integerStack.size() >= 2) {
+                int x = integerStack.pop();
+                int y = integerStack.pop();
+
+                if (s.equals("+")) {
+                    integerStack.push(x + y);
+                } else if (s.equals("-")) {
+                    integerStack.push(y - x);
+                } else if (s.equals("*")) {
+                    integerStack.push(x * y);
+                } else if (s.equals("/")) {
+                    if (x == 0) {
+                        throw new ExpressionException("Division by zero not allowed");
+                    } else {
+                        integerStack.push(y / x);
+                    }
+                }
+            } else {
+                throw new ExpressionException("Expression is wrong");
+            }
+        }
+        if (integerStack.size() != 1) {
+            throw new ExpressionException("Expression is wrong");
+        }
+        return integerStack.top();
     }
 
     /**
@@ -40,8 +70,7 @@ public class Postfix {
      * An operator is one of '+', '-', '*', '/'.
      */
     private static boolean isOperator(String s) {
-        // TODO
-        return false;
+        return s.matches("[-/+*]");
     }
 
     /**
@@ -61,7 +90,6 @@ public class Postfix {
      *   followed by a single '0'.
      */
     private static boolean isInteger(String s) {
-        // TODO
-        return false;
+        return s.matches("-?[1-9]\\d*") | s.matches("-?0");
     }
 }
