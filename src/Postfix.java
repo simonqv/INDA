@@ -37,18 +37,23 @@ public class Postfix {
                 int x = integerStack.pop();
                 int y = integerStack.pop();
 
-                if (s.equals("+")) {
-                    integerStack.push(x + y);
-                } else if (s.equals("-")) {
-                    integerStack.push(y - x);
-                } else if (s.equals("*")) {
-                    integerStack.push(x * y);
-                } else if (s.equals("/")) {
-                    if (x == 0) {
-                        throw new ExpressionException("Division by zero not allowed");
-                    } else {
-                        integerStack.push(y / x);
-                    }
+                switch (s) {
+                    case "+":
+                        integerStack.push(x + y);
+                        break;
+                    case "-":
+                        integerStack.push(y - x);
+                        break;
+                    case "*":
+                        integerStack.push(x * y);
+                        break;
+                    case "/":
+                        if (x == 0) {
+                            throw new ExpressionException("Division by zero not allowed");
+                        } else {
+                            integerStack.push(y / x);
+                        }
+                        break;
                 }
             } else {
                 throw new ExpressionException("Expression is wrong");
