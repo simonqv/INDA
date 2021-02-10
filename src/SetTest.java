@@ -89,7 +89,11 @@ public abstract class SetTest {
 
     @Test
     public void containsIsFalseWhenElementIsNotInSet() {
-        fail("Not implemented");
+        // Arrange
+        for (int elem : elementsNotInSet) {
+            // Act, Assert
+            assertThat(set.contains(elem), is(false));
+        }
     }
 
     @Test
@@ -133,7 +137,15 @@ public abstract class SetTest {
 
     @Test
     public void removeElementsInSetDecrementsSize() {
-        fail("Not implemented");
+        // Arrange
+        int expectedSize = uniqueSetElements.length;
+        for (int elem : uniqueSetElements) {
+            // Act
+            set.remove(elem);
+            expectedSize --;
+            // Assert
+            assertThat(set.size(), equalTo(expectedSize));
+        }
     }
 
     @Test
@@ -150,7 +162,15 @@ public abstract class SetTest {
 
     @Test
     public void removeElementsDoesNotDecrementSizeWhenSetIsEmpty() {
-        fail("Not implemented");
+        // Arrange
+        Set<Integer> emptySet = getIntegerSet(CAPACITY);
+        int expectedSize = emptySet.size();
+        Arrays
+            .stream(uniqueSetElements)
+                // Act
+            .mapToObj(elem -> emptySet.remove(elem))
+                // Assert
+            .forEach(wasRemoved -> assertThat(expectedSize, equalTo(emptySet.size())));
     }
 
     @Test
@@ -189,7 +209,10 @@ public abstract class SetTest {
 
     @Test
     public void removeIsFalseWhenElementIsNotInSet() {
-        fail("Not implemented");
+        // Arrange
+        for (int elem : elementsNotInSet) {
+            assertFalse(set.remove(elem));
+        }
     }
 
     @Test

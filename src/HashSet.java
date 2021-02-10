@@ -1,14 +1,18 @@
 import java.util.LinkedList;
 import java.util.List;
 
+import static java.lang.Math.abs;
+
+
 /**
  * A hash table-based implementation of the Set interface.
  *
- * @author YOUR NAME HERE
- * @version DATE
+ * @author Simon Larspers Qvist
+ * @version 10-02-2021
  */
 public class HashSet<T> implements Set<T> {
     private List<T>[] table;
+    int size;
     
     /**
      * Creates a hash table with the given capacity (amount of buckets).
@@ -54,8 +58,21 @@ public class HashSet<T> implements Set<T> {
      * @param elem An element to add to the set.
      * @return true if the set did not contain the element, otherwise false.
      */
+
     public boolean add(T elem) {
-        throw new UnsupportedOperationException("Not implemented!");
+        int hash = abs(elem.hashCode() % table.length);
+
+        if (table[hash] == null) {
+            table[hash] = new LinkedList<>();
+        }
+
+        if (table[hash].contains(elem)) {
+            return false;
+        } else {
+            table[hash].add(elem);
+            size ++;
+            return true;
+        }
     }
 
     /**
@@ -67,7 +84,18 @@ public class HashSet<T> implements Set<T> {
      * @return true if the set contained the element, false otherwise.
      */
     public boolean remove(T elem) {
-        throw new UnsupportedOperationException("Not implemented!");
+        int hash = abs(elem.hashCode() % table.length);
+        if (table[hash] == null) {
+            return false;
+        }
+
+        if (table[hash].contains(elem)) {
+            table[hash].remove(elem);
+            size --;
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -79,7 +107,15 @@ public class HashSet<T> implements Set<T> {
      * @return true if the element is in the set, false otherwise.
      */
     public boolean contains(T elem) {
-        throw new UnsupportedOperationException("Not implemented!");
+        int hash = abs(elem.hashCode() % table.length);
+        if (table[hash] == null) {
+            return false;
+        }
+        if (table[hash].contains(elem)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -90,6 +126,6 @@ public class HashSet<T> implements Set<T> {
      * @return The amount of elements in this set.
      */
     public int size() {
-        throw new UnsupportedOperationException("Not implemented!");
+        return size;
     }
 }

@@ -104,15 +104,29 @@ public class HashSetTest extends SetTest {
 
     @Test
     public void removeUniqueElementsWithEqualHashesDecrementsSize() {
-        fail("Not implemented");
+        // Arrange
+        int expectedSize = set.size();
+        for (SingleHashUnequal elem : uniqueObjsWithEqualHashes) {
+            // Act
+            set.remove(elem);
+            expectedSize --;
+            // Assert
+            assertThat(set.size(), equalTo(expectedSize));
+        }
     }
 
     @Test
     public void removeElementNotInSetWithCollidingHashDoesNotDecreaseSize() {
         // Test that removing an element that is not in the set, but has the
         // same hash as some other element in the set, does not decrement size
+        // Arrange
+        int expectedSize = set.size();
+        SingleHashUnequal elem = new SingleHashUnequal();
+        // Act
+        set.remove(elem);
+        // Assert
+        assertThat(set.size(), equalTo(expectedSize));
 
-        fail("Not implemented");
     }
 
     @Test
