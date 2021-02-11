@@ -57,18 +57,22 @@ public class TreeTest {
     @Test
     public void insertIsFalseForDuplicates() {
         // Arrange
-        Tree<Integer> tree = new Tree<>();
-        // The only element we insert
-        int elem = 1338;
-        tree.insert(elem);
-        int numDuplicates = 100;
+        int expectedSize = elementsInTree.length;
 
-        IntStream
-            .range(0, numDuplicates)
+        Arrays
+            .stream(elementsInTree)
             // Act
-            .mapToObj(i -> tree.insert(elem))
+            .mapToObj(elem -> tree.insert(elem))
             // Assert
             .forEach(wasInserted -> assertFalse(wasInserted));
+
+
+        // Assert
+        // Note that multiple asserts is not disallowed but can be confusing
+        // The aim is always to test one logical unit in isolation
+        // Here this second assert reinforces that the size has not changed
+        int actualSize = tree.size();
+        assertThat(actualSize, equalTo(expectedSize));
 
         /**
          * Again, a stream! What happens above is the following:

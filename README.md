@@ -1,13 +1,17 @@
 ### Deadline:
-This work should be completed before the exercise **Friday 14th Feburary**.
+This work should be completed before the exercise **Friday 19th Feburary**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-20/course-instructions#assignments).
 
-### Homework
-Study the following course literature:
+### Preparation
+You must read and answer the questions in the OLI material:
 
+- Read [Module 8: Trees](https://kth.oli.cmu.edu/jcourse/webui/syllabus/module.do?context=d6b30f35ac1f08886474727781e608ac) note: OLI material is underdevelopment through period 3!
+  - If you have not done so, goto https://kth.oli.cmu.edu/, signup and register for the course key `dd1338-ht20`
+
+You may also want to read the former course text:
 * [Binary Search Trees Explained](https://yourbasic.org/algorithms/binary-search-tree/)
     - **Note:** This text refers to the _depth of a tree_. This is more commonly
       referred to as the _height_ of the tree, and we will use the latter
