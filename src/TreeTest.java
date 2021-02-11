@@ -234,7 +234,7 @@ public class TreeTest {
     public void heightIsZeroWhenTreeHasOnlyRoot() {
         // Arrange
         Tree<Integer> rootOnlyTree = new Tree<>();
-        tree.insert(1338);
+        rootOnlyTree.insert(1338);
         // Act
         int height = rootOnlyTree.height();
         // Assert
