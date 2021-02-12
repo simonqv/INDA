@@ -14,6 +14,7 @@
     * Search for key X: As said in the instructions, if the element is the last one we would need to go through every element to find it. 
     * Insert X at start: Constant O(1), there is a pointer to the first element, so instant access and then replace it.
     * Remove X from the end: Same thinking here, instant access because of the pointer to the last element.
+        * Noticed that this is wrong... The pointer for the element before needs to be updated and thus you need to go through the entire list, making it linear O(n)
 - Hashtable (average): 
     * Search for key X: constant O(1), everything has a key which points directly to it. 
     * Insert X at start: inserting anything anywhere in the Hashtable should be constant in the average case. If the key is free the element will be added to that spot. 
