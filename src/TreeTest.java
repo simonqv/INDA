@@ -13,9 +13,10 @@ import java.util.stream.IntStream;
 /**
  * Test class for a tree.
  *
- * @author Simon Larsén (PUT YOUR NAME HERE)
- * @version 2019-01-20 (UPDATE THIS)
+ * @author Simon Larsén and Simon Larspers Qvist
+ * @version 2020-02-17
  */
+
 public class TreeTest {
     @Rule public Timeout globalTimeout = Timeout.seconds(5);
 
@@ -51,7 +52,15 @@ public class TreeTest {
         //
         // If you are feeling adventurous, look at insertIsFalseForDuplicates
         // and try to implement this is as a stream!
-        fail("Not implemented!");
+
+        // Arrange
+        Arrays
+            .stream(elementsNotInTree)
+            // Act
+            .mapToObj(elem -> tree.insert(elem))
+            // Assert
+            .forEach(wasInserted -> assertTrue(wasInserted));
+
     }
 
     @Test
@@ -82,10 +91,10 @@ public class TreeTest {
          *
          * .mapToObj(i -> tree.insert(elem)): for every value produced
          * by the range stream, insert elem into the tree. The `i` is
-         * not actually used. The resulting strem is the return values of
+         * not actually used. The resulting stream is the return values of
          * each `tree.insert(elem)` statement.
          *
-         * .forEach(wasInserted -> asertFalse(wasInserted)): For each return
+         * .forEach(wasInserted -> assertFalse(wasInserted)): For each return
          * value in the mapToObj stream, assert that it is false!
          */
     }
@@ -94,19 +103,32 @@ public class TreeTest {
     @Test
     public void searchIsTrueForInsertedElements() {
         // Assert that every value in elementsInTree is found in the tree field
-        fail("Not implemented!");
+        // Arrange, Act
+        for (int elem : elementsInTree) {
+            // Assert
+            assertTrue(tree.search(elem));
+        }
     }
 
     @Test
     public void searchIsFalseForNonInsertedElements() {
         // Use the tree field and the elementsNotInTree field for this test
-        fail("Not implemented!");
+        // Arrange, Act
+        for (int elem : elementsNotInTree) {
+            // Assert
+            assertFalse(tree.search(elem));
+        }
     }
 
     @Test
     public void searchIsFalseWhenTreeIsEmpty() {
         // Search for anything in an empty tree and it should be false
-        fail("Not implemented!");
+        // Arrange
+        Tree<Integer> emptyTree = new Tree<>();
+        // Act, Assert
+        for (int elem : elementsInTree) {
+            assertFalse(emptyTree.search(elem));
+        }
     }
 
     @Test
@@ -162,12 +184,21 @@ public class TreeTest {
     // Tests for leaves
     @Test
     public void leavesIsZeroWhenTreeIsEmpty() {
-        fail("Not implemented!");
+        // Arrange
+        Tree<Integer> emptyTree = new Tree<>();
+        // Act, Assert
+        assertThat(emptyTree.leaves(), equalTo(0));
     }
 
     @Test
     public void leavesIsOneWhenTreeHasOnlyRoot() {
-        fail("Not implemented!");
+        // Arrange
+        Tree<Integer> rootOnlyTree = new Tree<>();
+        int rootElement = 1338;
+        rootOnlyTree.insert(rootElement);
+
+        // Act, Assert
+        assertThat(rootOnlyTree.leaves(), equalTo(1));
     }
 
     @Test
@@ -200,7 +231,19 @@ public class TreeTest {
         //                    (1337)  (1396)
 
         // You have to construct your own tree here, with n >= 4
-        fail("Not implemented!");
+
+        // Arrange
+        Tree<Integer> perfectTree = new Tree<>();
+        int[] elements = new int[] {8, 3, 10, 1, 6, 9, 14};
+        for (int elem : elements) {
+            perfectTree.insert(elem);
+        }
+        int expectedLeaves = 4;
+
+        // Act, Assert
+        assertThat(perfectTree.leaves(), equalTo(expectedLeaves));
+
+
     }
 
     @Test
@@ -266,7 +309,21 @@ public class TreeTest {
         // When inserting elements in ascending order, each element is inserted
         // to the right of the deepest node, so the height should increment by
         // 1 for each element inserted.
-        fail("Not implemented!");
+
+        // Arrange
+        Tree<Integer> tree = new Tree<>();
+        tree.insert(-1);
+        int height = 0;
+
+        // Act
+        for (int i = 0; i <= 100; i++) {
+            tree.insert(i);
+            height++;
+            // Assert
+            assertThat(tree.height(), equalTo(height));
+        }
+
+
     }
 
     @Test
