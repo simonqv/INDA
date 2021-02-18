@@ -65,8 +65,8 @@ methods must be implemented:
 ### Task 2 - Find Cycles using DFS
 
 Depth first search (DFS) traverses a graph by repeatedly picking a random path
-from a given node and following it until there are no new nodes to visit. This
-algorithm is slightly easier to implement than BFS and is used in many
+from a given vertex and following it until there are no new vertices to visit.
+This algorithm is slightly easier to implement than BFS and is used in many
 [algorithms](https://en.wikipedia.org/wiki/Depth-first_search#Applications). Use
 a DFS to solve the *decision problem* of whether a graph contains a cycle or
 not.
@@ -75,9 +75,9 @@ Pseudocode for general DFS:
 
 ```
 visited <- bool[]
-DFS(graph, node):
-  visited[node] := true
-  for v in node.neighbors:
+DFS(graph, vertex):
+  visited[vertex] := true
+  for v in vertex.neighbors:
     if !visited[v]:
       DFS(graph, v)
 ```
@@ -146,11 +146,11 @@ single or multiple components.
 ### Task 3 - Find Paths using BFS
 
 Breadth first search (BFS) traverses a graph by simultaneously following *every*
-path from a given node until all nodes have been visited. BFS is also referred
-to as a flood fill. Use a BFS to solve the *construction problem* of finding the
-shortest path (by number of edges) between two nodes. BFS is particularly suited
-for solving this problem as it's guaranteed to have taken the shortest path to
-any node it encounters.
+path from a given vertex until all vertices have been visited. BFS is also
+referred to as a flood fill. Use a BFS to solve the *construction problem* of
+finding the shortest path (by number of edges) between two vertices. BFS is
+particularly suited for solving this problem as it's guaranteed to have taken
+the shortest path to any vertex it encounters.
 
 Pseudocode for general BFS:
 
@@ -160,17 +160,25 @@ BFS(graph, start):
   q <- queue()
   q.add(start)
   while !q.empty:
-    v := q.remove()
-    for v in node.neighbors:
+    vertex := q.remove()
+    for v in vertex.neighbors:
       if !visited[v]:
         visited[v] := true
         q.add(v)
 ```
-> ***Assistants note:*** Use a [`LinkedList`](https://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html) subtyped as the [`Queue`](https://docs.oracle.com/javase/7/docs/api/java/util/Queue.html) interface when implementing BFS.
 
-Note that the psuedocode will not solve the problems as is, they simply describe the general idea of the algorithms.
+> ***Assistants note:*** Use a
+> [`LinkedList`](https://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html)
+> subtyped as the
+> [`Queue`](https://docs.oracle.com/javase/7/docs/api/java/util/Queue.html)
+> interface when implementing BFS.
 
-If we consider the following question, is there a path from 0 to 8, we can observe what happens in two different graphs, both with 9 vertices, but differing component structure:
+Note that the psuedocode will not solve the problems as is, they simply describe
+the general idea of the algorithms.
+
+If we consider the following question, is there a path from 0 to 8, we can
+observe what happens in two different graphs, both with 9 vertices, but
+differing component structure:
 
 ```
 Graph 1 (single component)
@@ -200,7 +208,8 @@ Graph 2 (multiple components)
 False - There exists no path from 0 to 8.
 ```
 
-The main challenge in this task is to **manage the multiple helper data structures**.
+The main challenge in this task is to **manage the multiple helper data
+structures**.
 
 1. We can use a `boolean[] visited` as before to keep track of what we have
 already visited.
