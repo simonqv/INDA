@@ -145,7 +145,7 @@ single or multiple components.
 
 ### Task 3 - Find Paths using BFS
 
-Breath first search (BFS) traverses a graph by simultaneously following *every*
+Breadth first search (BFS) traverses a graph by simultaneously following *every*
 path from a given node until all nodes have been visited. BFS is also referred
 to as a flood fill. Use a BFS to solve the *construction problem* of finding the
 shortest path (by number of edges) between two nodes. BFS is particularly suited
