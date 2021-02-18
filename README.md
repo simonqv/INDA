@@ -1,131 +1,221 @@
 ### Deadline:
-This work should be completed before the exercise **Friday 21st Feburary**.
+This work should be completed before the exercise **Friday 26th February**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-20/course-instructions#assignments).
 
-### Homework
-Study the following course literature:
+### Preparation
+No OLI material this week, but the former course text is still available:
 
-* [Java packages](https://gits-15.sys.kth.se/inda-19/extra-reading-material/blob/master/java-packages/README.md)
 * [Introduction to graph algorithms: definitions and examples](https://yourbasic.org/algorithms/graph/)
-* [Executing without BlueJ - The Java main method (includes part on command line arguments)](https://gits-15.sys.kth.se/inda-19/extra-reading-material/blob/master/main-method/README.md)
 
-### Task 1 - Implement HashGraph
-Review the code that has been provided in the Graph project. Start by reading
-the `Graph` interface code and then move onto the `MatrixGraph` implementation
-and other related classes. Once you are familiar with the code, create a second
-implementation of the `Graph` interface using the `HashGraph` class provided.
-This class should make use of proximity lists, which can be implemented using
-hash tables. There is some skeleton code provided to get you started with
-`HashGraph`, and there is a corresponding `HashGraphTest` to test your
-implementation.
+### Task 1 - Implement Graph
 
-n.b. You should not modify the code in `Graph`, `VertextIterator` or
-`VertexAction`
+The first task is to provide an implementation of a Graph. There is some starter
+code in [src/Graph.java](src/Graph.java) that you should review.
 
-> **Assistant's note:** `MatrixGraph` and `HashGraph` implement the same
-> interface, and should thus provide the same functionality to the outside
-> (implementation is of course different). If at any time you are unsure of
-> exactly what a method should do, have a look at the corresponding
-> implementation in `MatrixGraph`.
+- The graph is **undirected** and edges are **weighted**
+- We use an **adjacency list** implementation, which is implemented using a
+  **hashtable**
+- The hashtable is an array of `Map<Integer, Integer>` entries
+- Java does not like to mix arrays and generic types, so you will see warnings,
+ which you can safely ignore
 
-### Task 2 - Components of Random Graphs
-Write a program called `RandomGraphGenerator` that:
+Your task is to **complete the implementation** and ensure it passes the
+provided test suite in [src/GraphTest.java](src/GraphTest.java). The following
+methods must be implemented:
 
-1. Generates a graph of `n` nodes, and then randomly assign `n` edges to the
-   nodes
-2. Calculates the number of components in the graph using DFS
-3. Calculates the largest component
+- `int numVertices()` - return the number of vertices in the graph
 
-You may use what is given in
-[`GraphAlgorithms.java`](src/se/kth/graph/GraphAlgorithms.java) to implement the
-functionality. Study the `printComponents()` method carefully, what you need to
-implement for points 2 and 3 is not much different from that.
+-  `int numEdges()` - return the number of edges in the graph
 
-`n` should be taken as a command line argument. A sample trace of output is
-given below:
+- `int degree(int v)` - return the out degree of vertex v. Note that you must
+  handle illegal cases if an invalid vertex is provided, i.e. not in the graph
 
-```bash
-$ java se.kth.graph.RandomGraphGenerator 1000
+- `Iterator<Integer> neighbors(int v)` - Returns an iterator of vertices
+  adjacent to `v`. Note, referring to the [HashMap API
+  documentation](https://docs.oracle.com/javase/8/docs/api/java/util/HashMap.html)
+  will help here as there are several methods that return iterators, and greatly
+  simplify the task
 
-For a graph with 1000 nodes and 1000 randomly assigned edges:
-* Number of components: XX
-* Largest component: YY
-```
+- `boolean hasEdge(int v, int w)` - Returns true if there is an edge from `v` to
+  `w`. Again, remember to check for illegal vertices!
 
-To handle command line arguments (e.g. n being 1000 in my trace), the following
-literature may help:
+- `int cost(int v, int w)` - Returns the edge cost if `v` and `w` are adjacent.
 
-* [Executing without BlueJ - The Java main method (includes part on command line arguments)](https://gits-15.sys.kth.se/inda-19/extra-reading-material/blob/master/main-method/README.md)
-* [Command Line Arguments (Oracle documentation)](https://docs.oracle.com/javase/tutorial/essential/environment/cmdLineArgs.html)
+- `void add(int v, int w, int c)` - Inserts an edge with edge cost `c`. Note
+  that the graph is undirected, and you should add both an edge from `v` to `w`,
+  and an edge from `w` to `v`. The cost will be the same both ways.
 
-IDEs usually provide command line arguments with run configurations. To find
-out how to do it for your specific IDE, googling _"<IDE\_NAME> command line
-arguments"_ should be sufficient to set you on the right track.
+- `void remove(int v, int w)` - Removes the edges between `v` and `w`. As
+  before, remember to remove both edges.
 
-> **Assistant's requirement:** Note that the application should _not_ be
-> interactive. That is to say, you should not prompt the user for the arguments
-> and read them with something like the `Scanner` class, but rather take the
-> arguments directly when the program starts. See the linked reading material
-> above.
+- `String toString()` - Returns a string representation of this graph. Two tips
+  here: (1) Use a StringBuilder to avoid String concatenation costs; (2) To
+  avoid printing duplicate edges, think about using an adjacency matrix to model
+  which edges have been already printed. This can be a simple 2D array,
+  `boolean[][] added`, that lets you test and mark which edges have been added
+  to the StringBuilder already, e.g. `if(added[v][w] || added[w][v]) { // skip
+  }`
 
-### Task 3 - Time Cost Analysis
-Modify the program in `Task 2` to measure the running time of `MatrixGraph` and
-`HashGraph` for different sizes of `n`. The program should be called with up to
-2 command line arguments in the following way:
+> ***Assistants note:*** We do not make use of weighted edges in this task, but
+> it is useful if you want to explore algorithms for finding the shortest path.
+
+### Task 2 - Find Cycles using DFS
+
+Depth first search (DFS) traverses a graph by repeatedly picking a random path
+from a given node and following it until there are no new nodes to visit. This
+algorithm is slightly easier to implement than BFS and is used in many
+[algorithms](https://en.wikipedia.org/wiki/Depth-first_search#Applications). Use
+a DFS to solve the *decision problem* of whether a graph contains a cycle or
+not.
+
+Pseudocode for general DFS:
 
 ```
-$ java se.kth.graph.RandomGraphGenerator <n> <graph_type>
-```
-Where `n` is a positive integer and `graph_type` is either `matrix` or `hash`.
-It is up to you to decide if the program can be called with fewer arguments (and
-then use default values) as well, but providing these two must work. A sample
-trace of output is given below:
-
-```bash
-$ java se.kth.graph.RandomGraphGenerator 1000 matrix
-
-For a proximity matrix graph with 1000 nodes and 1000 randomly assigned edges:
-* Number of components: XX
-* Largest component: YY
-* Running time: ZZ ns
+visited <- bool[]
+DFS(graph, node):
+  visited[node] := true
+  for v in node.neighbors:
+    if !visited[v]:
+      DFS(graph, v)
 ```
 
-Complete the following table of time costs for different values of `n`, for
-both implementations. If you have done the task correctly, this should simply
-be a matter of running the `RandomGraphGenerator` 4 times for each
-implementation and copying the output.
+If we consider two graphs, the first contains no cycles:
 
-| Size (n)   | MatrixGraph | HashGraph |
-| ---------- | ----------- | --------- |
-| 100        |             |           |
-| 400        |             |           |
-| 1600       |             |           |
-| 6400       |             |           |
+```
+Graph 1
 
-You should report time in nanoseconds using `System.nanoTime()`, for example:
-
-```bash
-// setup: build graph
-long t0 = System.nanoTime();
-// experiment: analyse components of graph
-long t1 = System.nanoTime();
-long timecost = t1 - t0;
+0 - 1 - 2 - 3
+         \
+          4
 ```
 
-You may also want to repeat the tests using a loop and determine the average
-`timecost` for a more accurate result.
+The second contains a cycle:
 
-**Based on the results you have found from empirical analysis, which
-implementation was faster? Explain why this is the case using time complexity.**
+```
+Graph 2
 
-### Testing
-This week, you are in luck. As there is much to do in terms of production
-code, the whole test suite has been given to you up front.
+0 - 1 - 2 - 3
+         \ /
+          4
+```
 
-* `GraphTest` is an abstract test class for the `Graph` interface.
-* `MatrixGraphTest` tests the `MatrixGraph` implementation.
-* `HashGraphTest` tests the `HashGraph` implementation (that's the one you are
-  interested in, run it as you go along!)
+So the challenge is to use DFS to traverse the graph and detect a cycle. The
+important concepts to capture are:
+
+1. We should model the visited vertices using a `boolean[] visited` array so we
+know where we have visited.
+
+2. The recursive case is whilst we still have unvisited neighbors to visit
+
+3. If there are no neighbors left, then we are at a base case
+
+4. Perhaps the most subtle concept is that we need to detect **back edges** that
+indicate a cycle exists. In `Graph 2` the back edge is between `4` and `2`. This
+can be solved by remembering who our parent vertex is (`3` in this case). If we
+detect a vertex that is already marked (`2`) and it is not a parent vertex, then
+it has already been visited earlier in the traversal and we conclude there is a
+cycle in the graph.
+
+> ***Assistants note:*** _Parent_ in this case means the vertex that made the
+> recursive call. So whilst 4 _has_ an edge to 2, it was at 3 the DFS(4) call
+> was made, making 3 the parent of 4 recursively speaking...oj oj oj...
+
+Try to trace out the call sequence for some simple graphs to get an idea of how
+the traversal would operate in principle. Then, complete the implementations in
+[src/GraphAlgorithms.java](src/GraphAlgorithms.java) for:
+
+- `boolean hasCycle(Graph g)` - This will iterate across all the vertices,
+  maintaining a `boolean[] visited` array to ensure you do not miss any
+  components of the graph.
+
+- `boolean DFS(Graph g, int vertex, boolean[] visited, int parent)` - This
+  will be the recursive part of the traversal. Ensure you cover the base cases
+  (no more neighbors, and, back edge detected) and the recursive case (more
+  neighbors to visit).
+
+Whilst there are some tests implemented, you should also create some more tests
+for graphs that have cycles and have no cycles, also have graphs that have
+single or multiple components.
+
+> ***Assistants note:*** When solving this problem, keep in mind that a graph
+> can contain multiple *components* to avoid false negatives.
+
+### Task 3 - Find Paths using BFS
+
+Breath first search (BFS) traverses a graph by simultaneously following *every*
+path from a given node until all nodes have been visited. BFS is also referred
+to as a flood fill. Use a BFS to solve the *construction problem* of finding the
+shortest path (by number of edges) between two nodes. BFS is particularly suited
+for solving this problem as it's guaranteed to have taken the shortest path to
+any node it encounters.
+
+Pseudocode for general BFS:
+
+```
+BFS(graph, start):
+  visited <- bool[]
+  q <- queue()
+  q.add(start)
+  while !q.empty:
+    v := q.remove()
+    for v in node.neighbors:
+      if !visited[v]:
+        visited[v] := true
+        q.add(v)
+```
+> ***Assistants note:*** Use a [`LinkedList`](https://docs.oracle.com/javase/7/docs/api/java/util/LinkedList.html) subtyped as the [`Queue`](https://docs.oracle.com/javase/7/docs/api/java/util/Queue.html) interface when implementing BFS.
+
+Note that the psuedocode will not solve the problems as is, they simply describe the general idea of the algorithms.
+
+If we consider the following question, is there a path from 0 to 8, we can observe what happens in two different graphs, both with 9 vertices, but differing component structure:
+
+```
+Graph 1 (single component)
+
+0 - 1 - 2 - 3
+         \
+          4 - 5 - 7
+               \
+                8
+
+True - There exists a path from 0 to 8 -> 0, 1, 2, 4, 5, 8
+```
+
+and...
+
+```
+Graph 2 (multiple components)
+
+0 - 1 - 2
+ \ /
+  3
+
+4 - 5 - 7
+     \
+      8
+
+False - There exists no path from 0 to 8.
+```
+
+The main challenge in this task is to **manage the multiple helper data structures**.
+
+1. We can use a `boolean[] visited` as before to keep track of what we have
+already visited.
+
+2. We can use a `Queue<Integer> queue` to keep track of where to go next. You
+can choose any implementation of `Queue` as the only operations you need to
+_enqueue_ is `add(E e)` and to _dequeue_ is `remove()`.
+
+Your task is to implement the following:
+
+- `boolean hasPath(Graph g, int from, int to)` - An iterative implementation of
+  a BFS traversal that confirms if a path exists between vertices `from` and
+  `to`.
+
+Finally you should complete the test suite for the algorithms.
+[src/GraphAlgorithmsTest.java](src/GraphAlgorithmsTest.java) contains some test
+methods to get you started, but you must fix the tests that currently are not
+implemented.
