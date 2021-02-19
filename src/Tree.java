@@ -1,7 +1,7 @@
 /**
  * Tree class.
  *
- * @author Simon Larspers Qvist
+ * @author
  * @version 2020-02-17
  */
 

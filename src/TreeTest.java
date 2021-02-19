@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
 /**
  * Test class for a tree.
  *
- * @author Simon Larsén and Simon Larspers Qvist
+ * @author
  * @version 2020-02-17
  */
 
