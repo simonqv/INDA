@@ -1,13 +1,14 @@
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * A graph with a fixed number of vertices implemented using adjacency maps.
  * Space complexity is &Theta;(n + m) where n is the number of vertices and m
  * the number of edges.
  *
- * @author [Name]
+ * @author Simon Larspers Qvist
  * @version [Date]
  */
 public class Graph {
@@ -20,6 +21,9 @@ public class Graph {
 
     /** Number of edges in the graph. */
     private int numEdges;
+
+    /** Number of vertices in the graph. (added by Simon) */
+    private int numVertices;
 
     /**
      * Constructs a HashGraph with n vertices and no edges. Time complexity: O(n)
@@ -36,6 +40,7 @@ public class Graph {
         Map<Integer, Integer>[] a = new HashMap[n];
         for (int i = 0; i < a.length; i++) {
             a[i] = new HashMap<>();
+            numVertices ++; /** added by Simon */
         }
         edges = a;
     }
@@ -46,7 +51,7 @@ public class Graph {
      * @return the number of vertices in this graph
      */
     public int numVertices() {
-        return -1;
+        return numVertices;
     }
 
     /**
@@ -55,7 +60,7 @@ public class Graph {
      * @return the number of edges in this graph
      */
     public int numEdges() {
-        return -1;
+        return numEdges;
     }
 
 
@@ -67,8 +72,11 @@ public class Graph {
      * @throws IllegalArgumentException if v is out of range
      */
     public int degree(int v) throws IllegalArgumentException {
-        return -1;
-    }
+        if (v >= edges.length) {
+            throw new IllegalArgumentException();
+        }
+            return edges[v].size();
+        }
 
     /**
      * Returns an iterator of vertices adjacent to v.
@@ -90,7 +98,10 @@ public class Graph {
      * @throws IllegalArgumentException if from or to are out of range
      */
     public boolean hasEdge(int v, int w) {
-        return false;
+        if (v >= edges.length || v < 0 || w >= edges.length || w < 0) {
+            throw new IllegalArgumentException();
+        }
+        return edges[v].containsKey(w) && edges[w].containsKey(v);
     }
 
     /**
@@ -102,7 +113,11 @@ public class Graph {
      * @throws IllegalArgumentException if from or to are out of range
      */
     public int cost(int v, int w) throws IllegalArgumentException {
-        return -1;
+        if (v >= edges.length || v < 0 || w >= edges.length || w < 0) {
+            throw new IllegalArgumentException();
+        }
+        return edges[v].getOrDefault(w, -2);
+
     }
 
     /**
@@ -114,6 +129,16 @@ public class Graph {
      * @throws IllegalArgumentException if from or to are out of range
      */
     public void add(int v, int w, int c) {
+        if (v >= edges.length || v < 0 || w >= edges.length || w < 0) {
+            throw new IllegalArgumentException();
+
+        }
+        if (!edges[v].containsKey(w) && !edges[w].containsKey(v)) {
+            numEdges ++;
+        }
+        edges[v].put(w,c);
+        edges[w].put(v,c);
+
     }
 
     /**
@@ -124,6 +149,14 @@ public class Graph {
      * @throws IllegalArgumentException if v or w are out of range
      */
     public void remove(int v, int w) {
+        if (v >= edges.length || v < 0 || w >= edges.length || w < 0) {
+            throw new IllegalArgumentException();
+        }
+        if (edges[v].containsKey(w) && edges[w].containsKey(v)) {
+            edges[v].remove(w);
+            edges[w].remove(v);
+            numEdges --;
+        }
     }
 
     /**
@@ -143,6 +176,36 @@ public class Graph {
      */
     @Override
     public String toString() {
-        return null;
+        if (numEdges == 0) {
+            return "{}";
+        }
+
+        boolean[][] added = new boolean[numVertices][numVertices];
+        
+        StringBuilder sb = new StringBuilder("{");
+
+        for (int v = 0; v < numVertices ; v++) {
+            if (!edges[v].isEmpty()) {
+                int w = edges[v].keySet().stream().mapToInt(Integer::intValue).toArray()[0];
+                int c = edges[v].values().stream().mapToInt(Integer::intValue).toArray()[0];
+                 if (!added[v][w] && !added[w][v]) {
+                added[v][w] = true;
+                added[w][v] = true;
+                sb.append("(")
+                        .append(v)
+                        .append(",")
+                        .append(w)
+                        .append(",")
+                        .append(c)
+                        .append("), ");
+
+                 }
+            }
+
+        }
+
+        sb.setLength(sb.length() - 2);
+
+        return sb.append("}").toString();
     }
 }
