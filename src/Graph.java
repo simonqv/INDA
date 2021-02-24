@@ -1,7 +1,7 @@
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Set;
+
 
 /**
  * A graph with a fixed number of vertices implemented using adjacency maps.
@@ -9,7 +9,7 @@ import java.util.Set;
  * the number of edges.
  *
  * @author Simon Larspers Qvist
- * @version [Date]
+ * @version 24-02-21
  */
 public class Graph {
     /**
@@ -40,7 +40,7 @@ public class Graph {
         Map<Integer, Integer>[] a = new HashMap[n];
         for (int i = 0; i < a.length; i++) {
             a[i] = new HashMap<>();
-            numVertices ++; /** added by Simon */
+            numVertices ++; /* added by Simon */
         }
         edges = a;
     }
@@ -86,7 +86,7 @@ public class Graph {
      * @throws IllegalArgumentException if v is out of range
      */
     public Iterator<Integer> neighbors(int v) {
-        return null;
+        return edges[v].keySet().iterator();
     }
 
     /**
@@ -186,18 +186,20 @@ public class Graph {
 
         for (int v = 0; v < numVertices ; v++) {
             if (!edges[v].isEmpty()) {
-                int w = edges[v].keySet().stream().mapToInt(Integer::intValue).toArray()[0];
-                int c = edges[v].values().stream().mapToInt(Integer::intValue).toArray()[0];
-                 if (!added[v][w] && !added[w][v]) {
-                added[v][w] = true;
-                added[w][v] = true;
-                sb.append("(")
-                        .append(v)
-                        .append(",")
-                        .append(w)
-                        .append(",")
-                        .append(c)
-                        .append("), ");
+                int w = edges[v].keySet().iterator().next();
+                int c = edges[v].get(w);
+                //int c = edges[v].values().stream().mapToInt(Integer::intValue).toArray()[0];
+
+                if (!added[v][w] && !added[w][v]) {
+                    added[v][w] = true;
+                    added[w][v] = true;
+                    sb.append("(")
+                            .append(v)
+                            .append(",")
+                            .append(w)
+                            .append(",")
+                            .append(c)
+                            .append("), ");
 
                  }
             }

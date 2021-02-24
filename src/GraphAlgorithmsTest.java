@@ -4,11 +4,13 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.HashMap;
+
 /**
  * Test class for GraphAlgorithms.
  *
- * @author [Name]
- * @version [Date]
+ * @author Simon Larspers Qvist
+ * @version 24-02-21
  */
 
 public class GraphAlgorithmsTest {
@@ -73,31 +75,107 @@ public class GraphAlgorithmsTest {
 
     @Test
     public void hasCycleFalseSingleComponent() {
-        fail("Not implemented!");
+        // Arrange
+        // 0 - 1 - 2
+        Graph g = new Graph(3);
+        g.add(0,1,0);
+        g.add(1,2,0);
+
+        // Act
+        boolean hasCycle = GraphAlgorithms.hasCycle(g);
+
+        // Assert
+        assertFalse(hasCycle);
+
+
     }
 
-  @Test
-  public void hasCycleTrueSingleComponent() {
-        fail("Not implemented!");
-  }
+    @Test
+    public void hasCycleTrueSingleComponent() {
+        // Arrange
+        //     0
+        //    / \
+        //   1 - 2
 
-  @Test
-  public void hasCycleFalseMultipleComponents() {
-        fail("Not implemented!");
-  }
+        Graph g = new Graph(3);
+        g.add(0,1,0);
+        g.add(1,2,0);
+        g.add(2,0,0);
+
+        // Act
+        boolean hasCycle = GraphAlgorithms.hasCycle(g);
+
+        // Assert
+        assertTrue(hasCycle);
+    }
+
+    @Test
+    public void hasCycleFalseMultipleComponents() {
+        // Arrange
+        // 0-1-2
+        // 3-4-5
+
+        Graph g = new Graph(6);
+        g.add(0,1,0);
+        g.add(1,2,0);
+        g.add(3,4,0);
+        g.add(4,5,0);
+
+        // Act
+        boolean hasCycle = GraphAlgorithms.hasCycle(g);
+
+        // Assert
+        assertFalse(hasCycle);
+    }
 
     @Test
     public void graphWithCycleHasPathToSelf() {
-        fail("Not implemented!");
+        // Arrange
+        //     0
+        //    / \
+        //   1 - 2
+
+        Graph g = new Graph(3);
+        g.add(0,1,0);
+        g.add(1,2,0);
+        g.add(2,0,0);
+
+        // Act
+        boolean hasPath = GraphAlgorithms.hasPath(g,0,0);
+
+        // Assert
+        assertTrue(hasPath);
     }
 
     @Test
-        public void verteciesOnDifferentComponentsHasPathIsFalse() {
-        fail("Not implemented!");
+    public void verteciesOnDifferentComponentsHasPathIsFalse() {
+        // Arrange
+        // 0-1-2
+        // 3-4-5
+
+        Graph g = new Graph(6);
+        g.add(0,1,0);
+        g.add(1,2,0);
+        g.add(3,4,0);
+        g.add(4,5,0);
+
+        // Act
+        boolean hasPath = GraphAlgorithms.hasPath(g,0,5);
+
+        // Assert
+        assertFalse(hasPath);
     }
 
     @Test
     public void graphWithVerteciesWithoutEdgesHasPathIsFalse() {
-        fail("Not implemented!");
+        // Arrange
+
+        Graph g = new Graph(3);
+
+        // Act
+        boolean hasPath = GraphAlgorithms.hasPath(g,0,2);
+
+        // Assert
+        assertFalse(hasPath);
     }
 }
