@@ -18,7 +18,7 @@
       * Returns an implementation of the IntSorter interface. Extending classes
       * must override this method.
       *
-      * @return An implementation of Set.
+      * @return An implementation of IntSorter.
       */
      protected abstract IntSorter getIntSorter();
 

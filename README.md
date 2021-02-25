@@ -1,22 +1,22 @@
 ### Deadline:
 This is a two week assignment with two deadlines:
 
-* Implementation: **Friday 28th February**
-* Evaluation: **Friday 13th March**
+* Implementation: **Friday 5th March**
+* Evaluation: **Friday 19th March** (extended to avoid exam collision!)
 
 Work for both weeks will be stored in this repository.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-20/course-instructions#assignments).
 
-### Homework
-Study the following course literature:
+### Preparation
+No OLI material this week, but the former course text is still available:
 
 * [Quicksort Optimizations](https://yourbasic.org/golang/quicksort-optimizations/)
     - **IMPORTANT:** The pseudo code in the above text may be a bit difficult
       to interpret if you have not programmed in Go. Please see
-      [this supplement](https://gits-15.sys.kth.se/inda-19/extra-reading-material/blob/master/quicksort/README.md)
+      [this supplement](https://gits-15.sys.kth.se/inda-20/extra-reading-material/blob/master/quicksort/README.md)
       that contains rewritten pseudocode along with some practical tips.
 
 ### Overview
@@ -28,8 +28,9 @@ to accomplish (and submit) for each of the weeks:
     - Four quicksort implementations, detailed in [Variations of Quicksort](#variations-of-quicksort)
     - Test classes for all five production classes, using inheritance to avoid
       test duplication.
-    - At least one implementation must be submitted to, and pass, Kattis. At
-      least one successful submission id must be pushed to the repo.
+    - At least one implementation must be submitted to, and pass, the Kattis
+    task. At least one successful submission id must be pushed to the repo.
+
 * Week 2
     - A class to create runtime tests for the report (this class you will have
       to design yourself).
@@ -99,13 +100,12 @@ Implement four variations of the Quicksort algorithm:
 > partitioning algorithm.
 
 #### Testing
+
 For the testing this week, you are left to stand pretty much on your own legs.
-Draw inspiration from the previous weeks' test suites
-([you can find all of them here](https://gits-15.sys.kth.se/inda-19/testing)) if
-you find that you have trouble getting started. The important thing here is to
-make a good attempt at creating a manageable test suite, it is more important
-that you structure it well than that you cover every single corner case
-imaginable.
+Draw inspiration from the previous weeks' test suites if you find that you have
+trouble getting started. The important thing here is to make a good attempt at
+creating a manageable test suite, it is more important that you structure it
+well than that you cover every single corner case imaginable.
 
 * You have been given a skeleton for an abstract test class called
   [IntSorterTest](src/IntSorterTest.java).
@@ -114,9 +114,6 @@ imaginable.
     - For each of your implementations, extend the test class with an
       implementing test class (e.g. with `QuicksortFixedPivotTest`) and
       implement the `getIntSorter()` method.
-    - This is almost identical to the test layout of `week-18` (the graph
-      project). Have a look at how `HashGraphTest` and `MatrixGraphTest` extend
-      `GraphTest` if you feel lost.
 * **Optionally**, feel free to make a more elaborate setup, for example with a
   more specialized abstract test class for the quicksort implementations.
 * The sorting tests in week 11's `BoxProcessorTest` may prove helpful. Have a
@@ -138,17 +135,26 @@ imaginable.
 > must inherit from IntSorterTest.**
 
 #### Kattis Test
+
 In addition to the unit tests you write yourself, you should also submit _at
-least one_ of your implementations to Kattis. You **absolutely have to register for the DD1338 course** and then submit your solution. Failure to do so will result in kompleterring.
+least one_ of your implementations to Kattis. You **absolutely have to register
+for the DD1338 course** and then submit your solution. Failure to do so will
+result in kompleterring.
 
-Kattis will test both that your
-implementations are correct, and how fast they run (_...perhaps you can become
-the champion of inda-19..._). _Note that the run times on Kattis can differ
-quite between different runs on the same code, especially if you have randomisation!_
+Kattis will test both that your implementations are correct, and how fast they
+run. _Note that the run times on Kattis can differ between different runs on the
+same code, especially if you have randomisation!_
 
-One of the main problems we have with Java is that the **default I/O will be slow**. To make this faster, we can use the [`Kattio`](src/Kattio.java) class provided to significantly speed things up.
+One of the main problems we have with Java is that the **default I/O will be
+slow**. To make this faster, we can use the [`Kattio`](src/Kattio.java) class
+provided to significantly speed things up.
 
-> **Assistant's note:** It is really important to realise that we are abusing the constructor here just to overcome the slow I/O used by default on this task. You can still submit your Quicksort submission without using Kattio, but you will incur a time cost of about 2 seconds for I/O. Note, you must submit the Kattio.java file along with your QuickSort.java file when submitting, otherwise an error will occur.
+> **Assistant's note:** It is really important to realise that we are abusing
+> the constructor here just to overcome the slow I/O used by default on this
+> task. You can still submit your Quicksort submission without using Kattio, but
+> you will incur a time cost of about 2 seconds for I/O. Note, you must submit
+> the Kattio.java file along with your QuickSort.java file when submitting,
+> otherwise an error will occur.
 
 Here is a skeleton `QuickSort` class to give you an idea how to use `Kattio`:
 
@@ -183,15 +189,17 @@ class QuickSort implements IntSorter {
 
 #### Kattis Submission
 
-**Submit your implementation [here](https://kth.kattis.com/courses/DD1338/algdat19)**. Please note this link may not yet be active, but just check back later. Remember to register for DD1338 in order for your submission to be valid.
+**Submit your implementation [here](https://kth.kattis.com/courses/DD1338/algdat20)**. Please note this link may not yet be active, but just check back later. Remember to register for DD1338 in order for your submission to be valid.
 
 **Once you have a successful run, please copy the submission ID and put it in the [docs/submission.txt](docs/submission.txt) file.** There are no limits on the number of submissions, so you can try out your different variations of Quicksort.
 
 ### Week 2 - Empirical Evaluation
+
 In the second week, you will perform an empirical evaluation of your
 implementation and produce a short report.
 
 #### Timing Execution
+
 The class [StopWatch](src/Stopwatch.java) implements a simple stopwatch for
 timing execution. Its usage can be seen in the
 [TimingExample](src/TimingExample.java) class.  Run `TimingExample` and pay
@@ -223,28 +231,28 @@ control variables in the computing environment as much as possible.
 Example table of execution time costs for different algorithms and problem
 sizes (produce one table per test):
 
-| Test 1: Random Data |               |                          |               |
-| ------------------  | ------------- | ------------------------ | ------------- |
-| Problem Size        | InsertionSort | Quicksort Variations 1-4 | Arrays.sort † |
-| 100                 |               |                          |               |
-| 1000                |               |                          |               |
-| 10000               |               |                          |               |
-| 100000              |               |                          |               |
-| 1000000             |               |                          |               |
+| Test 1: Random Data |               |       |       |       |       |               |
+| ------------------  | ------------- | ----- | ----- | ----- | ----- | ------------- |
+| Problem Size        | InsertionSort | Qs V1 | Qs V2 | Qs V3 | Qs V4 | Arrays.sort † |
+| 100                 |               |       |       |       |       |               |
+| 1000                |               |       |       |       |       |               |
+| 10000               |               |       |       |       |       |               |
+| 100000              |               |       |       |       |       |               |
+| 1000000             |               |       |       |       |       |               |
 
 > **Assistant's note:** For some of the tests, insertion sort will take a
 > _very_ long time to run to completion on large porblem sizes. It is fine to
 > point out these test cases with a motivation for why they are slow, and put
 > something like a few dashes in that cell instead of an execution time.
 
-> **Assistant's other note:** That's _one column per quicksort variation_, not
-> one aggregated column for all of them.
+> **Assistant's other note:** That's _one column per quicksort variation_.
 
-† [Arrays.sort(int[] a)](https://zgrepcode.com/java/openjdk/10.0.2/java.base/java/util/arrays.java#L-144)
+† [Arrays.sort(int[] a)](https://docs.oracle.com/javase/8/docs/api/java/util/Arrays.html#sort-int:A-)
 is from the Java standard library, and for your interest, it also uses
 Quicksort, but with a dual-pivot variation with lots of optimisations :-)
 
 #### Report
+
 Finally, you should prepare a short report. The report will contain the
 following sections (a template can be found in `docs`):
 

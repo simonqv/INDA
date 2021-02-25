@@ -24,7 +24,7 @@ public final class TimingExample {
             {
                 long dummy = sum(n);
             }
-            long time = clock.stop().milliseconds();
+            long time = clock.stop().nanoseconds();
 
             System.out.printf("Time to run sum(%d): %d ms%n", n, time);
         }
