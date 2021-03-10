@@ -1,6 +1,4 @@
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class Timing {
     final static Data[] randomData = {
@@ -72,7 +70,7 @@ public class Timing {
             fixedPivotInsertionTimes[i] = timeQuicksort(data[i], clock, new QuicksortFixedPivotInsertion());
             randomPivotTimes[i] = timeQuicksort(data[i], clock, new QuicksortRandomPivot());
             randomPivotInsertionTimes[i] = timeQuicksort(data[i], clock, new QuicksortRandomPivotInsertion());
-            javaSortTimes[i] = timeQuicksort(data[i], clock, v -> Arrays.sort(v));
+            javaSortTimes[i] = timeQuicksort(data[i], clock, Arrays::sort);
         }
 
         System.out.println("Fixed Pivot Times:                  " + Arrays.toString(fixedPivotTimes));
