@@ -12,9 +12,13 @@ public class QuicksortRandomPivot extends QuickSort {
      */
     private void quicksortRandomPivot(int[] v, int lo, int hi) {
         if (lo < hi) {
-            int pivot = randomPartition(v, lo, hi);
-            quicksortRandomPivot(v, lo, pivot - 1);
-            quicksortRandomPivot(v, pivot + 1, hi);
+            final int pivot = randomPivot(v, lo, hi);
+
+            int[] mid = partition(v, lo, hi, pivot);
+            //int mid = (partition[0] + partition[1]) / 2;
+
+            quicksortRandomPivot(v, lo, mid[0] - 1);
+            quicksortRandomPivot(v, mid[1] + 1, hi);
         }
     }
 }

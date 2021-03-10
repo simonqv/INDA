@@ -13,14 +13,16 @@ public class QuicksortRandomPivotInsertion extends QuickSort{
      * @param hi the last element
      */
     private void quicksortRandomPivotInsertion(int[] v, int lo, int hi) {
-        int k = 10;
+        int k = 20;
         if (lo < hi) {
             if (v.length < k) {
                 new InsertionSort().sort(v);
             } else {
-                int pivot = randomPartition(v, lo, hi);
-                quicksortRandomPivotInsertion(v, lo, pivot - 1);
-                quicksortRandomPivotInsertion(v, pivot + 1, hi);
+                final int pivot = randomPivot(v, lo, hi);
+                int[] mid = partition(v, lo, hi, pivot);
+                //int mid = (partition[0] + partition[1]) / 2;
+                quicksortRandomPivotInsertion(v, lo, mid[0] - 1);
+                quicksortRandomPivotInsertion(v, mid[1] + 1, hi);
             }
         }
     }

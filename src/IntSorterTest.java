@@ -38,12 +38,12 @@
 
      @Before
      public void setUp() {
-         evenRandom = new Data(2000, 20, Data.Order.RANDOM);
-         oddRandom = new Data(2001, 20, Data.Order.RANDOM);
-         evenAscending = new Data(1000000, 10000000, Data.Order.ASCENDING);
-         oddAscending = new Data(2001, 5, Data.Order.ASCENDING);
-         evenDescending = new Data(2000, 5, Data.Order.DESCENDING);
-         oddDescending = new Data(2001, 5, Data.Order.DESCENDING);
+         evenRandom = new Data(2000, 2000, Data.Order.RANDOM);
+         oddRandom = new Data(2001, 2001, Data.Order.RANDOM);
+         evenAscending = new Data(2000, 2000, Data.Order.ASCENDING);
+         oddAscending = new Data(2001, 2001, Data.Order.ASCENDING);
+         evenDescending = new Data(2000, 2000, Data.Order.DESCENDING);
+         oddDescending = new Data(2001, 2001, Data.Order.DESCENDING);
          oneElem = new Data(1, 1, Data.Order.RANDOM);
          sameElem = new Data(10000, 1, Data.Order.RANDOM);
          empty = new Data(0, 20, Data.Order.RANDOM);

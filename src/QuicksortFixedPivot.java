@@ -13,9 +13,14 @@ public class QuicksortFixedPivot extends QuickSort {
      */
     private void quicksortFixedPivot(int[] v, int lo, int hi) {
         if (lo < hi) {
-            int pivot = fixedPartition(v, lo, hi);
-            quicksortFixedPivot(v, lo, pivot - 1);
-            quicksortFixedPivot(v, pivot + 1, hi);
+            // Selects middle elem as pivot
+            final int pivot = v[(lo + hi) / 2];
+
+            int[] mid = partition(v, lo, hi, pivot);
+            //int mid = (partition[0] + partition[1]) / 2;
+
+            quicksortFixedPivot(v, lo, mid[0] - 1);
+            quicksortFixedPivot(v, mid[1] + 1, hi);
         }
     }
 }

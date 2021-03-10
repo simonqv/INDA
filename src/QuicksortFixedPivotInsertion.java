@@ -13,16 +13,20 @@ public class QuicksortFixedPivotInsertion extends QuickSort{
      * @param hi last elem
      */
     private void quicksortFixedPivotInsertion(int[] v, int lo, int hi) {
-        int k = 10;
+        int k = 20;
         if (lo < hi) {
             // if the list is shorter than k, cut off to insertion sort
             if (v.length < k) {
                 new InsertionSort().sort(v);
             // else continue with quicksort
             } else {
-                int pivot = fixedPartition(v, lo, hi);
-                quicksortFixedPivotInsertion(v, lo, pivot - 1);
-                quicksortFixedPivotInsertion(v, pivot + 1, hi);
+                // Selects middle element as pivot
+                final int pivot = v[(lo + hi) / 2];
+
+                int[] mid = partition(v, lo, hi, pivot);
+                //int mid = (partition[0] + partition [1]) / 2;
+                quicksortFixedPivotInsertion(v, lo, mid[0] - 1);
+                quicksortFixedPivotInsertion(v, mid[1] + 1, hi);
             }
         }
     }
