@@ -105,56 +105,84 @@ and used in the data for comparison.
 
 ## Results
 
-Below are tables with data from the timing tests. Attached are charts with visualisation of the data.
+Below are tables with data from the timing tests. Below the tables are charts with visualisation of the data.
 
 | Test 1: Random Data | nano seconds  | nano seconds| nano seconds          | nano seconds | nano seconds           | nano seconds  |
 | ------------------  | ------------- | ----------- | --------------------- | ------------ | ---------------------- | ------------- |
 | Problem Size        | InsertionSort | Fixed Pivot | Fixed Pivot Insertion | Random Pivot | Random Pivot Insertion | Arrays.sort † |
-| 100                 | 3451          | 28906       | 27648                 | 96216        | 52580                  | 4366          |
-| 1000                | 284760        | 195573      | 217300                | 560957       | 567070                 | 83934         |
-| 10000               | 33902782      | 1951182     | 1907148               | 3233810      | 2892220                | 844311        |
-| 100000              | 2265040343    | 19689153    | 22090528              | 27720272     | 25565981               | 7335337       |
-| 1000000             | -             | 189742571   | 175658444             | 269329320    | 279302737              | 98916793      |
+| 100                 | 2911          | 2405        | 2109                  | 8899         | 9055                   | 2687          |
+| 1000                | 245273        | 63245       | 63053                 | 107000       | 134717                 | 71272         |
+| 10000               | 22701286      | 1154166     | 1103623               | 1301983      | 1335044                | 607327        |
+| 100000              | 2274339139    | 12648027    | 12938399              | 15190963     | 15350500               | 7350197       |
+| 1000000             | -             | 148053341   | 153023744             | 175993800    | 178598181              | 89001765      |
 
 | Test 2: Sorted Data | nano seconds  | nano seconds| nano seconds          | nano seconds | nano seconds           | nano seconds  |
 | ------------------  | ------------- | ----------- | --------------------- | ------------ | ---------------------- | ------------- |
 | Problem Size        | InsertionSort | Fixed Pivot | Fixed Pivot Insertion | Random Pivot | Random Pivot Insertion | Arrays.sort † |
-| 100                 | 1329          | 3215        | 3221                  | 18381        | 18392                  | 3879          |
-| 1000                | 5320          | 45133       | 48151                 | 170776       | 175903                 | 5277          |
-| 10000               | 73467         | 685592      | 689963                | 1880511      | 1902737                | 105607        |
-| 100000              | 284502        | 8710197     | 9380672               | 23247124     | 20147775               | 262294        |
-| 1000000             | 3911466       | 88596665    | 90116646              | 207090173    | 211732705              | 2009917       |
+| 100                 | 350          | 2643        | 2929                  | 8128        | 8111                  | 366          |
+| 1000                | 4331          | 26448       | 24998                 | 79132       | 80485                 | 924          |
+| 10000               | 41321         | 450809      | 437448                | 901098      | 906022                | 8927        |
+| 100000              | 304977        | 5189120     | 5488782               | 10672167     | 10274501               | 93587        |
+| 1000000             | 3136509       | 62834100    | 63677728              | 114870647    | 114726375              | 1894417       |
 
 | Test 3: Reversed Data| nano seconds | nano seconds| nano seconds          | nano seconds | nano seconds           | nano seconds  |
 | ------------------  | ------------- | ----------- | --------------------- | ------------ | ---------------------- | ------------- |
 | Problem Size        | InsertionSort | Fixed Pivot | Fixed Pivot Insertion | Random Pivot | Random Pivot Insertion | Arrays.sort † |
-| 100                 | 5842          | 2892        | 3331                  | 21451        | 18933                  | 9284          |
-| 1000                | 457171        | 80200       | 46995                 | 171710       | 174491                 | 17467         |
-| 10000               | 45113492      | 657616      | 671060                | 1811648      | 1856584                | 115948        |
-| 100000              | 4556225709    | 9678994     | 8001364               | 19712092     | 19903953               | 768524        |
-| 1000000             | -             | 86964542    | 88135964              | 202884396    | 212853341              | 3400176       |
+| 100                 | 5507          | 2837        | 2626                  | 10499        | 10895                  | 495          |
+| 1000                | 474774        | 45916       | 28428                 | 81281       | 80870                 | 1485         |
+| 10000               | 45072716      | 418828      | 437209                | 893674      | 891236                | 14279        |
+| 100000              | 4512663236    | 5163484     | 5439374               | 10674628     | 10070113               | 147358        |
+| 1000000             | -             | 62746063    | 70243753              | 115625471    | 113824550              | 2582284       |
 
 | Test 4: Equal Data  | nano seconds  | nano seconds| nano seconds          | nano seconds | nano seconds           | nano seconds  |
 | ------------------  | ------------- | ----------- | --------------------- | ------------ | ---------------------- | ------------- |
 | Problem Size        | InsertionSort | Fixed Pivot | Fixed Pivot Insertion | Random Pivot | Random Pivot Insertion | Arrays.sort † |
-| 100                 | 907           | 2170        | 2129                  | 10534        | 10579                  | 624           |
-| 1000                | 4413          | 26675       | 27588                 | 96191        | 96123                  | 1153          |
-| 10000               | 30882         | 289388      | 279166                | 997356       | 1002708                | 9793          |
-| 100000              | 396393        | 3392792     | 3278628               | 11943167     | 10733869               | 104856        |
-| 1000000             | 3675261       | 40284444    | 40842137              | 110367307    | 113150550              | 2045966       |
+| 100                 | 304           | 299        | 308                  | 392        | 409                  | 181           |
+| 1000                | 2595          | 2208       | 2198                 | 2433        | 2293                  | 989          |
+| 10000               | 20973         | 21332      | 19185                | 19633       | 19670                | 8916          |
+| 100000              | 216004        | 200758     | 216997               | 195641     | 195482               | 90136        |
+| 1000000             | 3010288       | 2812148    | 2971146              | 2819213    | 3004379              | 1852687       |
 
 
-![title](Images/InsertionSortZoomIn.png)
+------
+#####Sorting Random Data 
+![RandomData](Images/SortingRandom.png)
 
-	In this section:
-	* Present a table for the data from each test
-	* Generate charts (use Matlab or another tool) to show the data
-	* Ensure you label each clearly
+#####Sorting Sorted Data
+![SortedData](Images/SortingSorted.png)
+
+#####Sorting Reversed Data
+![ReversedData](Images/SortingReversed.png)
+
+#####Sorting Equal Data
+![EqualData](Images/SortingEqual.png)
+
+#####Sorting With Insertion Sort
+Insertion sort was very slow for the bigger arrays, they would completely 
+dominate the charts, and two of them took too long to sort. Because of this they have 
+been given their own charts, one zoomed-out showing everything, and one zoomed-in so 
+the smaller pillars are visible. 
+
+![InsertionSortZoomOut](Images/InsertionSortZoomOut.png)
+> Zoomed out
+![InsertionSortZoomIn](Images/InsertionSortZoomIn.png)
+> Zoomed in
+
 
 ## Discussion
 
-	In this section:
-	* Discuss your general findings based on the data
-	* What was surprising
-	* What met your expectations
-	* Which variation was closet to Arrays.sort?
+I was at first surprised that the fixed pivot seems to outperform the random pivot! I 
+suspect it is because of the fixed pivot being in the middle, thus getting a boost when 
+the array already is sorted, or reversed. It is also probably benefiting more from the dual pivot 
+implemented this week. However, when the arrays consist of only equal elements they perform pretty 
+similar. I am also a little surprised at how much faster the Arrays.sort is, compared to 
+my implementations, for reversed and sorted data, however as the instructions in the README file says, 
+it is heavily optimized.
+
+I also thought that cutting off to insertion sort would improve the sort, but that does not seem to be the 
+case for some reason, and I don't know why. I might be my implementation of insertion sort that could be improved.
+
+The fixed pivot version seems like the best one! It is always the fastest one, only ever matched by the 
+random pivot when all elements are equal. However, the Arrays.sort is a lot faster when the arrays already are  
+sorted, ascending or descending order. The insertion sort is very bad when the array is in reversed order, 
+and pretty bad when the array is random. It is great when the array is sorted to begin with though.

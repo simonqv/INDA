@@ -85,41 +85,41 @@ public class Timing {
 
     public static void main(String[] args) {
         final Stopwatch clock = new Stopwatch();
+        for (int d = 0; d < 2; d++) {
+            System.out.println("Random Data:");
+            checker(clock, randomData);
+            System.out.println("\nSorted Data:");
+            checker(clock, sortedData);
+            System.out.println("\nReversed Data:");
+            checker(clock, reversedData);
+            System.out.println("\nEqual Data:");
+            checker(clock, equalData);
 
-        System.out.println("Random Data:");
-        checker(clock, randomData);
-        System.out.println("\nSorted Data:");
-        checker(clock, sortedData);
-        System.out.println("\nReversed Data:");
-        checker(clock, reversedData);
-        System.out.println("\nEqual Data:");
-        checker(clock, equalData);
 
+            timeQuicksort(randomData[2], clock, new InsertionSort());
+            System.out.println("\nInsertion sort:");
+            long[] randomTimeInsertion = new long[5];
+            long[] sortedTimeInsertion = new long[5];
+            long[] reversedTimeInsertion = new long[5];
+            long[] equalTimeInsertion = new long[5];
+            for (int i = 0; i < 4; i++) {
+                randomTimeInsertion[i] = timeQuicksort(randomData[i], clock, new InsertionSort());
+            }
+            System.out.println("Random Data:    " + Arrays.toString(randomTimeInsertion));
+            for (int i = 0; i < 5; i++) {
+                sortedTimeInsertion[i] = timeQuicksort(sortedData[i], clock, new InsertionSort());
+            }
+            System.out.println("Sorted Data:    " + Arrays.toString(sortedTimeInsertion));
+            for (int i = 0; i < 4; i++) {
+                reversedTimeInsertion[i] = timeQuicksort(reversedData[i], clock, new InsertionSort());
+            }
+            System.out.println("Reversed Data:  " + Arrays.toString(reversedTimeInsertion));
+            for (int i = 0; i < 5; i++) {
+                equalTimeInsertion[i] = timeQuicksort(equalData[i], clock, new InsertionSort());
+            }
+            System.out.println("Equal Data:     " + Arrays.toString(equalTimeInsertion));
 
-        timeQuicksort(randomData[2], clock, new InsertionSort());
-        System.out.println("\nInsertion sort:");
-        long[] randomTimeInsertion = new long[5];
-        long[] sortedTimeInsertion = new long[5];
-        long[] reversedTimeInsertion = new long[5];
-        long[] equalTimeInsertion = new long[5];
-        for (int i = 0; i < 4; i++) {
-            randomTimeInsertion[i] = timeQuicksort(randomData[i], clock, new InsertionSort());
         }
-        System.out.println("Random Data:    " + Arrays.toString(randomTimeInsertion));
-        for (int i = 0; i < 5; i++) {
-            sortedTimeInsertion[i] = timeQuicksort(sortedData[i], clock, new InsertionSort());
-        }
-        System.out.println("Sorted Data:    " + Arrays.toString(sortedTimeInsertion));
-        for (int i = 0; i < 4; i++) {
-            reversedTimeInsertion[i] = timeQuicksort(reversedData[i], clock, new InsertionSort());
-        }
-        System.out.println("Reversed Data:  " + Arrays.toString(reversedTimeInsertion));
-        for (int i = 0; i < 5; i++) {
-            equalTimeInsertion[i] = timeQuicksort(equalData[i], clock, new InsertionSort());
-        }
-        System.out.println("Equal Data:     " + Arrays.toString(equalTimeInsertion));
-
-
     }
 }
 
