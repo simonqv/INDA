@@ -1,17 +1,16 @@
 ### Deadline:
-This work should be completed before the exercise on **Friday 20th March**.
+This work should be completed before the exercise on **Friday 26th March**.
 
 ### Instructions
 For instructions on how to do and submit the assignment, please see the
-[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-19/course-instructions#assignments).
+[assignments section of the course instructions](https://gits-15.sys.kth.se/inda-20/course-instructions#assignments).
 
 ### Homework
-Study the following course literature:
+Study the following course literature
 
-- Read [Go for Java Programmers](http://yourbasic.org/golang/go-java-tutorial/)
-- Take a look at [An Introduction to Programming in Go](https://www.golang-book.com/books/intro) for more info
-- Read the following from the [Fundamentals of Concurrent Programming](http://yourbasic.org/golang/concurrent-programming/)
-  - [Goroutines](http://yourbasic.org/golang/goroutines-explained/)
+- [Go for Java Programmers](http://yourbasic.org/golang/go-java-tutorial/)
+- [Fundamentals of Concurrent Programming](http://yourbasic.org/golang/concurrent-programming/)
+- [Goroutines](http://yourbasic.org/golang/goroutines-explained/)
 
 ### Task 1 - Go Environment
 
@@ -117,7 +116,7 @@ the examples, but you don't need to submit them.
 >   `Func` with whatever is appropriate. _Note that the capitalization is
 >   important, for example `Testfunc` and `testFunc` won't work!_
 >   - You can read more
->     [in the `testing` package docs](./twopartsum.go:23:6: main redeclared in this block)
+>     [in the `testing` package docs](https://golang.org/pkg/testing/)
 > * For basic usage, you just type `go test`, with no other arguments. It will
 >   find all of the `*_test.go` files in the current directory.
 > * All Go code in the current directory must be compilable _together_. This
