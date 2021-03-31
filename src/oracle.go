@@ -46,12 +46,12 @@ func Oracle() chan<- string {
 
 	go answerQuestions(questions, answers)
 	go makeProphecies(questions, answers)
-	go printAnswers(questions, answers)
+	go printAnswers(answers)
 
 	return questions
 }
 
-func printAnswers(questions chan string, answers chan string) {
+func printAnswers(answers chan string) {
 	for prediction := range answers {
 		//	min := 1000
 		//	max := 2000
