@@ -42,10 +42,48 @@ func main() {
 // The oracle also prints sporadic prophecies to stdout even without being asked.
 func Oracle() chan<- string {
 	questions := make(chan string)
-	// TODO: Answer questions.
-	// TODO: Make prophecies.
-	// TODO: Print answers.
+	answers := make(chan string)
+
+	go answerQuestions(questions, answers)
+	go makeProphecies(questions, answers)
+	go printAnswers(questions, answers)
+
 	return questions
+}
+
+func printAnswers(questions chan string, answers chan string) {
+	for prediction := range answers {
+		//	min := 1000
+		//	max := 2000
+		//	random := rand.Intn((max - min + 1) + min)
+		time.Sleep(time.Duration(2+rand.Intn(5)) * time.Second)
+
+		characters := strings.Split(prediction, "")
+		for _, c := range characters {
+			fmt.Print(c)
+			time.Sleep(25 * time.Millisecond)
+		}
+		fmt.Print("\n" + prompt)
+		time.Sleep(100 * time.Millisecond)
+	}
+}
+
+func makeProphecies(questions chan string, answers chan string) {
+	for {
+		//	min := 1500
+		//	max := 8000
+		//	random := int64(rand.Intn((max - min + 1) + min))
+		time.Sleep(time.Duration(2+rand.Intn(8)) * time.Second)
+		if questions != nil {
+			prophecy("Prophecy ", answers)
+		}
+	}
+}
+
+func answerQuestions(questions chan string, answers chan string) {
+	for question := range questions {
+		go prophecy(question, answers)
+	}
 }
 
 // This is the oracle's secret algorithm.
@@ -69,6 +107,12 @@ func prophecy(question string, answer chan<- string) {
 	nonsense := []string{
 		"The moon is dark.",
 		"The sun is bright.",
+		"People say nothing is impossible, but I do nothing every day",
+		"\"I actually don't like thinking. I think people think I like to think a lot. And I don't. I do not like to think at all.\" - Kanye West",
+		"I’ve been noticing gravity since I was very young.",
+		"I personally believe that U.S. Americans are unable to do so because, uh, some, uh, people out there in our nation don't have maps and, uh, I believe that our education like such as in South Africa and, uh, the Iraq, everywhere like such as, and, I believe that they should, our education over here in the U.S. should help the U.S., uh, or, uh, should help South Africa and should help the Iraq and the Asian countries, so we will be able to build up our future. For our children.",
+		"How can mirrors be real if our eyes aren't real?",
+		"predictions are difficult, especially about the future.",
 	}
 	answer <- longestWord + "... " + nonsense[rand.Intn(len(nonsense))]
 }
