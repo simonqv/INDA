@@ -10,7 +10,9 @@ import (
 	"log"
 	"math/cmplx"
 	"os"
+	"runtime"
 	"strconv"
+	"sync"
 )
 
 type ComplexFunc func(complex128) complex128
@@ -24,6 +26,11 @@ var Funcs []ComplexFunc = []ComplexFunc{
 	func(z complex128) complex128 { return cmplx.Exp(z*z*z) - 0.621 },
 	func(z complex128) complex128 { return (z*z+z)/cmplx.Log(z) + complex(0.268, 0.060) },
 	func(z complex128) complex128 { return cmplx.Sqrt(cmplx.Sinh(z*z)) + complex(0.065, 0.122) },
+}
+
+func inti() {
+	numcpu := runtime.NumCPU()
+	runtime.GOMAXPROCS(numcpu)
 }
 
 func main() {
@@ -43,6 +50,7 @@ func CreatePng(filename string, f ComplexFunc, n int) (err error) {
 	}
 	defer file.Close()
 	err = png.Encode(file, Julia(f, n))
+
 	return
 }
 
@@ -51,26 +59,36 @@ func Julia(f ComplexFunc, n int) image.Image {
 	bounds := image.Rect(-n/2, -n/2, n/2, n/2)
 	img := image.NewRGBA(bounds)
 	s := float64(n / 4)
+
+	wg := new(sync.WaitGroup)
+	wg.Add(bounds.Max.X - bounds.Min.X)
 	for i := bounds.Min.X; i < bounds.Max.X; i++ {
-		for j := bounds.Min.Y; j < bounds.Max.Y; j++ {
-			n := Iterate(f, complex(float64(i)/s, float64(j)/s), 256)
-			r := uint8(0)
-			g := uint8(0)
-			b := uint8(n % 32 * 8)
-			img.Set(i, j, color.RGBA{r, g, b, 255})
-		}
+		go func(i int) {
+			for j := bounds.Min.Y; j < bounds.Max.Y; j++ {
+				n := Iterate(f, complex(float64(i)/s, float64(j)/s), 256)
+				r := uint8(n % 32 * 8)
+				g := uint8(0)
+				b := uint8(n % 32 * 8)
+				img.Set(i, j, color.RGBA{r, g, b, 255})
+			}
+			wg.Done()
+		}(i)
 	}
+
+	wg.Wait()
 	return img
 }
 
 // Iterate sets z_0 = z, and repeatedly computes z_n = f(z_{n-1}), n â‰¥ 1,
 // until |z_n| > 2  or n = max and returns this n.
 func Iterate(f ComplexFunc, z complex128, max int) (n int) {
+
 	for ; n < max; n++ {
 		if real(z)*real(z)+imag(z)*imag(z) > 4 {
 			break
 		}
 		z = f(z)
 	}
+
 	return
 }
