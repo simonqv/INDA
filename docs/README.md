@@ -12,7 +12,8 @@
 2. It will not be instantiated with a pointer and will not be sent as a pointer, and will result in error. .Done() will try to mark 
    the empty waitgroup, and then getting negative index. 
 3. Deadlock! The channel will be blocked! 
-4. Default is empty, so nothing happens if it's removed.
+4. If the first case doesn't work, the switch will go to the empty default and exit. In our case with 
+   odd number of names we can remove the default. If the list is of even length this results in deadlock!
 
 
 ## Task 2
